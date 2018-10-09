@@ -6,7 +6,7 @@
 <div id="container">
     <%@ include file="/header.jsp"%>
 
-    <form action="/doorCreekCafe/grantAccess" method="get">
+    <form action="/supportIT/grantAccess" method="get">
 
         <%@include file="/content/login.jsp"%>
 

@@ -8,7 +8,7 @@
 
     <form action="/doorCreekCafe/grantAccess" method="get">
 
-        <%@include file="/content/login.jsp"%>
+        <%@include file="/content/volunteerDashboard.jsp"%>
 
     </form>
     </p>
