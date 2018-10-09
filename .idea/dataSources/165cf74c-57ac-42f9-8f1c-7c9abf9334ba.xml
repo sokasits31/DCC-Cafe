@@ -18,7 +18,7 @@
     <table id="12" parent="2" name="menu"/>
     <table id="13" parent="2" name="test_parm"/>
     <table id="14" parent="2" name="user"/>
-    <table id="15" parent="2" name="user_history"/>
+    <table id="15" parent="2" name="user_test_history"/>
     <column id="16" parent="12" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
