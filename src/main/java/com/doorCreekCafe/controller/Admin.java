@@ -1,7 +1,7 @@
 package com.doorCreekCafe.controller;
 
-
 import com.doorCreekCafe.persistence.TestHistoryDao;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,22 +18,22 @@ import java.io.IOException;
  */
 
 @WebServlet(
-        urlPatterns = {"/grantAccess"}
+        name = "adminServlet",
+        urlPatterns = {"/adminDashboard"}
 )
 
-public class GrantAccess extends HttpServlet {
+public class Admin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        //RequestDispatcher dispatcher = req.getRequestDispatcher("/volunteerHome.jsp");
-        //dispatcher.forward(req, resp);
-
         TestHistoryDao testHistoryDao = new TestHistoryDao();
 
         req.setAttribute("userTests", testHistoryDao.getAllTests() );
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/content/adminDashboard.jsp");
+        //if (req.getParameter("submit").equals("Display All Resources")) {
+        //    req.setAttribute("users", userDao.getAllUsers());
+        //}
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/content/admin/displayAllResources.jsp");
         dispatcher.forward(req, resp);
     }
 }
