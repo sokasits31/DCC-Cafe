@@ -1,9 +1,13 @@
 package com.doorCreekCafe.persistence;
 
-import com.stevesokasits.entity.User;
+import com.doorCreekCafe.entity.TestHistory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.ejb.Local;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +18,7 @@ class TestHistoryDaoTests {
 
 
 
-    UserDao dao;
+    TestHistoryDao dao;
 
     /**
      * Run set up tasks before each test:
@@ -24,91 +28,74 @@ class TestHistoryDaoTests {
     @BeforeEach
     void setUp() {
 
-        com.stevesokasits.test.util.Database database = com.stevesokasits.test.util.Database.getInstance();
+        com.doorCreekCafe.test.util.Database database = com.doorCreekCafe.test.util.Database.getInstance();
         database.runSQL("usersTestData.sql");
-        dao = new UserDao();
+        dao = new TestHistoryDao();
     }
 
     @Test
     void getAllUsersSuccess() {
 
-        List<User> users = dao.getAllUsers();
-        assertEquals(5, users.size());
+        List<TestHistory> tests = dao.getAllTests();
+        assertEquals(25, tests.size());
 
     }
 
     /**
-     * Verify successful retrieval of a user
+     * Verify successful retrieval of a testHistory
      */
     @Test
     void getByIdSuccess() {
-        User retrievedUser = dao.getById(3);
-        assertEquals("Lea.sokasits@gmail.com", retrievedUser.getEmailAddress());
-        assertEquals("resource", retrievedUser.getUserRole());
-        assertEquals("Lea",retrievedUser.getFirstName());
-        assertEquals("Sokasits",retrievedUser.getLastName());
-        assertEquals(false,retrievedUser.isPrimarySupport());
-        assertEquals(true,retrievedUser.isSecondarySupport());
-        assertEquals("college1",retrievedUser.getPassword());
+        LocalDate expectedDate = LocalDate.parse("2018-10-08");
+        TestHistory retreivedTest = dao.getId(3);
+        assertEquals(2,retreivedTest.getUserId());
+        assertEquals(expectedDate, retreivedTest.getTestDate());
+        assertEquals(1, retreivedTest.getTestLevel());
+        assertEquals(3,retreivedTest.getMenuIdTested());
+       // assertEquals("00:00:45", retreivedTest.getResponseTimeInSeconds());
     }
 
     /**
-     * Verify successful insert of a user
+     * Verify successful insert of a testHistory
      */
     @Test
     void insertSuccess() {
 
         // Create Child Object
-        User newUser = new User("new@gmail.com","resource" ,"First", "Last",true,false,"college1", null);
+        LocalDate testDate = LocalDate.parse("2018-11-01");
 
-        int id = dao.insert(newUser);
+
+        TestHistory newTest = new TestHistory(2, testDate, 3, 77, 67);
+
+        int id = dao.insert(newTest);
         assertNotEquals(0,id);
 
-        User insertedUser = dao.getById(id);
-        assertEquals("new@gmail.com", insertedUser.getEmailAddress());
+        TestHistory insertedTest = dao.getId(id);
+        assertEquals( 77, insertedTest.getMenuIdTested());
         // Could continue comparing all values, but
         // it may make sense to use .equals()
         // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
     }
 
     /**
-     * Verify successful delete of user
+     * Verify successful delete of testHistory
      */
     @Test
     void deleteSuccess() {
-        dao.delete(dao.getById(3));
-        assertNull(dao.getById(3));
+        dao.delete(dao.getId(3));
+        assertNull(dao.getId(3));
     }
 
 
     /**
-     * Verify successful get by property (equal match)
-     */
-    @Test
-    void getByPropertyEqualSuccess() {
-        List<User> users = dao.getByPropertyEqual("lastName", "Blow");
-        assertEquals(1, users.size());
-        assertEquals(5, users.get(0).getId());
-    }
-
-    /**
-     * Verify successful get by property (like match)
-     */
-    @Test
-    void getByPropertyLikeSuccess() {
-        List<User> users = dao.getByPropertyLike("lastName", "sok");
-        assertEquals(4, users.size());
-    }
-
-    /**
-     * Verify that we can update a User
+     * Verify that we can update a TestHistory
      */
     @Test
     void saveOrUpdateSuccess() {
-        User user = dao.getById(1);
-        user.setEmailAddress("test@yahoo.com");
-        dao.saveOrUpdate(user);
-        User updatedUser = dao.getById(1);
-        assertEquals("test@yahoo.com", user.getEmailAddress());
+        TestHistory testHistory = dao.getId(1);
+        testHistory.setResponseTimeInSeconds(99);
+        dao.saveOrUpdate(testHistory);
+        TestHistory updatedUser = dao.getId(1);
+        assertEquals(99, testHistory.getResponseTimeInSeconds());
     }
 }

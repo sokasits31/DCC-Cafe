@@ -3,6 +3,8 @@ package com.doorCreekCafe.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The type User.
@@ -35,9 +37,8 @@ public class User {
     @Column(name = "skill_level")
     private int skillLevel;
 
-
-    //@ManyToOne
-    //private SupportTeam supportTeam;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<TestHistory> testScores = new HashSet<>();
 
 
     /**
@@ -163,6 +164,24 @@ public class User {
      */
     public void setSkillLevel(int skillLevel) {
         this.skillLevel = skillLevel;
+    }
+
+    /**
+     * Gets test scores.
+     *
+     * @return the test scores
+     */
+    public Set<TestHistory> getTestScores() {
+        return testScores;
+    }
+
+    /**
+     * Sets test scores.
+     *
+     * @param testScores the test scores
+     */
+    public void setTestScores(Set<TestHistory> testScores) {
+        this.testScores = testScores;
     }
 
     @Override

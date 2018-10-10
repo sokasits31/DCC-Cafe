@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * The type User test history.
@@ -30,31 +31,32 @@ public class TestHistory {
     private int menuIdTested;
 
     @Column (name="response_time")
-    private LocalDate responseTime;
+    private int responseTimeInSeconds;
+
+    @ManyToOne
+    private User user;
 
     /**
-     * Instantiates a new User test history.
+     * Instantiates a new Test history.
      */
     public TestHistory() {
     }
 
     /**
-     * Instantiates a new User test history.
+     * Instantiates a new Test history.
      *
-     * @param id           the id
-     * @param userId       the user id
-     * @param testDate     the test date
-     * @param testLevel    the test level
-     * @param menuIdTested the menu id tested
-     * @param responseTime the response time
+     * @param testDate              the test date
+     * @param testLevel             the test level
+     * @param menuIdTested          the menu id tested
+     * @param responseTimeInSeconds the response time in seconds
+     * @param user                  the user
      */
-    public TestHistory(int id, int userId, LocalDate testDate, int testLevel, int menuIdTested, LocalDate responseTime) {
-        this.id = id;
-        this.userId = userId;
+    public TestHistory(LocalDate testDate, int testLevel, int menuIdTested, int responseTimeInSeconds, User user) {
         this.testDate = testDate;
         this.testLevel = testLevel;
         this.menuIdTested = menuIdTested;
-        this.responseTime = responseTime;
+        this.responseTimeInSeconds = responseTimeInSeconds;
+        this.user = user;
     }
 
     /**
@@ -148,32 +150,51 @@ public class TestHistory {
     }
 
     /**
-     * Gets response time.
+     * Gets response time in seconds.
      *
-     * @return the response time
+     * @return the response time in seconds
      */
-    public LocalDate getResponseTime() {
-        return responseTime;
+    public int getResponseTimeInSeconds() {
+        return responseTimeInSeconds;
     }
 
     /**
-     * Sets response time.
+     * Sets response time in seconds.
      *
-     * @param responseTime the response time
+     * @param responseTimeInSeconds the response time in seconds
      */
-    public void setResponseTime(LocalDate responseTime) {
-        this.responseTime = responseTime;
+    public void setResponseTimeInSeconds(int responseTimeInSeconds) {
+        this.responseTimeInSeconds = responseTimeInSeconds;
+    }
+
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
-        return "UserTestHistory{" +
+        return "TestHistory{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", testDate=" + testDate +
                 ", testLevel=" + testLevel +
                 ", menuIdTested=" + menuIdTested +
-                ", responseTime=" + responseTime +
+                ", responseTimeInSeconds=" + responseTimeInSeconds +
+                ", user=" + user +
                 '}';
     }
 }

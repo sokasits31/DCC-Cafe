@@ -52,7 +52,7 @@ public class TestHistoryDao {
         transaction.commit();
         session.close();
         return id;
-    }
+    }+
 
     /**
      * Delete a userTestHistory

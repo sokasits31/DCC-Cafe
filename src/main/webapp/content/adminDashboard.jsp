@@ -19,6 +19,7 @@
                     <th>Test Level</th>
                     <th>Menu ID Tested</th>
                     <th>Response Time</th>
+                    <th>Test Scores</th>
 
                 </tr>
 
@@ -29,8 +30,7 @@
                         <td>${userTest.testDate}</td>
                         <td>${userTest.testLevel}</td>
                         <td>${userTest.menuIdTested}</td>
-                        <td>${userTest.responseTime}</td>
-
+                        <td>${userTest.responseTimeInSeconds}</td>
                     </tr>
                 </c:forEach>
             </table>
