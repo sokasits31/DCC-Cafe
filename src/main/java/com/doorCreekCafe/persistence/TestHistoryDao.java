@@ -1,7 +1,7 @@
 package com.doorCreekCafe.persistence;
 
 
-import com.doorCreekCafe.entity.TestHistory;
+import com.doorCreekCafe.entity.TestScore;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -23,32 +23,32 @@ public class TestHistoryDao {
     /**
      * Get userTestHistory by id
      */
-    public TestHistory getId(int id) {
+    public TestScore getId(int id) {
         Session session = sessionFactory.openSession();
-        TestHistory testHistory = session.get( TestHistory.class, id );
+        TestScore testScore = session.get( TestScore.class, id );
         session.close();
-        return testHistory;
+        return testScore;
     }
 
     /**
      * update userTestHistory
-     * @param testHistory  UserTestHistory to be inserted or updated
+     * @param testScore  UserTestHistory to be inserted or updated
      */
-    public void saveOrUpdate(TestHistory testHistory) {
+    public void saveOrUpdate(TestScore testScore) {
         Session session = sessionFactory.openSession();
-        session.saveOrUpdate(testHistory);
+        session.saveOrUpdate(testScore);
         session.close();
     }
 
     /**
      * update userTestHistory
-     * @param testHistory  UserTestHistory to be inserted or updated
+     * @param testScore  UserTestHistory to be inserted or updated
      */
-    public int insert(TestHistory testHistory) {
+    public int insert(TestScore testScore) {
         int id = 0;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        id = (int)session.save(testHistory);
+        id = (int)session.save(testScore);
         transaction.commit();
         session.close();
         return id;
@@ -56,12 +56,12 @@ public class TestHistoryDao {
 
     /**
      * Delete a userTestHistory
-     * @param testHistory UserTestHistory to be deleted
+     * @param testScore UserTestHistory to be deleted
      */
-    public void delete(TestHistory testHistory) {
+    public void delete(TestScore testScore) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(testHistory);
+        session.delete(testScore);
         transaction.commit();
         session.close();
     }
@@ -71,14 +71,14 @@ public class TestHistoryDao {
      *
      * @return All userTests
      */
-    public List<TestHistory> getAllTests() {
+    public List<TestScore> getAllTests() {
 
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<TestHistory> query = builder.createQuery( TestHistory.class );
+        CriteriaQuery<TestScore> query = builder.createQuery( TestScore.class );
 
-        Root<TestHistory> root = query.from( TestHistory.class );
-        List<TestHistory> userTests = session.createQuery( query ).getResultList();
+        Root<TestScore> root = query.from( TestScore.class );
+        List<TestScore> userTests = session.createQuery( query ).getResultList();
 
         logger.debug("The list of all test and questions detail " + userTests);
         session.close();
@@ -90,16 +90,16 @@ public class TestHistoryDao {
      * Get userTestHistory by property (exact match)
      * sample usage: getByPropertyEqual("lastname", "Curry")
      */
-    public List<TestHistory> getByPropertyEqual(String propertyName, String value) {
+    public List<TestScore> getByPropertyEqual(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
         logger.debug("Searching for userTestHistory with " + propertyName + " = " + value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<TestHistory> query = builder.createQuery( TestHistory.class );
-        Root<TestHistory> root = query.from( TestHistory.class );
+        CriteriaQuery<TestScore> query = builder.createQuery( TestScore.class );
+        Root<TestScore> root = query.from( TestScore.class );
         query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<TestHistory> userTests = session.createQuery( query ).getResultList();
+        List<TestScore> userTests = session.createQuery( query ).getResultList();
 
         session.close();
         return userTests;
@@ -109,19 +109,19 @@ public class TestHistoryDao {
      * Get userTestHistory by property (like)
      * sample usage: getByPropertyLike("lastname", "C")
      */
-    public List<TestHistory> getByPropertyLike(String propertyName, String value) {
+    public List<TestScore> getByPropertyLike(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
         logger.debug("Searching for userTestHistory with {} = {}",  propertyName, value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<TestHistory> query = builder.createQuery( TestHistory.class );
-        Root<TestHistory> root = query.from( TestHistory.class );
+        CriteriaQuery<TestScore> query = builder.createQuery( TestScore.class );
+        Root<TestScore> root = query.from( TestScore.class );
         Expression<String> propertyPath = root.get(propertyName);
 
         query.where(builder.like(propertyPath, "%" + value + "%"));
 
-        List<TestHistory> userTests = session.createQuery( query ).getResultList();
+        List<TestScore> userTests = session.createQuery( query ).getResultList();
         session.close();
         return userTests;
     }

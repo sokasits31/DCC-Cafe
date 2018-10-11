@@ -9,9 +9,9 @@ import java.time.LocalTime;
 /**
  * The type User test history.
  */
-@Entity (name= "TestHistory")     // Class Name
-@Table (name= "testHistory")      // Table Name
-public class TestHistory {
+@Entity (name= "TestScore")     // Class Name
+@Table (name= "testScore")      // Table Name
+public class TestScore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -36,7 +36,7 @@ public class TestHistory {
     /**
      * Instantiates a new Test history.
      */
-    public TestHistory() {
+    public TestScore() {
     }
 
     /**
@@ -48,7 +48,7 @@ public class TestHistory {
      * @param responseTimeInSeconds the response time in seconds
      * @param user                  the user
      */
-    public TestHistory(LocalDate testDate, int testLevel, int menuIdTested, int responseTimeInSeconds, User user) {
+    public TestScore(LocalDate testDate, int testLevel, int menuIdTested, int responseTimeInSeconds, User user) {
         this.testDate = testDate;
         this.testLevel = testLevel;
         this.menuIdTested = menuIdTested;
@@ -166,7 +166,7 @@ public class TestHistory {
 
     @Override
     public String toString() {
-        return "TestHistory{" +
+        return "TestScore{" +
                 "id=" + id +
                 ", testDate=" + testDate +
                 ", testLevel=" + testLevel +

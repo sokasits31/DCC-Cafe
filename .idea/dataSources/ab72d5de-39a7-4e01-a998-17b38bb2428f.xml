@@ -16,7 +16,7 @@
     <schema id="10" parent="1" name="sys"/>
     <schema id="11" parent="1" name="test_supportIT"/>
     <table id="12" parent="2" name="menu"/>
-    <table id="13" parent="2" name="testHistory"/>
+    <table id="13" parent="2" name="testScore"/>
     <table id="14" parent="2" name="test_parm"/>
     <table id="15" parent="2" name="user"/>
     <column id="16" parent="12" name="id">
@@ -90,12 +90,12 @@
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="31" parent="13" name="user_history_id_uindex">
+    <index id="31" parent="13" name="testHistory_user_id_fk">
+      <ColNames>user_id</ColNames>
+    </index>
+    <index id="32" parent="13" name="user_history_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
-    </index>
-    <index id="32" parent="13" name="testHistory_user_id_fk">
-      <ColNames>user_id</ColNames>
     </index>
     <key id="33" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>

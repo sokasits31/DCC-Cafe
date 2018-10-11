@@ -38,7 +38,7 @@ public class User {
     private int skillLevel;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<TestHistory> testScores = new HashSet<>();
+    private Set<TestScore> testScores = new HashSet<>();
 
 
     /**
@@ -177,7 +177,7 @@ public class User {
      *
      * @return the test scores
      */
-    public Set<TestHistory> getTestScores() {
+    public Set<TestScore> getTestScores() {
         return testScores;
     }
 
@@ -186,8 +186,28 @@ public class User {
      *
      * @param testScores the test scores
      */
-    public void setTestScores(Set<TestHistory> testScores) {
+    public void setTestScores(Set<TestScore> testScores) {
         this.testScores = testScores;
+    }
+
+    /**
+     * Add Test Score.
+     *
+     * @param testScore the test score
+     */
+    public void addTestScore(TestScore testScore) {
+        testScores.add(testScore);
+        testScore.setUser(this);
+    }
+
+    /**
+     * Remove Test Score.
+     *
+     * @param testScore the test score
+     */
+    public void removeTestScore(TestScore testScore) {
+        testScores.remove(testScore);
+        testScore.setUser(null);
     }
 
     @Override
@@ -201,4 +221,7 @@ public class User {
                 ", skillLevel=" + skillLevel +
                 '}';
     }
+
+
+    
 }

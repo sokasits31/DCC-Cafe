@@ -1,6 +1,6 @@
 package com.doorCreekCafe.persistence;
 
-import com.doorCreekCafe.entity.TestHistory;
+import com.doorCreekCafe.entity.TestScore;
 import com.doorCreekCafe.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -86,25 +86,18 @@ class UserDaoTests {
 
         //Create child
         LocalDate testDate = LocalDate.parse("2018-01-01");
-        TestHistory testHistory = new TestHistory(testDate, 1, 12, 89,newUser);
+        TestScore testScore = new TestScore(testDate, 1, 12, 89,newUser);
 
         // Sync Child to parent
-        newUser.addUser(newUser);
+        newUser.addTestScore(testScore);
 
         // Insert record and get Id
-        int id = dao.insert(newSupportTeam);
-
-
-        LocalDate testDate = LocalDate.parse("2018-01-01");
-        TestHistory testHistory = new TestHistory(testDate, 1, 12, 89);
-
-        User newTest = new User("vol", "new@gmail.com", "joe", "blow", 3);
-
-        int id = dao.insert(newTest);
+        int id = dao.insert(newUser);
         assertNotEquals(0,id);
 
         User insertedUser = dao.getId(1);
         assertEquals( "Heather", insertedUser.getFirstName());
+        assertEquals(1,newUser.getTestScores().size());
         // Could continue comparing all values, but
         // it may make sense to use .equals()
         // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode

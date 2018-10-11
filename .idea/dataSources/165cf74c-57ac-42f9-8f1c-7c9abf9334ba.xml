@@ -16,7 +16,7 @@
     <schema id="10" parent="1" name="test_doorCreekCafe"/>
     <schema id="11" parent="1" name="test_supportIT"/>
     <table id="12" parent="2" name="menu"/>
-    <table id="13" parent="2" name="testHistory"/>
+    <table id="13" parent="2" name="testScore"/>
     <table id="14" parent="2" name="test_parm"/>
     <table id="15" parent="2" name="user"/>
     <column id="16" parent="12" name="id">

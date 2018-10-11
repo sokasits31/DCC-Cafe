@@ -1,6 +1,6 @@
 package com.doorCreekCafe.persistence;
 
-import com.doorCreekCafe.entity.TestHistory;
+import com.doorCreekCafe.entity.TestScore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,18 +36,18 @@ class TestHistoryDaoTests {
     @Test
     void getAllUsersSuccess() {
 
-        List<TestHistory> tests = dao.getAllTests();
+        List<TestScore> tests = dao.getAllTests();
         assertEquals(25, tests.size());
 
     }
 
     /**
-     * Verify successful retrieval of a testHistory
+     * Verify successful retrieval of a testScore
      */
     @Test
     void getByIdSuccess() {
         LocalDate expectedDate = LocalDate.parse("2018-10-08");
-        TestHistory retreivedTest = dao.getId(3);
+        TestScore retreivedTest = dao.getId(3);
         assertEquals(2,retreivedTest.getId());
         assertEquals(expectedDate, retreivedTest.getTestDate());
         assertEquals(1, retreivedTest.getTestLevel());
@@ -56,7 +56,7 @@ class TestHistoryDaoTests {
     }
 
     /**
-     * Verify successful insert of a testHistory
+     * Verify successful insert of a testScore
      */
     //@Test
     //void insertSuccess() {
@@ -65,19 +65,19 @@ class TestHistoryDaoTests {
  //       LocalDate testDate = LocalDate.parse("2018-11-01");
 
 
-//        TestHistory newTest = new TestHistory(2, testDate, 3, 77, 67);
+//        TestScore newTest = new TestScore(2, testDate, 3, 77, 67);
 
   //      int id = dao.insert(newTest);
     //    assertNotEquals(0,id);
 
-        //TestHistory insertedTest = dao.getId(id);
+        //TestScore insertedTest = dao.getId(id);
         //assertEquals( 77, insertedTest.getMenuIdTested());
         // Could continue comparing all values, but
         // it may make sense to use .equals()
         // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
     //}
     /**
-     * Verify successful delete of testHistory
+     * Verify successful delete of testScore
      */
     @Test
     void deleteSuccess() {
@@ -87,14 +87,14 @@ class TestHistoryDaoTests {
 
 
     /**
-     * Verify that we can update a TestHistory
+     * Verify that we can update a TestScore
      */
     @Test
     void saveOrUpdateSuccess() {
-        TestHistory testHistory = dao.getId(1);
-        testHistory.setResponseTimeInSeconds(99);
-        dao.saveOrUpdate(testHistory);
-        TestHistory updatedUser = dao.getId(1);
-        assertEquals(99, testHistory.getResponseTimeInSeconds());
+        TestScore testScore = dao.getId(1);
+        testScore.setResponseTimeInSeconds(99);
+        dao.saveOrUpdate(testScore);
+        TestScore updatedUser = dao.getId(1);
+        assertEquals(99, testScore.getResponseTimeInSeconds());
     }
 }
