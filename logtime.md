@@ -15,7 +15,7 @@
 |10/5/18 | 5 hrs | Setup 1(Suppor Team) to many(Users) relationship in project...  Learned a lot on how to setup test data |
 |10/07/18 | 3 hrs | Completed UserDao and SupportTeamDao testing |
 |10/08/18 | 4 hrs | Decided to change indie project theme.  Created new repository on github and started copying over source from old project (prod support) |
-
+|10/10/18| 4 hrs | continued on with rework of project.  Tested User Dao and started One to many logic|
 
 
 

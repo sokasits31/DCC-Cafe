@@ -10,7 +10,7 @@ import java.util.Set;
  * The type User.
  */
 @Entity(name = "User")
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     /**
@@ -40,6 +40,12 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<TestHistory> testScores = new HashSet<>();
 
+
+    /**
+     * Instantiates a new User.
+     */
+    public User() {
+    }
 
     /**
      * Instantiates a new User.

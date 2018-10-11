@@ -10,29 +10,37 @@
 <div class="container-fluid">
     <c:choose>
 
-        <c:when test = "${userTests[0].id > 0}">
+
+
+        <c:when test = "${users[0].id > 0}">
             <table border="2" cellpadding="2">
                 <tr>
                     <th>ID</th>
-                    <th>User ID</th>
-                    <th>Test Date</th>
-                    <th>Test Level</th>
-                    <th>Menu ID Tested</th>
-                    <th>Response Time</th>
+                    <th>Role</th>
+                    <th>Email Address</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Skill Level</th>
                     <th>Test Scores</th>
 
                 </tr>
 
-                <c:forEach var="userTest" items="${userTests}">
+                <td>${users.id}</td>
+                <td>${users.role}</td>
+                <td>${users.emailAddress}</td>
+                <td>${users.firstName}</td>
+                <td>${users.lastName}</td>
+                <td>${users.skillLevel}</td>
+
+                <td>
+                <c:forEach var="test" items="${testScores}">
                     <tr>
-                        <td>${userTest.id}</td>
-                        <td>${userTest.userId}</td>
-                        <td>${userTest.testDate}</td>
-                        <td>${userTest.testLevel}</td>
-                        <td>${userTest.menuIdTested}</td>
-                        <td>${userTest.responseTimeInSeconds}</td>
+                        <td>${test.testDate}</td>
+                        <td>${test.menuIdTested}</td>
+                        <td>${test.responseTimeInSeconds}</td>
                     </tr>
                 </c:forEach>
+                </td>
             </table>
         </c:when>
 

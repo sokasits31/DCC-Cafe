@@ -2,6 +2,7 @@ package com.doorCreekCafe.controller;
 
 
 import com.doorCreekCafe.persistence.TestHistoryDao;
+import com.doorCreekCafe.persistence.UserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,9 +30,9 @@ public class GrantAccess extends HttpServlet {
         //RequestDispatcher dispatcher = req.getRequestDispatcher("/volunteerHome.jsp");
         //dispatcher.forward(req, resp);
 
-        TestHistoryDao testHistoryDao = new TestHistoryDao();
+        UserDao userDao = new UserDao();
 
-        req.setAttribute("userTests", testHistoryDao.getAllTests() );
+        req.setAttribute("users", userDao.getAllUsers());
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/content/adminDashboard.jsp");
         dispatcher.forward(req, resp);

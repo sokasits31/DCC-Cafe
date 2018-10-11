@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: doorCreekCafe
+-- Host: 127.0.0.1    Database: test_doorCreekCafe
 -- ------------------------------------------------------
 -- Server version	5.7.23-0ubuntu0.16.04.1
 
@@ -16,32 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_test_history`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user_test_history`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_test_history` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `test_date` date NOT NULL,
-  `test_level` int(11) NOT NULL,
-  `menu_id_tested` int(11) NOT NULL,
-  `response_time` time NOT NULL,
+  `role` varchar(8) NOT NULL,
+  `email_address` varchar(120) NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(40) NOT NULL,
+  `skill_level` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user_history_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `user_id_uindex` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_test_history`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `user_test_history` WRITE;
-/*!40000 ALTER TABLE `user_test_history` DISABLE KEYS */;
-INSERT INTO `user_test_history` VALUES (1,2,'2018-10-08',1,1,'00:00:45'),(2,2,'2018-10-08',1,2,'00:00:45'),(3,2,'2018-10-08',1,3,'00:00:45'),(4,2,'2018-10-08',1,4,'00:00:45'),(5,2,'2018-10-08',1,5,'00:00:45'),(6,2,'2018-10-08',1,6,'00:00:45'),(7,2,'2018-10-08',1,7,'00:00:45'),(8,2,'2018-10-08',1,8,'00:00:45'),(9,2,'2018-10-08',1,9,'00:00:45'),(10,2,'2018-10-08',1,10,'00:00:45'),(11,3,'2018-10-08',2,5,'00:00:45'),(12,3,'2018-10-08',2,6,'00:00:45'),(13,3,'2018-10-08',2,7,'00:00:45'),(14,3,'2018-10-08',2,8,'00:00:45'),(15,3,'2018-10-08',2,9,'00:00:45'),(16,0,'2018-10-08',2,10,'00:00:45'),(17,0,'2018-10-08',2,11,'00:00:45'),(18,0,'2018-10-08',2,12,'00:00:45'),(19,0,'2018-10-08',2,13,'00:00:45'),(20,0,'2018-10-08',2,14,'00:00:45'),(21,0,'2018-10-08',2,15,'00:00:45'),(22,0,'2018-10-08',2,16,'00:00:45'),(23,0,'2018-10-08',2,18,'00:00:45'),(24,0,'2018-10-08',2,19,'00:00:45'),(25,0,'2018-10-08',2,2,'00:00:45');
-/*!40000 ALTER TABLE `user_test_history` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'admin','heather.sokasits@gmail.com','Heather','Sokasits',4),(2,'Vol','steve.sokasits@gmail.com','Steve','Sokasits',1);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-09 20:37:42
+-- Dump completed on 2018-10-10 18:23:46

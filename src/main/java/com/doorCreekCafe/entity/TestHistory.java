@@ -18,9 +18,6 @@ public class TestHistory {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @Column (name="user_id")
-    private int userId;
-
     @Column (name="test_date")
     private LocalDate testDate;
 
@@ -75,24 +72,6 @@ public class TestHistory {
      */
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * Gets user id.
-     *
-     * @return the user id
-     */
-    public int getUserId() {
-        return userId;
-    }
-
-    /**
-     * Sets user id.
-     *
-     * @param userId the user id
-     */
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     /**
@@ -189,7 +168,6 @@ public class TestHistory {
     public String toString() {
         return "TestHistory{" +
                 "id=" + id +
-                ", userId=" + userId +
                 ", testDate=" + testDate +
                 ", testLevel=" + testLevel +
                 ", menuIdTested=" + menuIdTested +
