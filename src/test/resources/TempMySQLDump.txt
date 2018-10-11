@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: test_doorCreekCafe
+-- Host: 127.0.0.1    Database: doorCreekCafe
 -- ------------------------------------------------------
 -- Server version	5.7.23-0ubuntu0.16.04.1
 
@@ -16,32 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `testScore`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `testScore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
+CREATE TABLE `testScore` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role` varchar(8) NOT NULL,
-  `email_address` varchar(120) NOT NULL,
-  `first_name` varchar(20) NOT NULL,
-  `last_name` varchar(40) NOT NULL,
-  `skill_level` int(11) DEFAULT NULL,
+  `test_date` date DEFAULT NULL,
+  `test_level` int(11) DEFAULT NULL,
+  `menu_item_tested` int(11) DEFAULT NULL,
+  `response_time` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `testHistory_id_uindex` (`id`),
+  KEY `testHistory_user_id_fk` (`user_id`),
+  CONSTRAINT `testHistory_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `testScore`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','heather.sokasits@gmail.com','Heather','Sokasits',4),(2,'Vol','steve.sokasits@gmail.com','Steve','Sokasits',1);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `testScore` WRITE;
+/*!40000 ALTER TABLE `testScore` DISABLE KEYS */;
+INSERT INTO `testScore` VALUES (1,'1969-12-31',1,1,1,2),(2,'1969-12-31',1,1,2,2),(3,'1969-12-31',1,1,3,2),(4,'1969-12-31',1,1,4,2),(5,'1969-12-31',1,1,5,2),(6,'1969-12-31',1,1,6,2),(7,'2018-10-09',1,1,7,2),(8,'1969-12-31',1,1,8,3),(9,'1969-12-31',1,1,9,3),(10,'1969-12-31',1,1,10,3),(11,'1969-12-31',2,2,5,3),(12,'1969-12-31',2,2,6,3),(13,'1969-12-31',2,2,7,3),(14,'1969-12-31',2,2,8,3),(15,'1969-12-31',2,2,9,3),(16,'1969-12-31',2,2,10,3),(17,'1969-12-31',2,2,11,2),(18,'1969-12-31',2,2,12,2),(19,'1969-12-31',2,2,13,2),(20,'1969-12-31',2,2,14,2),(21,'1969-12-31',2,2,15,2),(22,'1969-12-31',2,2,16,2),(23,'1969-12-31',2,2,18,2),(24,'1969-12-31',2,2,19,2),(25,'1969-12-31',2,2,2,2);
+/*!40000 ALTER TABLE `testScore` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-10 18:23:46
+-- Dump completed on 2018-10-11  6:09:19

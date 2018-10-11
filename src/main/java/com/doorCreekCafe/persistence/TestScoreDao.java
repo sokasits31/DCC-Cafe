@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 
-public class TestHistoryDao {
+public class TestScoreDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
@@ -36,7 +36,9 @@ public class TestHistoryDao {
      */
     public void saveOrUpdate(TestScore testScore) {
         Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(testScore);
+        transaction.commit();
         session.close();
     }
 

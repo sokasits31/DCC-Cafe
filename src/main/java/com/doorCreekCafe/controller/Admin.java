@@ -1,6 +1,6 @@
 package com.doorCreekCafe.controller;
 
-import com.doorCreekCafe.persistence.TestHistoryDao;
+import com.doorCreekCafe.persistence.TestScoreDao;
 
 
 import javax.servlet.RequestDispatcher;
@@ -27,9 +27,9 @@ public class Admin extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        TestHistoryDao testHistoryDao = new TestHistoryDao();
+        TestScoreDao testScoreDao = new TestScoreDao();
 
-        req.setAttribute("userTests", testHistoryDao.getAllTests() );
+        req.setAttribute("userTests", testScoreDao.getAllTests() );
         //if (req.getParameter("submit").equals("Display All Resources")) {
         //    req.setAttribute("users", userDao.getAllUsers());
         //}
