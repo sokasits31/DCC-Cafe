@@ -31,6 +31,7 @@ public class GrantAccess extends HttpServlet {
 
         UserDao userDao = new UserDao();
 
+
         req.setAttribute("users", userDao.getAllUsers());
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/content/adminDashboard.jsp");
