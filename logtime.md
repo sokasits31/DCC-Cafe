@@ -17,7 +17,8 @@
 |10/08/18 | 4 hrs | Decided to change indie project theme.  Created new repository on github and started copying over source from old project (prod support) |
 |10/10/18| 4 hrs | continued on with rework of project.  Tested User Dao and started One to many logic|
 |10/12/18| 2 hrs | completed testScore Dao tests|
-|10/14/18 |2 hrs | Worked on get JSP page to display one to many |
+|10/13/18 |2 hrs | Worked on get JSP page to display one to many |
+|10/14/18| 4 hrs | worked on display one to many on JSP page...  Start working on register screens |
 
 
 

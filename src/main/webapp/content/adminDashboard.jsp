@@ -14,6 +14,7 @@
 
             <c:when test = "${users[0].id > 0}">
                 <table border="2" cellpadding="2">
+                    <!-- row 1 data -->
                     <tr>
                         <td>ID</td>
                         <th>Role</th>
@@ -24,25 +25,29 @@
                         <th>Test Scores</th>
                     </tr>
 
+                    <!-- row 2 and more data-->
                     <c:forEach var="user" items="${users}">
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.role}</td>
-                            <td>${user.emailAddress}</td>
-                            <td>${user.firstName}</td>
-                            <td>${user.lastName}</td>
-                            <td>${user.skillLevel}</td>
-
-
-
-
-
-
-
-
-
-                        </tr>
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${user.role}</td>
+                        <td>${user.emailAddress}</td>
+                        <td>${user.firstName}</td>
+                        <td>${user.lastName}</td>
+                        <td>${user.skillLevel}</td>
+                        <td>
+                        <table>
+                            <c:forEach var="testScore" items="${user.testScores}">
+                                <tr>
+                                    <td>${testScore.testDate}</td>
+                                    <td>${testScore.testLevel}</td>
+                                    <td>${testScore.menuIdTested}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                        </td>
+                    </tr>
                     </c:forEach>
+
                 </table>
             </c:when>
 
