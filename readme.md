@@ -68,8 +68,8 @@ that want to serve in the cafe.
 
 ### Design
 
-* 
-[Screen Design](https://github.com/sokasits31/DCC-Cafe/screenDesigns/screenDesign.md)
+
+[Screen Design](DesignDocuments/Screens.md)
 
 [Database Design](DesignDocuments/databaseDiagram.png)
 
