@@ -69,7 +69,7 @@ that want to serve in the cafe.
 ### Design
 
 * 
-[Screen Design](screenDesigns/screenDesign.md)
+[Screen Design](https://github.com/sokasits31/DCC-Cafe/screenDesigns/screenDesign.md)
 
 [Database Design](DesignDocuments/databaseDiagram.png)
 
