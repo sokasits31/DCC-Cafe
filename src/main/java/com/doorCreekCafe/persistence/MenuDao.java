@@ -131,21 +131,6 @@ public class MenuDao {
         return menuItems;
     }
 
-    public List<String> getAllCatagories() {
-
-        Session session = sessionFactory.openSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-
-        List<String> catagories = session.createQuery("SELECT DISTINCT catagory FROM Menu", String.class).getResultList();
-
-        logger.debug("catagories: " + catagories);
-        session.close();
-
-        return catagories;
-
-    }
-
-
 
 }
 

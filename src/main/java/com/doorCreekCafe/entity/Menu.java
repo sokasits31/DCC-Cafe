@@ -31,6 +31,8 @@ public class Menu {
     @Column (name="frequency_level")
     private int frequencyLevel;
 
+    @ManyToOne
+    private MenuCatagory menuCatagory;
     /**
      * Instantiates a new Menu.
      */

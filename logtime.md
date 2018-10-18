@@ -20,5 +20,6 @@
 |10/13/18 |2 hrs | Worked on get JSP page to display one to many |
 |10/14/18| 4 hrs | worked on display one to many on JSP page...  Start working on register screens |
 |10/15/18| 4 hrs | almost got exercise 6 done |
+|10/18/18|2 hrs | added Menu Catagory Table and DAO|
 
 
