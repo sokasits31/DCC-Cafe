@@ -73,17 +73,16 @@ public class MenuDao {
      *
      * @return All menuItems
      */
-    public List<Menu> getAllUsers() {
+    public List<Menu> getAllMenus() {
 
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Menu> query = builder.createQuery( Menu.class );
 
-        System.out.println("query ======" + query);
         Root<Menu> root = query.from( Menu.class );
         List<Menu> menuItems = session.createQuery( query ).getResultList();
 
-        logger.debug("The list of all menue items:  " + menuItems);
+        logger.debug("The list of all menu items:  " + menuItems);
         session.close();
 
         return menuItems;

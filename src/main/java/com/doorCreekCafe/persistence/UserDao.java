@@ -79,7 +79,6 @@ public class UserDao {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery( User.class );
 
-        System.out.println("query ======" + query);
         Root<User> root = query.from( User.class );
         List<User> users = session.createQuery( query ).getResultList();
 

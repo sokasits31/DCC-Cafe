@@ -2,14 +2,13 @@ package com.doorCreekCafe.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * The type Menu.
  */
+@Entity(name= "Menu")     // Class Name
+@Table (name= "menu")      // Table Name
 public class Menu {
 
     @Id

@@ -1,5 +1,6 @@
 package com.doorCreekCafe.persistence;
 
+import com.doorCreekCafe.entity.Menu;
 import com.doorCreekCafe.entity.TestScore;
 import com.doorCreekCafe.entity.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -16,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class MenuDaoTests {
 
 
-    UserDao dao;
+    MenuDao dao;
 
     /**
      * Run set up tasks before each test:
@@ -28,14 +30,14 @@ class MenuDaoTests {
 
         com.doorCreekCafe.test.util.Database database = com.doorCreekCafe.test.util.Database.getInstance();
         database.runSQL("usersTestData.sql");
-        dao = new UserDao();
+        dao = new MenuDao();
     }
 
     @Test
-    void getAllUsersSuccess() {
+    void getAllMenusSuccess() {
 
-        List<User> tests = dao.getAllUsers();
-        assertEquals(3, tests.size());
+        List<Menu> tests = dao.getAllMenus();
+        assertEquals(25, tests.size());
 
     }
 
@@ -47,13 +49,10 @@ class MenuDaoTests {
     @Test
     void getByIdSuccess() {
         
-        User retreivedUser = dao.getId(3);
-        assertEquals(3,retreivedUser.getId());
-        //assertEquals("vol", retreivedUser.getRole().toString());
-        assertEquals("lea.sokasits@gmail.com", retreivedUser.getEmailAddress());
-        assertEquals("Lea", retreivedUser.getFirstName());
-        assertEquals("Sokasits", retreivedUser.getLastName());
-        assertEquals(1, retreivedUser.getSkillLevel());
+        Menu retreivedMenu = dao.getId(3);
+        assertEquals(3,retreivedMenu.getId());
+        //assertEquals("vol", retreivedMenu.getRole().toString());
+        assertEquals("Mocha 12 oz", retreivedMenu.getDescription());
     }
 
     /**
@@ -63,45 +62,17 @@ class MenuDaoTests {
     void insertSuccess() {
 
 
-        User newTest = new User("vol", "new@gmail.com", "joe", "blow", 3);
-
-        int id = dao.insert(newTest);
+        Menu newMenu = new Menu("New Menu", "Test Desc", "Cool", 5.23, 1);
+        int id = dao.insert(newMenu);
         assertNotEquals(0,id);
 
-        User insertedUser = dao.getId(1);
-        assertEquals( "Heather", insertedUser.getFirstName());
+        Menu insertedMenu = dao.getId(26);
+        assertEquals( "Cool", insertedMenu.getAltDescripton());
         // Could continue comparing all values, but
         // it may make sense to use .equals()
         // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
     }
 
-    /**
-     * Verify successful insert of a user
-     */
-    @Test
-    void insertWithTestSuccess() {
-
-        //Create Parent Data
-        User newUser = new User("vol", "new@gmail.com", "joe", "blow", 3);
-
-        //Create child
-        LocalDate testDate = LocalDate.parse("2018-01-01");
-        TestScore testScore = new TestScore(testDate, 1, 12, 89,newUser);
-
-        // Sync Child to parent
-        newUser.addTestScore(testScore);
-
-        // Insert record and get Id
-        int id = dao.insert(newUser);
-        assertNotEquals(0,id);
-
-        User insertedUser = dao.getId(1);
-        assertEquals( "Heather", insertedUser.getFirstName());
-        assertEquals(1,newUser.getTestScores().size());
-        // Could continue comparing all values, but
-        // it may make sense to use .equals()
-        // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
-    }
 
 
     /**
@@ -119,12 +90,31 @@ class MenuDaoTests {
      */
     @Test
     void saveOrUpdateSuccess() {
-        User user = dao.getId(2);
-        user.setFirstName("Hector");
+        Menu menu = dao.getId(9);
+        menu.setDescription("Steamer 99 oz");
 
-        dao.saveOrUpdate(user);
+        dao.saveOrUpdate(menu);
 
-        User updatedUser = dao.getId(2);
-        assertEquals("Hector", updatedUser.getFirstName());
+        Menu updatedMenu = dao.getId(9);
+        assertEquals("Steamer 99 oz", updatedMenu.getDescription());
+    }
+
+    /**
+     * Verify successful get by property (equal match)
+     */
+    @Test
+    void getByPropertyEqualSuccess() {
+        List<Menu> menuItems = dao.getByPropertyEqual("catagory", "Espresso Drinks");
+        assertEquals(15, menuItems.size());
+        assertEquals(1, menuItems.get(0).getId());
+    }
+
+    /**
+     * Verify successful get by property (like match)
+     */
+    @Test
+    void getByPropertyLikeSuccess() {
+        List<Menu> menuItems = dao.getByPropertyLike("catagory", "Espr");
+        assertEquals(15, menuItems.size());
     }
 }
