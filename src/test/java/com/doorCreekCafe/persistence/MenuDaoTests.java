@@ -117,4 +117,12 @@ class MenuDaoTests {
         List<Menu> menuItems = dao.getByPropertyLike("catagory", "Espr");
         assertEquals(15, menuItems.size());
     }
+
+    @Test
+    void getAllCatagories() {
+
+        List<String> catagories = dao.getAllCatagories();
+        assertEquals(2, catagories.size());
+
+    }
 }
