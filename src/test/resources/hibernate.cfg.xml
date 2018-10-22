@@ -18,7 +18,7 @@
 
         <mapping class="com.doorCreekCafe.entity.User"/>
         <mapping class="com.doorCreekCafe.entity.TestScore"/>
-        <mapping class="com.doorCreekCafe.entity.Menu"/>
+        <mapping class="com.doorCreekCafe.entity.MenuItem"/>
         <mapping class="com.doorCreekCafe.entity.MenuCategory"/>
 
     </session-factory>

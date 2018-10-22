@@ -7,9 +7,9 @@ import javax.persistence.*;
 /**
  * The type Menu.
  */
-@Entity(name= "Menu")     // Class Name
-@Table (name= "menu")      // Table Name
-public class Menu {
+@Entity(name= "MenuItem")     // Class Name
+@Table (name= "menuItem")     // Table Name
+public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -32,27 +32,31 @@ public class Menu {
     private String cellPosition;
 
     @ManyToOne
-    private MenuCategory MenuCategory;
+    private MenuCategory menuCategory;
     /**
      * Instantiates a new Menu.
      */
-    public Menu() {
+    public MenuItem() {
     }
 
+
     /**
-     * Instantiates a new Menu.
+     * Instantiates a new Menu item.
      *
-     * @param catagory       the catagory
      * @param description    the description
      * @param altDescripton  the alt descripton
      * @param price          the price
      * @param frequencyLevel the frequency level
+     * @param cellPosition   the cell position
+     * @param menuCategory   the menu category
      */
-    public Menu(String catagory, String description, String altDescripton, double price, int frequencyLevel) {
+    public MenuItem(String description, String altDescripton, double price, int frequencyLevel, String cellPosition, MenuCategory menuCategory) {
         this.description = description;
         this.altDescripton = altDescripton;
         this.price = price;
         this.frequencyLevel = frequencyLevel;
+        this.cellPosition = cellPosition;
+        this.menuCategory = menuCategory;
     }
 
     /**
@@ -165,7 +169,7 @@ public class Menu {
 
     @Override
     public String toString() {
-        return "menu{" +
+        return "menuItem{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", altDescripton='" + altDescripton + '\'' +

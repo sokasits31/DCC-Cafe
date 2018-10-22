@@ -11,7 +11,7 @@ import java.util.Set;
  * The type Menu catagory.
  */
 @Entity(name= "MenuCategory")     // Class Name
-@Table(name= "MenuCategory")      // Table Name
+@Table(name= "menuCategory")      // Table Name
 public class MenuCategory {
 
     @Id
@@ -22,8 +22,8 @@ public class MenuCategory {
     @Column (name="description")
     private String catagoryDescription;
 
-    @OneToMany(mappedBy = "MenuCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Menu> MenuItems = new HashSet<>();
+    @OneToMany(mappedBy = "menuCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<MenuItem> MenuItems = new HashSet<>();
 
     /**
      * Instantiates a new Menu catagory.

@@ -1,6 +1,7 @@
 package com.doorCreekCafe.persistence;
 
-import com.doorCreekCafe.entity.Menu;
+import com.doorCreekCafe.entity.MenuCategory;
+import com.doorCreekCafe.entity.MenuItem;
 import com.doorCreekCafe.entity.TestScore;
 import com.doorCreekCafe.entity.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 
-class MenuDaoTests {
+class MenuItemDaoTests {
 
 
-    MenuDao dao;
+    MenuItemDao dao;
 
     /**
      * Run set up tasks before each test:
@@ -30,13 +31,15 @@ class MenuDaoTests {
 
         com.doorCreekCafe.test.util.Database database = com.doorCreekCafe.test.util.Database.getInstance();
         database.runSQL("usersTestData.sql");
-        dao = new MenuDao();
+        System.out.println("tttttttttttttttttttttttttttttttttttttttttt");
+        dao = new MenuItemDao();
+        System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
     }
 
     @Test
     void getAllMenusSuccess() {
 
-        List<Menu> tests = dao.getAllMenus();
+        List<MenuItem> tests = dao.getAllMenus();
         assertEquals(25, tests.size());
 
     }
@@ -49,10 +52,10 @@ class MenuDaoTests {
     @Test
     void getByIdSuccess() {
         
-        Menu retreivedMenu = dao.getId(3);
+        MenuItem retreivedMenu = dao.getId(3);
         assertEquals(3,retreivedMenu.getId());
         //assertEquals("vol", retreivedMenu.getRole().toString());
-        assertEquals("Mocha 12 oz", retreivedMenu.getDescription());
+        assertEquals("Mocha 12oz", retreivedMenu.getDescription());
     }
 
     /**
@@ -61,12 +64,19 @@ class MenuDaoTests {
     @Test
     void insertSuccess() {
 
+        System.out.println("1111111111111111111111111111111111111");
+        MenuCategory menuCategory = new MenuCategory();
+        System.out.println("2222222222222222222222222222222");
+        menuCategory.setId(1);
 
-        Menu newMenu = new Menu("New Menu", "Test Desc", "Cool", 5.23, 1);
+
+        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        MenuItem newMenu = new MenuItem("New Item", "Cool", 5.23, 1,"A4", menuCategory);
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         int id = dao.insert(newMenu);
         assertNotEquals(0,id);
 
-        Menu insertedMenu = dao.getId(26);
+        MenuItem insertedMenu = dao.getId(30);
         assertEquals( "Cool", insertedMenu.getAltDescripton());
         // Could continue comparing all values, but
         // it may make sense to use .equals()
@@ -90,12 +100,12 @@ class MenuDaoTests {
      */
     @Test
     void saveOrUpdateSuccess() {
-        Menu menu = dao.getId(9);
-        menu.setDescription("Steamer 99 oz");
+        MenuItem menuItem = dao.getId(9);
+        menuItem.setDescription("Steamer 99 oz");
 
-        dao.saveOrUpdate(menu);
+        dao.saveOrUpdate(menuItem);
 
-        Menu updatedMenu = dao.getId(9);
+        MenuItem updatedMenu = dao.getId(9);
         assertEquals("Steamer 99 oz", updatedMenu.getDescription());
     }
 
@@ -104,7 +114,7 @@ class MenuDaoTests {
      */
     @Test
     void getByPropertyEqualSuccess() {
-        List<Menu> menuItems = dao.getByPropertyEqual("catagory", "Espresso Drinks");
+        List<MenuItem> menuItems = dao.getByPropertyEqual("catagory", "Espresso Drinks");
         assertEquals(15, menuItems.size());
         assertEquals(1, menuItems.get(0).getId());
     }
@@ -114,7 +124,7 @@ class MenuDaoTests {
      */
     @Test
     void getByPropertyLikeSuccess() {
-        List<Menu> menuItems = dao.getByPropertyLike("catagory", "Espr");
+        List<MenuItem> menuItems = dao.getByPropertyLike("catagory", "Espr");
         assertEquals(15, menuItems.size());
 
     }

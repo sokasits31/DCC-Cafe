@@ -1,7 +1,7 @@
 package com.doorCreekCafe.persistence;
 
 
-import com.doorCreekCafe.entity.Menu;
+import com.doorCreekCafe.entity.MenuItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -15,55 +15,55 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 
-public class MenuDao {
+public class MenuItemDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
-     * Get menu by id
+     * Get menuItem by id
      */
-    public Menu getId(int id) {
+    public MenuItem getId(int id) {
         Session session = sessionFactory.openSession();
-        Menu menu = session.get( Menu.class, id );
+        MenuItem menuItem = session.get( MenuItem.class, id );
         session.close();
-        return menu;
+        return menuItem;
     }
 
     /**
-     * update menu
-     * @param menu  Menu to be inserted or updated
+     * update menuItem
+     * @param menuItem  MenuItem to be inserted or updated
      */
-    public void saveOrUpdate(Menu menu) {
+    public void saveOrUpdate(MenuItem menuItem) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.saveOrUpdate(menu);
+        session.saveOrUpdate(menuItem);
         transaction.commit();
         session.close();
     }
 
     /**
-     * update menu
-     * @param menu  Menu to be inserted or updated
+     * update menuItem
+     * @param menuItem  MenuItem to be inserted or updated
      */
-    public int insert(Menu menu) {
+    public int insert(MenuItem menuItem) {
         int id = 0;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        id = (int)session.save(menu);
+        id = (int)session.save(menuItem);
         transaction.commit();
         session.close();
         return id;
     }
 
     /**
-     * Delete a menu
-     * @param menu Menu to be deleted
+     * Delete a menuItem
+     * @param menuItem MenuItem to be deleted
      */
-    public void delete(Menu menu) {
+    public void delete(MenuItem menuItem) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(menu);
+        session.delete(menuItem);
         transaction.commit();
         session.close();
     }
@@ -73,57 +73,57 @@ public class MenuDao {
      *
      * @return All menuItems
      */
-    public List<Menu> getAllMenus() {
+    public List<MenuItem> getAllMenus() {
 
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Menu> query = builder.createQuery( Menu.class );
+        CriteriaQuery<MenuItem> query = builder.createQuery( MenuItem.class );
 
-        Root<Menu> root = query.from( Menu.class );
-        List<Menu> menuItems = session.createQuery( query ).getResultList();
+        Root<MenuItem> root = query.from( MenuItem.class );
+        List<MenuItem> menuItems = session.createQuery( query ).getResultList();
 
-        logger.debug("The list of all menu items:  " + menuItems);
+        logger.debug("The list of all menuItem items:  " + menuItems);
         session.close();
 
         return menuItems;
     }
 
     /**
-     * Get menu by property (exact match)
+     * Get menuItem by property (exact match)
      * sample usage: getByPropertyEqual("lastname", "Curry")
      */
-    public List<Menu> getByPropertyEqual(String propertyName, String value) {
+    public List<MenuItem> getByPropertyEqual(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for menu with " + propertyName + " = " + value);
+        logger.debug("Searching for menuItem with " + propertyName + " = " + value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Menu> query = builder.createQuery( Menu.class );
-        Root<Menu> root = query.from( Menu.class );
+        CriteriaQuery<MenuItem> query = builder.createQuery( MenuItem.class );
+        Root<MenuItem> root = query.from( MenuItem.class );
         query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<Menu> menuItems = session.createQuery( query ).getResultList();
+        List<MenuItem> menuItems = session.createQuery( query ).getResultList();
 
         session.close();
         return menuItems;
     }
 
     /**
-     * Get menu by property (like)
+     * Get menuItem by property (like)
      * sample usage: getByPropertyLike("lastname", "C")
      */
-    public List<Menu> getByPropertyLike(String propertyName, String value) {
+    public List<MenuItem> getByPropertyLike(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for menu with {} = {}",  propertyName, value);
+        logger.debug("Searching for menuItem with {} = {}",  propertyName, value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Menu> query = builder.createQuery( Menu.class );
-        Root<Menu> root = query.from( Menu.class );
+        CriteriaQuery<MenuItem> query = builder.createQuery( MenuItem.class );
+        Root<MenuItem> root = query.from( MenuItem.class );
         Expression<String> propertyPath = root.get(propertyName);
 
         query.where(builder.like(propertyPath, "%" + value + "%"));
 
-        List<Menu> menuItems = session.createQuery( query ).getResultList();
+        List<MenuItem> menuItems = session.createQuery( query ).getResultList();
 
         logger.debug("menuItems:" + menuItems);
 
