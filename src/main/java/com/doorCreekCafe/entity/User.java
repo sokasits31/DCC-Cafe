@@ -64,6 +64,7 @@ public class User {
         this.skillLevel = skillLevel;
     }
 
+
     /**
      * Gets id.
      *

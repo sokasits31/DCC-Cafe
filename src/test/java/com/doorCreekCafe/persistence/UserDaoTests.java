@@ -17,6 +17,7 @@ class UserDaoTests {
 
 
     UserDao dao;
+    GenericDao genericDao;
 
     /**
      * Run set up tasks before each test:
@@ -29,12 +30,13 @@ class UserDaoTests {
         com.doorCreekCafe.test.util.Database database = com.doorCreekCafe.test.util.Database.getInstance();
         database.runSQL("usersTestData.sql");
         dao = new UserDao();
+        genericDao = new GenericDao(User.class);
+
     }
 
     @Test
     void getAllUsersSuccess() {
-
-        List<User> tests = dao.getAllUsers();
+        List<User> tests = genericDao.getAll();
         assertEquals(3, tests.size());
 
     }
@@ -47,7 +49,7 @@ class UserDaoTests {
     @Test
     void getByIdSuccess() {
         
-        User retreivedUser = dao.getId(3);
+        User retreivedUser = (User)genericDao.getById(3);
         assertEquals(3,retreivedUser.getId());
         //assertEquals("vol", retreivedUser.getRole().toString());
         assertEquals("lea.sokasits@gmail.com", retreivedUser.getEmailAddress());
@@ -62,13 +64,14 @@ class UserDaoTests {
     @Test
     void insertSuccess() {
 
-
+        // Create object
         User newTest = new User("vol", "new@gmail.com", "joe", "blow", 3);
 
-        int id = dao.insert(newTest);
+        // Insert object to table
+        int id = (int)genericDao.insert(newTest);
         assertNotEquals(0,id);
 
-        User insertedUser = dao.getId(1);
+        User insertedUser = (User) genericDao.getById(11);
         assertEquals( "Heather", insertedUser.getFirstName());
         // Could continue comparing all values, but
         // it may make sense to use .equals()
@@ -92,10 +95,10 @@ class UserDaoTests {
         newUser.addTestScore(testScore);
 
         // Insert record and get Id
-        int id = dao.insert(newUser);
+        int id = (int) genericDao.insert(newUser);
         assertNotEquals(0,id);
 
-        User insertedUser = dao.getId(1);
+        User insertedUser = (User) genericDao.getById(1);
         assertEquals( "Heather", insertedUser.getFirstName());
         assertEquals(1,newUser.getTestScores().size());
         // Could continue comparing all values, but
@@ -109,8 +112,8 @@ class UserDaoTests {
      */
     @Test
     void deleteSuccess() {
-        dao.delete(dao.getId(1));
-        assertNull(dao.getId(1));
+        genericDao.delete(genericDao.getById(1));
+        assertNull(genericDao.getById(1));
     }
 
 
@@ -119,12 +122,26 @@ class UserDaoTests {
      */
     @Test
     void saveOrUpdateSuccess() {
-        User user = dao.getId(2);
+        User user = (User) genericDao.getById(2);
         user.setFirstName("Hector");
 
-        dao.saveOrUpdate(user);
+        genericDao.saveOrUpdate(user);
 
-        User updatedUser = dao.getId(2);
+        User updatedUser = (User) genericDao.getById(2);
         assertEquals("Hector", updatedUser.getFirstName());
+    }
+
+    @Test
+    void getByLikeSuccess() {
+        List<User> tests = genericDao.getByPropertyLike("emailAddress","gmail.com");
+        assertEquals(3, tests.size());
+
+    }
+
+    @Test
+    void getByEqualSuccess() {
+        List<User> tests = genericDao.getByPropertyEqual("emailAddress","steve.sokasits@gmail.com");
+        assertEquals(1, tests.size());
+
     }
 }

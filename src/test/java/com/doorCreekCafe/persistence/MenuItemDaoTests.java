@@ -31,9 +31,8 @@ class MenuItemDaoTests {
 
         com.doorCreekCafe.test.util.Database database = com.doorCreekCafe.test.util.Database.getInstance();
         database.runSQL("usersTestData.sql");
-        System.out.println("tttttttttttttttttttttttttttttttttttttttttt");
         dao = new MenuItemDao();
-        System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+
     }
 
     @Test
@@ -64,15 +63,15 @@ class MenuItemDaoTests {
     @Test
     void insertSuccess() {
 
-        System.out.println("1111111111111111111111111111111111111");
+
         MenuCategory menuCategory = new MenuCategory();
-        System.out.println("2222222222222222222222222222222");
+
         menuCategory.setId(1);
 
 
-        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+
         MenuItem newMenu = new MenuItem("New Item", "Cool", 5.23, 1,"A4", menuCategory);
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
         int id = dao.insert(newMenu);
         assertNotEquals(0,id);
 
@@ -114,9 +113,9 @@ class MenuItemDaoTests {
      */
     @Test
     void getByPropertyEqualSuccess() {
-        List<MenuItem> menuItems = dao.getByPropertyEqual("catagory", "Espresso Drinks");
-        assertEquals(15, menuItems.size());
-        assertEquals(1, menuItems.get(0).getId());
+        List<MenuItem> menuItems = dao.getByPropertyEqual("description", "Latte 12oz");
+        assertEquals(1, menuItems.size());
+        assertEquals(5, menuItems.get(0).getId());
     }
 
     /**
@@ -124,8 +123,8 @@ class MenuItemDaoTests {
      */
     @Test
     void getByPropertyLikeSuccess() {
-        List<MenuItem> menuItems = dao.getByPropertyLike("catagory", "Espr");
-        assertEquals(15, menuItems.size());
+        List<MenuItem> menuItems = dao.getByPropertyLike("description", "latt");
+        assertEquals(2, menuItems.size());
 
     }
 
