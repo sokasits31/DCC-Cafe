@@ -10,9 +10,9 @@ import java.util.Set;
 /**
  * The type Menu catagory.
  */
-@Entity(name= "MenuCatagory")     // Class Name
-@Table(name= "menuCatagory")      // Table Name
-public class MenuCatagory {
+@Entity(name= "MenuCategory")     // Class Name
+@Table(name= "MenuCategory")      // Table Name
+public class MenuCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -22,13 +22,13 @@ public class MenuCatagory {
     @Column (name="description")
     private String catagoryDescription;
 
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "MenuCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Menu> MenuItems = new HashSet<>();
 
     /**
      * Instantiates a new Menu catagory.
      */
-    public MenuCatagory() {
+    public MenuCategory() {
     }
 
     /**
@@ -37,7 +37,7 @@ public class MenuCatagory {
      * @param id           the id
      * @param catagoryDescription the catagory name
      */
-    public MenuCatagory(int id, String catagoryDescription) {
+    public MenuCategory(int id, String catagoryDescription) {
         this.id = id;
         this.catagoryDescription = catagoryDescription;
     }
@@ -80,7 +80,7 @@ public class MenuCatagory {
 
     @Override
     public String toString() {
-        return "MenuCatagory{" +
+        return "MenuCategory{" +
                 "id=" + id +
                 ", catagoryDescription='" + catagoryDescription + '\'' +
                 '}';

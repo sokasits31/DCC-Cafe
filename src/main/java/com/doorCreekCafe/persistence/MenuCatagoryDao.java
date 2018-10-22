@@ -1,7 +1,7 @@
 package com.doorCreekCafe.persistence;
 
 
-import com.doorCreekCafe.entity.MenuCatagory;
+import com.doorCreekCafe.entity.MenuCategory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -21,49 +21,49 @@ public class MenuCatagoryDao {
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
-     * Get menuCatagory by id
+     * Get MenuCategory by id
      */
-    public MenuCatagory getId(int id) {
+    public MenuCategory getId(int id) {
         Session session = sessionFactory.openSession();
-        MenuCatagory menuCatagory = session.get( MenuCatagory.class, id );
+        MenuCategory MenuCategory = session.get( MenuCategory.class, id );
         session.close();
-        return menuCatagory;
+        return MenuCategory;
     }
 
     /**
-     * update menuCatagory
-     * @param menuCatagory  MenuCatagory to be inserted or updated
+     * update MenuCategory
+     * @param MenuCategory  MenuCategory to be inserted or updated
      */
-    public void saveOrUpdate(MenuCatagory menuCatagory) {
+    public void saveOrUpdate(MenuCategory MenuCategory) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.saveOrUpdate(menuCatagory);
+        session.saveOrUpdate(MenuCategory);
         transaction.commit();
         session.close();
     }
 
     /**
-     * update menuCatagory
-     * @param menuCatagory  MenuCatagory to be inserted or updated
+     * update MenuCategory
+     * @param MenuCategory  MenuCategory to be inserted or updated
      */
-    public int insert(MenuCatagory menuCatagory) {
+    public int insert(MenuCategory MenuCategory) {
         int id = 0;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        id = (int)session.save(menuCatagory);
+        id = (int)session.save(MenuCategory);
         transaction.commit();
         session.close();
         return id;
     }
 
     /**
-     * Delete a menuCatagory
-     * @param menuCatagory MenuCatagory to be deleted
+     * Delete a MenuCategory
+     * @param MenuCategory MenuCategory to be deleted
      */
-    public void delete(MenuCatagory menuCatagory) {
+    public void delete(MenuCategory MenuCategory) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(menuCatagory);
+        session.delete(MenuCategory);
         transaction.commit();
         session.close();
     }
@@ -73,14 +73,14 @@ public class MenuCatagoryDao {
      *
      * @return All users
      */
-    public List<MenuCatagory> getAllUsers() {
+    public List<MenuCategory> getAllUsers() {
 
         Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<MenuCatagory> query = builder.createQuery( MenuCatagory.class );
+        CriteriaQuery<MenuCategory> query = builder.createQuery( MenuCategory.class );
 
-        Root<MenuCatagory> root = query.from( MenuCatagory.class );
-        List<MenuCatagory> users = session.createQuery( query ).getResultList();
+        Root<MenuCategory> root = query.from( MenuCategory.class );
+        List<MenuCategory> users = session.createQuery( query ).getResultList();
 
         logger.debug("The list of users " + users);
         session.close();
@@ -89,41 +89,41 @@ public class MenuCatagoryDao {
     }
 
     /**
-     * Get menuCatagory by property (exact match)
+     * Get MenuCategory by property (exact match)
      * sample usage: getByPropertyEqual("lastname", "Curry")
      */
-    public List<MenuCatagory> getByPropertyEqual(String propertyName, String value) {
+    public List<MenuCategory> getByPropertyEqual(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for menuCatagory with " + propertyName + " = " + value);
+        logger.debug("Searching for MenuCategory with " + propertyName + " = " + value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<MenuCatagory> query = builder.createQuery( MenuCatagory.class );
-        Root<MenuCatagory> root = query.from( MenuCatagory.class );
+        CriteriaQuery<MenuCategory> query = builder.createQuery( MenuCategory.class );
+        Root<MenuCategory> root = query.from( MenuCategory.class );
         query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<MenuCatagory> users = session.createQuery( query ).getResultList();
+        List<MenuCategory> users = session.createQuery( query ).getResultList();
 
         session.close();
         return users;
     }
 
     /**
-     * Get menuCatagory by property (like)
+     * Get MenuCategory by property (like)
      * sample usage: getByPropertyLike("lastname", "C")
      */
-    public List<MenuCatagory> getByPropertyLike(String propertyName, String value) {
+    public List<MenuCategory> getByPropertyLike(String propertyName, String value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for menuCatagory with {} = {}",  propertyName, value);
+        logger.debug("Searching for MenuCategory with {} = {}",  propertyName, value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<MenuCatagory> query = builder.createQuery( MenuCatagory.class );
-        Root<MenuCatagory> root = query.from( MenuCatagory.class );
+        CriteriaQuery<MenuCategory> query = builder.createQuery( MenuCategory.class );
+        Root<MenuCategory> root = query.from( MenuCategory.class );
         Expression<String> propertyPath = root.get(propertyName);
 
         query.where(builder.like(propertyPath, "%" + value + "%"));
 
-        List<MenuCatagory> users = session.createQuery( query ).getResultList();
+        List<MenuCategory> users = session.createQuery( query ).getResultList();
         session.close();
         return users;
     }

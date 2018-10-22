@@ -24,13 +24,16 @@ DROP TABLE IF EXISTS `menu`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `catagory` varchar(20) NOT NULL,
+  `menuCategory_id` int(11) NOT NULL,
   `description` varchar(120) DEFAULT NULL,
   `alt_description` varchar(120) DEFAULT NULL,
   `price` decimal(7,2) DEFAULT NULL,
   `frequency_level` int(11) DEFAULT NULL,
+  `cell_position` varchar(3) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `menu_id_uindex` (`id`)
+  UNIQUE KEY `menu_id_uindex` (`id`),
+  KEY `menu_menuCategory_id_fk` (`menuCategory_id`),
+  CONSTRAINT `menu_menuCategory_id_fk` FOREIGN KEY (`menuCategory_id`) REFERENCES `menuCategory` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,7 +43,7 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (1,'Espresso Drinks','Cappuccino 12 oz',NULL,2.00,1),(2,'Espresso Drinks','Cappuccino 16 oz',NULL,2.50,1),(3,'Espresso Drinks','Mocha 12 oz',NULL,2.00,1),(4,'Espresso Drinks','Mocha 16 oz',NULL,2.50,1),(5,'Espresso Drinks','Latte 12 oz',NULL,2.00,2),(6,'Espresso Drinks','Latte 16 oz',NULL,2.50,2),(7,'Espresso Drinks','Americano 12 oz',NULL,2.00,2),(8,'Espresso Drinks','Americano 16 oz',NULL,2.50,2),(9,'Espresso Drinks','Steamer 12 oz',NULL,2.00,2),(10,'Espresso Drinks','Steamer 16 oz',NULL,2.50,2),(11,'Espresso Drinks','Hot Choc. 12 oz',NULL,1.50,1),(12,'Espresso Drinks','Hot Choc. 16 oz',NULL,2.00,1),(13,'Espresso Drinks','Kids HC 8 oz.',NULL,1.00,2),(14,'Espresso Drinks','Hot Cider 12 oz.',NULL,1.50,2),(15,'Espresso Drinks','Hot Cider 16 oz.',NULL,2.00,2),(16,'Frozen Blended','Vanilla Frappe 12 oz.',NULL,2.00,2),(17,'Frozen Blended','Vanilla Frappe 16 oz.',NULL,2.50,2),(18,'Frozen Blended','Chocolate Frappe 12 oz.',NULL,2.50,2),(19,'Frozen Blended','Chocolate Frappe 16 oz.',NULL,3.00,2),(20,'Frozen Blended','Caremel Frappe 12 oz.',NULL,2.50,1),(21,'Frozen Blended','Caremel Frappe 16 oz.',NULL,2.50,1),(22,'Frozen Blended','Cookies Frappe 12 oz.',NULL,2.50,2),(23,'Frozen Blended','Cookies Frappe 16 oz.',NULL,2.50,2),(24,'Frozen Blended','Frappe Special 12 oz.',NULL,2.50,1),(25,'Frozen Blended','Frappe Special 16 oz.',NULL,2.50,1);
+INSERT INTO `menu` VALUES (1,1,'Cappuccino 12 oz',NULL,2.00,1,''),(2,1,'Cappuccino 16 oz',NULL,2.50,1,''),(3,1,'Mocha 12 oz',NULL,2.00,1,''),(4,1,'Mocha 16 oz',NULL,2.50,1,''),(5,1,'Latte 12 oz',NULL,2.00,2,''),(6,1,'Latte 16 oz',NULL,2.50,2,''),(7,1,'Americano 12 oz',NULL,2.00,2,''),(8,1,'Americano 16 oz',NULL,2.50,2,''),(9,1,'Steamer 12 oz',NULL,2.00,2,''),(10,1,'Steamer 16 oz',NULL,2.50,2,''),(11,1,'Hot Choc. 12 oz',NULL,1.50,1,''),(12,1,'Hot Choc. 16 oz',NULL,2.00,1,''),(13,1,'Kids HC 8 oz.',NULL,1.00,2,''),(14,1,'Hot Cider 12 oz.',NULL,1.50,2,''),(15,1,'Hot Cider 16 oz.',NULL,2.00,2,''),(16,2,'Vanilla Frappe 12 oz.',NULL,2.00,2,''),(17,2,'Vanilla Frappe 16 oz.',NULL,2.50,2,''),(18,2,'Chocolate Frappe 12 oz.',NULL,2.50,2,''),(19,2,'Chocolate Frappe 16 oz.',NULL,3.00,2,''),(20,2,'Caremel Frappe 12 oz.',NULL,2.50,1,''),(21,2,'Caremel Frappe 16 oz.',NULL,2.50,1,''),(22,2,'Cookies Frappe 12 oz.',NULL,2.50,2,''),(23,2,'Cookies Frappe 16 oz.',NULL,2.50,2,''),(24,2,'Frappe Special 12 oz.',NULL,2.50,1,''),(25,2,'Frappe Special 16 oz.',NULL,2.50,1,'');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-17 19:57:45
+-- Dump completed on 2018-10-21 20:21:45

@@ -16,7 +16,7 @@
     <schema id="10" parent="1" name="test_doorCreekCafe"/>
     <schema id="11" parent="1" name="test_supportIT"/>
     <table id="12" parent="2" name="menu"/>
-    <table id="13" parent="2" name="menuCatagory"/>
+    <table id="13" parent="2" name="menuCategory"/>
     <table id="14" parent="2" name="testScore"/>
     <table id="15" parent="2" name="test_parm"/>
     <table id="16" parent="2" name="user"/>
@@ -26,7 +26,7 @@
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="18" parent="12" name="menuCatagory_id">
+    <column id="18" parent="12" name="menuCategory_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
@@ -47,7 +47,7 @@
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="23" parent="12" name="cellPosition">
+    <column id="23" parent="12" name="cell_position">
       <Position>7</Position>
       <DataType>varchar(3)|0</DataType>
       <NotNull>1</NotNull>
@@ -56,8 +56,8 @@
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="25" parent="12" name="menu_menuCatagory_id_fk">
-      <ColNames>menuCatagory_id</ColNames>
+    <index id="25" parent="12" name="menu_menuCategory_id_fk">
+      <ColNames>menuCategory_id</ColNames>
     </index>
     <key id="26" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -68,10 +68,10 @@
       <ColNames>id</ColNames>
       <UnderlyingIndexName>menu_id_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="28" parent="12" name="menu_menuCatagory_id_fk">
-      <ColNames>menuCatagory_id</ColNames>
+    <foreign-key id="28" parent="12" name="menu_menuCategory_id_fk">
+      <ColNames>menuCategory_id</ColNames>
       <RefSchemaName>doorCreekCafe</RefSchemaName>
-      <RefTableName>menuCatagory</RefTableName>
+      <RefTableName>menuCategory</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>

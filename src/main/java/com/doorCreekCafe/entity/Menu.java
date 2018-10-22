@@ -16,9 +16,6 @@ public class Menu {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @Column(name="catagory")
-    private String catagory;
-
     @Column (name="description")
     private String description;
 
@@ -31,8 +28,11 @@ public class Menu {
     @Column (name="frequency_level")
     private int frequencyLevel;
 
+    @Column (name="cell_position")
+    private String cellPosition;
+
     @ManyToOne
-    private MenuCatagory menuCatagory;
+    private MenuCategory MenuCategory;
     /**
      * Instantiates a new Menu.
      */
@@ -49,7 +49,6 @@ public class Menu {
      * @param frequencyLevel the frequency level
      */
     public Menu(String catagory, String description, String altDescripton, double price, int frequencyLevel) {
-        this.catagory = catagory;
         this.description = description;
         this.altDescripton = altDescripton;
         this.price = price;
@@ -72,24 +71,6 @@ public class Menu {
      */
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * Gets catagory.
-     *
-     * @return the catagory
-     */
-    public String getCatagory() {
-        return catagory;
-    }
-
-    /**
-     * Sets catagory.
-     *
-     * @param catagory the catagory
-     */
-    public void setCatagory(String catagory) {
-        this.catagory = catagory;
     }
 
     /**
@@ -164,11 +145,28 @@ public class Menu {
         this.frequencyLevel = frequencyLevel;
     }
 
+    /**
+     * Gets cell position.
+     *
+     * @return the cell position
+     */
+    public String getCellPosition() {
+        return cellPosition;
+    }
+
+    /**
+     * Sets cell position.
+     *
+     * @param cellPosition the cell position
+     */
+    public void setCellPosition(String cellPosition) {
+        this.cellPosition = cellPosition;
+    }
+
     @Override
     public String toString() {
         return "menu{" +
                 "id=" + id +
-                ", catagory='" + catagory + '\'' +
                 ", description='" + description + '\'' +
                 ", altDescripton='" + altDescripton + '\'' +
                 ", price=" + price +
