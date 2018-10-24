@@ -1,6 +1,7 @@
 package com.doorCreekCafe.controller;
 
-import com.doorCreekCafe.persistence.TestScoreDao;
+import com.doorCreekCafe.entity.TestScore;
+import com.doorCreekCafe.persistence.GenericDao;
 
 
 import javax.servlet.RequestDispatcher;
@@ -27,9 +28,10 @@ public class Admin extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        TestScoreDao testScoreDao = new TestScoreDao();
 
-        req.setAttribute("userTests", testScoreDao.getAllTests() );
+        GenericDao testScoreDao = new GenericDao(TestScore.class);
+
+        req.setAttribute("userTests", testScoreDao.getAll() );
         //if (req.getParameter("submit").equals("Display All Resources")) {
         //    req.setAttribute("users", userDao.getAllUsers());
         //}

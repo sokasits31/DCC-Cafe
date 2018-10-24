@@ -1,5 +1,6 @@
 package com.doorCreekCafe.persistence;
 
+import com.doorCreekCafe.entity.Role;
 import com.doorCreekCafe.entity.TestScore;
 import com.doorCreekCafe.entity.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class UserDaoTests {
 
 
-    UserDao dao;
     GenericDao genericDao;
 
     /**
@@ -29,11 +30,13 @@ class UserDaoTests {
 
         com.doorCreekCafe.test.util.Database database = com.doorCreekCafe.test.util.Database.getInstance();
         database.runSQL("usersTestData.sql");
-        dao = new UserDao();
         genericDao = new GenericDao(User.class);
 
     }
 
+    /**
+     * Verify that we we can get all rows
+     */
     @Test
     void getAllUsersSuccess() {
         List<User> tests = genericDao.getAll();
@@ -44,7 +47,7 @@ class UserDaoTests {
 
 
     /**
-     * Verify successful retrieval of a user
+     * Verify that we can get by id
      */
     @Test
     void getByIdSuccess() {
@@ -52,10 +55,10 @@ class UserDaoTests {
         User retreivedUser = (User)genericDao.getById(3);
         assertEquals(3,retreivedUser.getId());
         //assertEquals("vol", retreivedUser.getRole().toString());
-        assertEquals("lea.sokasits@gmail.com", retreivedUser.getEmailAddress());
+        assertEquals("Lea.sokasits@gmail.com", retreivedUser.getEmailAddress());
         assertEquals("Lea", retreivedUser.getFirstName());
         assertEquals("Sokasits", retreivedUser.getLastName());
-        assertEquals(1, retreivedUser.getSkillLevel());
+        assertEquals(2, retreivedUser.getSkillLevel());
     }
 
     /**
@@ -64,43 +67,44 @@ class UserDaoTests {
     @Test
     void insertSuccess() {
 
-        // Create object
-        User newTest = new User("vol", "new@gmail.com", "joe", "blow", 3);
+        User newUser = new User("new@gmail.com", "joe", "blow", 2, 2240024, "newuser", "college1");
 
-        // Insert object to table
-        int id = (int)genericDao.insert(newTest);
+        int id = genericDao.insert(newUser);
         assertNotEquals(0,id);
 
-        User insertedUser = (User) genericDao.getById(11);
-        assertEquals( "Heather", insertedUser.getFirstName());
-        // Could continue comparing all values, but
-        // it may make sense to use .equals()
-        // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
+        User insertedUser = (User) genericDao.getById(id);
+        //assertEquals(newUser, insertedUser);
     }
 
     /**
-     * Verify successful insert of a user
+     * Verify successful insert new row (Parent then child)
      */
     @Test
     void insertWithTestSuccess() {
 
-        //Create Parent Data
-        User newUser = new User("vol", "new@gmail.com", "joe", "blow", 3);
+        String userName = "newUserId";
 
-        //Create child
+        //Create Parent Data
+        User newUser = new User("new@gmail.com", "joe", "blow", 2, 2240024, userName, "college1");
+
+        //Create children
         LocalDate testDate = LocalDate.parse("2018-01-01");
         TestScore testScore = new TestScore(testDate, 1, 12, 89,newUser);
+        Role role = new Role(newUser,"vol", userName);
 
-        // Sync Child to parent
+        // add children to parent
         newUser.addTestScore(testScore);
+        newUser.addRole(role);
 
         // Insert record and get Id
         int id = (int) genericDao.insert(newUser);
         assertNotEquals(0,id);
 
-        User insertedUser = (User) genericDao.getById(1);
-        assertEquals( "Heather", insertedUser.getFirstName());
+        User insertedUser = (User) genericDao.getById(id);
+        assertEquals( "new@gmail.com", insertedUser.getEmailAddress());
         assertEquals(1,newUser.getTestScores().size());
+
+        //TestScore testscore = (TestScore) genericDao.getById()
         // Could continue comparing all values, but
         // it may make sense to use .equals()
         // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
@@ -108,17 +112,28 @@ class UserDaoTests {
 
 
     /**
-     * Verify successful delete of user
+     * Verify successful delete a row (Parent cascade to children)
      */
     @Test
     void deleteSuccess() {
-        genericDao.delete(genericDao.getById(1));
-        assertNull(genericDao.getById(1));
+
+        genericDao.delete(genericDao.getById(2));
+
+        //Check parent
+        assertNull(genericDao.getById(2));
+
+        //Check child
+        GenericDao score = new GenericDao(TestScore.class);
+        List<TestScore> scores = score.getAll();
+        assertEquals(9,scores.size());
+
     }
 
 
+
+
     /**
-     * Verify that we can update a User
+     * Verify that we can update a row
      */
     @Test
     void saveOrUpdateSuccess() {
@@ -131,6 +146,10 @@ class UserDaoTests {
         assertEquals("Hector", updatedUser.getFirstName());
     }
 
+
+    /**
+     * Verify that we can get row(s) based on "Like"
+     */
     @Test
     void getByLikeSuccess() {
         List<User> tests = genericDao.getByPropertyLike("emailAddress","gmail.com");
@@ -138,6 +157,9 @@ class UserDaoTests {
 
     }
 
+    /**
+     * Verify that we can get row based on "Equal"
+     */
     @Test
     void getByEqualSuccess() {
         List<User> tests = genericDao.getByPropertyEqual("emailAddress","steve.sokasits@gmail.com");

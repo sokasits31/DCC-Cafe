@@ -16,35 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `menuItem`
+-- Table structure for table `role`
 --
 
-DROP TABLE IF EXISTS `menuItem`;
+DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `menuItem` (
+CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(120) DEFAULT NULL,
-  `alt_description` varchar(120) DEFAULT NULL,
-  `price` decimal(7,2) DEFAULT NULL,
-  `frequency_level` int(11) DEFAULT NULL,
-  `cell_position` varchar(3) NOT NULL,
-  `menuCategory_id` int(11) NOT NULL,
+  `role_name` varchar(25) DEFAULT NULL,
+  `user_name` varchar(15) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `menu_id_uindex` (`id`),
-  KEY `menuItem_menuCategory_id_fk` (`menuCategory_id`),
-  CONSTRAINT `menuItem_menuCategory_id_fk` FOREIGN KEY (`menuCategory_id`) REFERENCES `menuCategory` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `role_id_uindex` (`id`),
+  KEY `role_user_id_fk` (`user_id`),
+  CONSTRAINT `role_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `menuItem`
+-- Dumping data for table `role`
 --
 
-LOCK TABLES `menuItem` WRITE;
-/*!40000 ALTER TABLE `menuItem` DISABLE KEYS */;
-INSERT INTO `menuItem` VALUES (1,'Cappuccino 12oz',NULL,2.00,1,'A1',1),(2,'Cappuccino 16oz',NULL,2.50,1,'A1',1),(3,'Mocha 12oz',NULL,2.00,1,'A1',1),(4,'Mocha 16oz',NULL,2.50,1,'A1',1),(5,'Latte 12oz',NULL,2.00,2,'A1',1),(6,'Latte 16oz',NULL,2.50,2,'A1',1),(7,'Americano 12oz',NULL,2.00,2,'A1',1),(8,'Americano 16oz',NULL,2.50,2,'A1',1),(9,'Steamer 12oz',NULL,2.00,2,'A1',1),(10,'Steamer 16oz',NULL,2.50,2,'A1',1),(11,'Hot Choc. 12oz',NULL,1.50,1,'A1',1),(12,'Hot Choc. 16oz',NULL,2.00,1,'A1',1),(13,'Kids HC 8oz.',NULL,1.00,2,'A1',1),(14,'Hot Cider 12oz',NULL,1.50,2,'A1',1),(15,'Hot Cider 16oz.',NULL,2.00,2,'A1',1),(16,'Vanilla Frappe 12oz.',NULL,2.00,2,'A1',2),(17,'Vanilla Frappe 16oz.',NULL,2.50,2,'A1',2),(18,'Chocolate Frappe 12oz',NULL,2.50,2,'A1',2),(19,'Chocolate Frappe 16oz.',NULL,3.00,2,'A1',2),(20,'Caremel Frappe 12oz.',NULL,2.50,1,'A1',2),(21,'Caremel Frappe 16oz.',NULL,2.50,1,'A1',2),(22,'Cookies Frappe 12oz.',NULL,2.50,2,'A1',2),(23,'Cookies Frappe 16oz.',NULL,2.50,2,'A1',2),(24,'Frappe Special 12oz.',NULL,2.50,1,'A1',2),(25,'Frappe Special 16oz.',NULL,2.50,1,'A1',2);
-/*!40000 ALTER TABLE `menuItem` ENABLE KEYS */;
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'admin','heathersok',1),(2,'vol','sokasits31',2);
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-21 21:27:20
+-- Dump completed on 2018-10-22 20:56:30

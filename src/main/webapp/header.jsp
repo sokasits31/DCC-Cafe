@@ -1,6 +1,6 @@
 <div id="header">
     <h1 align="center">
-        Support IT
+        Door Creek Cafe
     </h1>
 </div>
 <div id="sub_header">

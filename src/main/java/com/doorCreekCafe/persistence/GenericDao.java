@@ -94,13 +94,6 @@ public class GenericDao<T> {
     }
 
 
-
-    private Session getSession() {
-        return SessionFactoryProvider.getSessionFactory().openSession();
-
-    }
-
-
     /**
      * Save or update.
      *
@@ -114,6 +107,13 @@ public class GenericDao<T> {
         session.close();
     }
 
+    /**
+     * Gets by property equal.
+     *
+     * @param propertyName the property name
+     * @param value        the value
+     * @return the by property equal
+     */
     public List<T> getByPropertyEqual(String propertyName, String value) {
         Session session = getSession();
 
@@ -127,6 +127,7 @@ public class GenericDao<T> {
         session.close();
         return list;
     }
+
 
     /**
      * Get user by property (like)
@@ -148,5 +149,16 @@ public class GenericDao<T> {
         session.close();
         return list;
     }
+
+    /**
+     *  Returns an open session for the SessionFactory
+     *
+     * @return session
+     */
+    private Session getSession() {
+        return SessionFactoryProvider.getSessionFactory().openSession();
+
+    }
+
 
 }

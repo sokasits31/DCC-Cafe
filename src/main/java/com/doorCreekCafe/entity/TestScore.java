@@ -31,6 +31,9 @@ public class TestScore {
     private int responseTimeInSeconds;
 
     @ManyToOne
+    //@JoinColumn(name = "user_id",
+    //        foreignKey = @ForeignKey(name = "testScore_user_id_fk")
+    //)
     private User user;
 
     /**

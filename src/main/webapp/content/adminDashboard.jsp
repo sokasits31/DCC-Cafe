@@ -29,11 +29,12 @@
                     <c:forEach var="user" items="${users}">
                     <tr>
                         <td>${user.id}</td>
-                        <td>${user.role}</td>
                         <td>${user.emailAddress}</td>
                         <td>${user.firstName}</td>
                         <td>${user.lastName}</td>
                         <td>${user.skillLevel}</td>
+                        <td>${user.primaryPhoneNumber}</td>
+                        <td>${user.userName}</td>
                         <td>
                         <table>
                             <c:forEach var="testScore" items="${user.testScores}">

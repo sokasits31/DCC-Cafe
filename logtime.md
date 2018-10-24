@@ -21,5 +21,6 @@
 |10/14/18| 4 hrs | worked on display one to many on JSP page...  Start working on register screens |
 |10/15/18| 4 hrs | almost got exercise 6 done |
 |10/18/18|2 hrs | added Menu Catagory Table and DAO|
-
+|10/22/18| 3 hrs | Reworking table columns and test |
+|10/23/18| 8 hrs | Attepting to add security to indie project |
 

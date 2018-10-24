@@ -1,5 +1,7 @@
 DELETE FROM user;
-INSERT INTO user VALUES (1,'admin','heather.sokasits@gmail.com','Heather','Sokasits',4),(2,'Vol','steve.sokasits@gmail.com','Steve','Sokasits',1),(3,'Vol','lea.sokasits@gmail.com','Lea','Sokasits',1);
+INSERT INTO `user` VALUES (1,'heather.sokasits@gmail.com','Heather','Sokasits',4,0,'heathersok','college1'),(2,'steve.sokasits@gmail.com','Steve','Sokasits',1,0,'sokasits31','college2'),(3,'Lea.sokasits@gmail.com','Lea','Sokasits',2,0,'leaclaire','college3');
+DELETE FROM role;
+INSERT INTO `role` VALUES (1,'admin','heathersok',1),(2,'vol','sokasits31',2);
 DELETE FROM testScore;
 INSERT INTO `testScore` VALUES (1,'1969-12-31',1,1,1,2),(2,'1969-12-31',1,1,2,2),(3,'1969-12-31',1,1,3,2),(4,'1969-12-31',1,1,4,2),(5,'1969-12-31',1,1,5,2),(6,'1969-12-31',1,1,6,2),(7,'2018-10-09',1,1,7,2),(8,'1969-12-31',1,1,8,3),(9,'1969-12-31',1,1,9,3),(10,'1969-12-31',1,1,10,3),(11,'1969-12-31',2,2,5,3),(12,'1969-12-31',2,2,6,3),(13,'1969-12-31',2,2,7,3),(14,'1969-12-31',2,2,8,3),(15,'1969-12-31',2,2,9,3),(16,'1969-12-31',2,2,10,3),(17,'1969-12-31',2,2,11,2),(18,'1969-12-31',2,2,12,2),(19,'1969-12-31',2,2,13,2),(20,'1969-12-31',2,2,14,2),(21,'1969-12-31',2,2,15,2),(22,'1969-12-31',2,2,16,2),(23,'1969-12-31',2,2,18,2),(24,'1969-12-31',2,2,19,2),(25,'1969-12-31',2,2,2,2);
 DELETE FROM doorCreekCafe.menuCategory;
