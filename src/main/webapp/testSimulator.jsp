@@ -6,9 +6,24 @@
 <div id="container">
     <%@ include file="/header.jsp"%>
 
-    <H1>Admin Home Page</H1>
+    <H1>Test Simulator</H1>
 
-    <a href="grantAccess">Click here to see test all test scores</a>
+
+
+
+
+
+
+    <a href="register.jsp">Click here to open register simulator</a>
+
+
+
+    <form action="/doorCreekCafe/grantAccess" method="get">
+
+        <%@include file="/content/login.jsp"%>
+
+    </form>
+    </p>
 
     <%@ include file="/footer.jsp"%>
 </div>

@@ -6,12 +6,9 @@
 <div id="container">
     <%@ include file="/header.jsp"%>
 
-    <form action="/supportIT/grantAccess" method="get">
+    <H1>Volunteer Home Page</H1>
 
-        <%@include file="/content/login.jsp"%>
 
-    </form>
-    </p>
 
     <%@ include file="/footer.jsp"%>
 </div>
