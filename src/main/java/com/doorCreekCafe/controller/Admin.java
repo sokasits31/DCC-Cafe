@@ -1,6 +1,7 @@
 package com.doorCreekCafe.controller;
 
-import com.doorCreekCafe.entity.TestScore;
+
+import com.doorCreekCafe.entity.User;
 import com.doorCreekCafe.persistence.GenericDao;
 
 
@@ -19,23 +20,23 @@ import java.io.IOException;
  */
 
 @WebServlet(
-        name = "adminServlet",
-        urlPatterns = {"/adminDashboard"}
+      name = "adminServlet",
+      urlPatterns = {"/adminDashboard"}
 )
 
 public class Admin extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
+        GenericDao userDao = new GenericDao(User.class);
 
-        GenericDao testScoreDao = new GenericDao(TestScore.class);
-
-        req.setAttribute("userTests", testScoreDao.getAll() );
+        req.setAttribute("users", userDao.getAll());
         //if (req.getParameter("submit").equals("Display All Resources")) {
         //    req.setAttribute("users", userDao.getAllUsers());
         //}
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/content/admin/displayAllResources.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/content/adminDashboard.jsp");
         dispatcher.forward(req, resp);
     }
 }

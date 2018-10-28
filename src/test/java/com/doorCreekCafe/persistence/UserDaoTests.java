@@ -74,6 +74,7 @@ class UserDaoTests {
 
         User insertedUser = (User) genericDao.getById(id);
         //assertEquals(newUser, insertedUser);
+        assertEquals(newUser,insertedUser);
     }
 
     /**
