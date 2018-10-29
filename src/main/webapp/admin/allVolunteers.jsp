@@ -3,36 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
+<H2>Current Volunteers</H2>
 
-<h1>Admin Dashboard</h1>
-
-<br>
-
-<H3>Good morning Heather, what would you like to do?</H3>
-
-
-
-<H3>Volunteer List Maintenance</H3>
-<ul>
-    <li><A HREF="admin/deleteUser">Remove a volunteer</A></li>
-    <li><A HREF="admin/allVolunteers">Update or delete volunteer</A></li>
-    <li><A HREF="insertUser">Add a new volunteer</A></li>
-    <li><A HREF="selectUser">View an individual Volunteer info</A></li>
-    <li><A HREF="selectUser">View all volunteer info</A></li>
-
-</ul>
-
-<H3>Volunteer Experience</H3>
-<ul>
-    <li><A HREF="viewTestScores">View all volunteer training progression</A></li>
-    <li><A HREF="viewTestScores">View individual volunteer training progression</A></li>
-
-</ul>
-
-
-
-
-
+<form>
 
     <c:choose>
 
@@ -41,12 +14,13 @@
                     <!-- row 1 data -->
                     <tr>
                         <td>ID</td>
-                        <th>Role</th>
                         <th>Email Address</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Skill Level</th>
-                        <th>Test Scores</th>
+                        <th>Primary Phone Number</th>
+                        <th>User ID</th>
+                        <th>Action</th>
                     </tr>
 
                     <!-- row 2 and more data-->
@@ -60,15 +34,11 @@
                         <td>${user.primaryPhoneNumber}</td>
                         <td>${user.userName}</td>
                         <td>
-                        <table>
-                            <c:forEach var="testScore" items="${user.testScores}">
-                                <tr>
-                                    <td>${testScore.testDate}</td>
-                                    <td>${testScore.testLevel}</td>
-                                    <td>${testScore.menuIdTested}</td>
-                                </tr>
-                            </c:forEach>
-                        </table>
+                            <select name="action">
+                                <option value="none">No Action</option>
+                                <option value="update">Update</option>
+                                <option value="delete">Delete</option>
+                            </select>
                         </td>
                     </tr>
                     </c:forEach>
@@ -81,7 +51,11 @@
         </c:otherwise>
 
     </c:choose>
-</div>
+</form>
+
+
+<BR>
+<A HREF="../admin">Back to Admin Home Page</A>
 
 </body>
 </html>
