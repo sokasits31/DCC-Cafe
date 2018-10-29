@@ -11,18 +11,22 @@
 <H3>Good morning Heather, what would you like to do?</H3>
 
 
+
 <H3>Volunteer List Maintenance</H3>
 <ul>
-    <li><A HREF="deleteUser">Remove a Volunteer</A></li>
-    <li><A HREF="updateUser">View Volunteer Info</A></li>
-    <li><A HREF="insertUser">View Volunteer Test Scores</A></li>
-    <li><A HREF="changeUser">Update your user profile</A></li>
+    <li><A HREF="admin/deleteUser">Remove a volunteer</A></li>
+    <li><A HREF="updateUser">Update volunteer Info</A></li>
+    <li><A HREF="insertUser">Add a new volunteer</A></li>
+    <li><A HREF="selectUser">View an individual Volunteer info</A></li>
+    <li><A HREF="selectUser">View all volunteer info</A></li>
+
 </ul>
 
-<H3>Volunteer Info</H3>
+<H3>Volunteer Experience</H3>
 <ul>
-    <li><A HREF="deleteUser">View All Volunteer Info</A></li>
-    <li><A HREF="updateUser">View Volunteer training progression</A></li>
+    <li><A HREF="viewTestScores">View all volunteer training progression</A></li>
+    <li><A HREF="viewTestScores">View individual volunteer training progression</A></li>
+
 </ul>
 
 

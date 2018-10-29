@@ -25,8 +25,9 @@
         <td>
             <div style="background-color:lightblue">
                 <h4>Volunteers and/or Admin....</h4>
-                <a href="admin.jsp">Click here to enter site</a>
-                <A HREF="adminDashboard" >Servlet Link</A></li>
+                <ul>
+                    <li> <A HREF="admin">Access Admin Functionsk</A></li>
+                </ul>
             </div>
         </td>
 

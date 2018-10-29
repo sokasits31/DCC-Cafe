@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -19,26 +20,23 @@ import java.io.IOException;
  */
 
 @WebServlet(
-        urlPatterns = {"/testSimulator"}
+     urlPatterns = {"/admin/deleteUser"}
 )
 
-public class TestSimulator extends HttpServlet {
+public class DeleteUser extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-        //RequestDispatcher dispatcher = req.getRequestDispatcher("/volunteerHome.jsp");
-        //dispatcher.forward(req, resp);
-
         GenericDao userDao = new GenericDao(User.class);
 
-        //userDao.getByPropertyEqual("userName", )
+        req.setAttribute("users", userDao.getAll());
 
-        //req.setAttribute("users", userDao.getAll());
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/content/adminDashboard.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/deleteUser.jsp");
         dispatcher.forward(req, resp);
     }
+
 }
 
 
