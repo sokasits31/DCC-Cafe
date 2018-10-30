@@ -5,15 +5,18 @@
 
 
 
-<h1>Update User</h1>
+<FORM ACTION= "select/status" method="get">
+<c:choose>
 
-
-<FORM ACTION= "admin/userUpdate/select/status">
+    <c:when test = "${action == 'Update'}">
+    <h1>Update User</h1>
+    <br>
 
     <fieldset>
     <legend>Update User Info</legend>
+
         Id:<br>
-        ${id} <br>
+        <input type="text" name="userId" value="${userId}" readonly > <br>
 
         Email Address:<br>
         <input type="text" name="emailAddress" value="${emailAddress}"><br>
@@ -30,14 +33,51 @@
         User Name:<br>
         <input type="text" name="userName" value="${userName}"><br>
     </fieldset>
+    <input type="submit" name="submit" value="Update">
+    </c:when>
 
-    <input type="submit" name="submit" value="update">
+
+    <c:when test = "${action == 'Delete'}">
+
+        <h1>Delete User</h1>
+        <br>
+
+        <fieldset>
+            <legend>User to Delete</legend>
+
+            Id:<br>
+            <input type="text" name="userId" value="${userId}" readonly > <br>
+
+            Email Address:<br>
+            <input type="text" name="emailAddress" value="${emailAddress}" readonly><br>
+
+            First Name:<br>
+            <input type="text" name="firstName" value="${firstName}" readonly><br>
+
+            Last Name:<br>
+            <input type="text" name="lastName" value="${lastName}" readonly><br>
+
+            Skill Level:<br>
+            <input type="text" name="skillLevel" value="${skillLevel}" readonly><br>
+
+            User Name:<br>
+            <input type="text" name="userName" value="${userName}" readonly><br>
+        </fieldset>
+        <input type="submit" name="submit" value="Delete">
+    </c:when>
+
+    <c:otherwise>
+        <H4>Error!!!! </H4>
+    </c:otherwise>
+
+</c:choose>
+
 
 </form>
 
 <BR>
 
-<A HREF="../admin">Back to admin home page</A>
+<A HREF="../../admin">Back to admin home page</A>
 
 
 </body>

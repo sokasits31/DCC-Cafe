@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 
 @WebServlet(
-     urlPatterns = {"/admin/userUpdate/Status"}
+     urlPatterns = {"/admin/userUpdate/select/status"}
 )
 
 public class UserDBUpdate extends HttpServlet {
@@ -28,23 +28,40 @@ public class UserDBUpdate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // set default status of update
         String statusOfUpdate = "fail";
-
-        //Create User Dao
         GenericDao genericDao = new GenericDao(User.class);
 
-        User user = (User) genericDao.getById(Integer.parseInt(req.getParameter("userId")));
-        user.setEmailAddress(req.getParameter("emailAddress"));
-        user.setFirstName(req.getParameter("firstName"));
-        user.setLastName(req.getParameter("lastName"));
-        user.setSkillLevel(Integer.parseInt(req.getParameter("skillLevel")));
-        user.setPrimaryPhoneNumber(Integer.parseInt(req.getParameter("primaryPhoneNumber")));
-        user.setFirstName(req.getParameter("userName"));
 
-        genericDao.saveOrUpdate(user);
 
-        statusOfUpdate = "success";
+        int userId = Integer.parseInt(req.getParameter("userId"));
+
+        if (req.getParameter("submit").equals("Delete")) {
+
+            genericDao.delete(genericDao.getById(userId));
+            if (genericDao.getById(userId) == null) {
+                statusOfUpdate = "success";
+            }
+
+        } else {
+            //Create User Dao
+
+            User user = (User) genericDao.getById(userId);
+
+            user.setEmailAddress(req.getParameter("emailAddress"));
+            user.setFirstName(req.getParameter("firstName"));
+            user.setLastName(req.getParameter("lastName"));
+            user.setSkillLevel(Integer.parseInt(req.getParameter("skillLevel")));
+            if (req.getParameter("primaryPhoneNumber") == null) {
+                user.setPrimaryPhoneNumber(null);
+            } else{
+                user.setPrimaryPhoneNumber(Integer.parseInt(req.getParameter("primaryPhoneNumber")));
+            }
+            user.setFirstName(req.getParameter("userName"));
+
+            genericDao.saveOrUpdate(user);
+
+            statusOfUpdate = "success";
+        }
 
         req.setAttribute("status", statusOfUpdate);
 

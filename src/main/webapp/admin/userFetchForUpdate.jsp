@@ -21,7 +21,12 @@
 
     <br>
 
-    <input type="submit" name="submit" value="Update">
+    <fieldset>
+        <legend>Action</legend>
+        <input type="submit" name="submit" value="Update">
+        <input type="submit" name="submit" value="Delete">
+    </fieldset>
+
 
 </form>
 

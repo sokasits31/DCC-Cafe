@@ -40,7 +40,6 @@
 <ul>
 
     <li><A HREF="admin/userUpdate">Update User</A></li>
-    <li><A HREF="admin/userDelete">Delete User</A></li>
     <li><A HREF="admin/userInsert">Insert New User</A></li>
     <li><A HREF="admin/userPasswordReset">Reset User Password</A></li>
 

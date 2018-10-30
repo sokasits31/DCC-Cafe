@@ -31,7 +31,10 @@ public class UserUpdateSelect extends HttpServlet {
         GenericDao genericDao = new GenericDao(User.class);
         User user = (User) genericDao.getById(Integer.parseInt(req.getParameter("userId")));
 
+        req.setAttribute("action", req.getParameter("submit"));
+
         req.setAttribute("userId", user.getId());
+        req.setAttribute("emailAddress" , user.getEmailAddress());
         req.setAttribute("firstName", user.getFirstName());
         req.setAttribute("lastName", user.getLastName());
         req.setAttribute("skillLevel", user.getSkillLevel());
