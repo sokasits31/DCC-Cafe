@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -20,39 +19,28 @@ import java.io.IOException;
  */
 
 @WebServlet(
-     urlPatterns = {"/admin/userUpdateStatus"}
+     urlPatterns = {"/admin/userUpdate/select"}
 )
 
-public class UserUpdate extends HttpServlet {
+public class UserUpdateSelect extends HttpServlet {
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String statusOfUpdate = "fail";
-
-
         GenericDao genericDao = new GenericDao(User.class);
+        User user = (User) genericDao.getById(Integer.parseInt(req.getParameter("userId")));
 
-        String updateNeeded = req.getParameter("submit");
+        req.setAttribute("userId", user.getId());
+        req.setAttribute("firstName", user.getFirstName());
+        req.setAttribute("lastName", user.getLastName());
+        req.setAttribute("skillLevel", user.getSkillLevel());
+        req.setAttribute("primaryPhoneNumber", user.getPrimaryPhoneNumber());
+        req.setAttribute("userName", user.getUserName());
 
-        if (updateNeeded.equals("delete")) {
-            int id = Integer.parseInt(req.getParameter("removeUserId"));
-            genericDao.delete(genericDao.getById(id));
 
-            if (genericDao.getById(id) == null) {
-                statusOfUpdate = "success";
-            }
-
-        }
-
-        req.setAttribute("status", statusOfUpdate);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/userUpdateStatus.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/userUpdate.jsp");
         dispatcher.forward(req, resp);
-
-
-
     }
 
 }

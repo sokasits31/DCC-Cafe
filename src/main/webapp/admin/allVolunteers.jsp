@@ -20,11 +20,11 @@
                         <th>Skill Level</th>
                         <th>Primary Phone Number</th>
                         <th>User ID</th>
-                        <th>Action</th>
+                        <th>Select</th>
                     </tr>
 
                     <!-- row 2 and more data-->
-                    <c:forEach var="user" items="${users}">
+                    <c:forEach var="user" items="${users}" varStatus="status">
                     <tr>
                         <td>${user.id}</td>
                         <td>${user.emailAddress}</td>
@@ -33,17 +33,14 @@
                         <td>${user.skillLevel}</td>
                         <td>${user.primaryPhoneNumber}</td>
                         <td>${user.userName}</td>
-                        <td>
-                            <select name="action">
-                                <option value="none">No Action</option>
-                                <option value="update">Update</option>
-                                <option value="delete">Delete</option>
-                            </select>
-                        </td>
+                        <td><input type="radio" name="radioButton" value="${status.count}">
                     </tr>
                     </c:forEach>
-
                 </table>
+                <input type="submit" name="submit" value="Update">
+                <input type="submit" name="submit" value="Insert">
+                <input type="submit" name="submit" value="Delete">
+
             </c:when>
 
         <c:otherwise>

@@ -32,15 +32,9 @@ public class Admin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        GenericDao userDao = new GenericDao(User.class);
+        GenericDao genericDao = new GenericDao(User.class);
 
-
-        //req.setAttribute("users", userDao.getAll());
-        //if (req.getParameter("submit").equals("Display All Resources")) {
-        req.setAttribute("users", userDao.getByPropertyEqual("userName", "admin"));
-        //req.setAttribute("users", userDao.getByPropertyEqual("userName", req.getParameter("j_username")));
-        //}
-
+        req.setAttribute("adminUsers", genericDao.getByPropertyEqual("userName", "admin"));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/admin.jsp");
         dispatcher.forward(req, resp);

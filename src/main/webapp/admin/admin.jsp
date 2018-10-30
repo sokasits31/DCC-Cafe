@@ -8,37 +8,50 @@
 
 <br>
 
-<H3>Good morning Heather, what would you like to do?</H3>
+<H3>Good morning Heather...</H3>
 
+<h4>Current Administrators</h4>
+<table border="1" cellpadding="1">
+    <!-- row 1 data -->
+    <tr>
+        <td>ID</td>
+        <th>Email Address</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Skill Level</th>
+        <th>Primary Phone Number</th>
+        <th>User ID</th>
+    </tr>
+    <c:forEach var="adminUser" items="${adminUsers}">
+    <tr>
+        <td>${adminUser.id}</td>
+        <td>${adminUser.emailAddress}</td>
+        <td>${adminUser.firstName}</td>
+        <td>${adminUser.lastName}</td>
+        <td>${adminUser.skillLevel}</td>
+        <td>${adminUser.primaryPhoneNumber}</td>
+        <td>${adminUser.userName}</td>
+    </tr>
+    </c:forEach>
+</table>
 
-
-<H3>Volunteer List Maintenance</H3>
+<br>
+<H3>User Maintenance</H3>
 <ul>
-    <li><A HREF="admin/deleteUser">Remove a volunteer</A></li>
-    <li><A HREF="admin/allVolunteers">Update or delete volunteer</A></li>
-    <li><A HREF="insertUser">Add a new volunteer</A></li>
-    <li><A HREF="selectUser">View an individual Volunteer info</A></li>
-    <li><A HREF="selectUser">View all volunteer info</A></li>
+
+    <li><A HREF="admin/userUpdate">Update User</A></li>
+    <li><A HREF="admin/userDelete">Delete User</A></li>
+    <li><A HREF="admin/userInsert">Insert New User</A></li>
+    <li><A HREF="admin/userPasswordReset">Reset User Password</A></li>
 
 </ul>
 
-<H3>Volunteer Experience</H3>
-<ul>
-    <li><A HREF="viewTestScores">View all volunteer training progression</A></li>
-    <li><A HREF="viewTestScores">View individual volunteer training progression</A></li>
-
-</ul>
-
-
-
-
-
-
+<!--
     <c:choose>
 
             <c:when test = "${users[0].id > 0}">
                 <table border="2" cellpadding="2">
-                    <!-- row 1 data -->
+
                     <tr>
                         <td>ID</td>
                         <th>Role</th>
@@ -49,7 +62,7 @@
                         <th>Test Scores</th>
                     </tr>
 
-                    <!-- row 2 and more data-->
+
                     <c:forEach var="user" items="${users}">
                     <tr>
                         <td>${user.id}</td>
@@ -81,7 +94,9 @@
         </c:otherwise>
 
     </c:choose>
-</div>
+
+-->
+
 
 </body>
 </html>

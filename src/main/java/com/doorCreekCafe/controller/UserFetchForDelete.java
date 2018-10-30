@@ -19,24 +19,23 @@ import java.io.IOException;
  */
 
 @WebServlet(
-        urlPatterns = {"/grantAccess"}
+     urlPatterns = {"/admin/userDelete"}
 )
 
-public class GrantAccess extends HttpServlet {
+public class UserFetchForDelete extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-        //RequestDispatcher dispatcher = req.getRequestDispatcher("/volunteerHome.jsp");
-        //dispatcher.forward(req, resp);
 
         GenericDao userDao = new GenericDao(User.class);
 
         req.setAttribute("users", userDao.getAll());
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/content/adminDashboard.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/userFetchForDelete.jsp");
         dispatcher.forward(req, resp);
     }
+
 }
 
 

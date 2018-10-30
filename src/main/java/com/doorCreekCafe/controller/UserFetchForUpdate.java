@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -20,10 +19,10 @@ import java.io.IOException;
  */
 
 @WebServlet(
-     urlPatterns = {"/admin/deleteUser"}
+     urlPatterns = {"/admin/userUpdate"}
 )
 
-public class DeleteUser extends HttpServlet {
+public class UserFetchForUpdate extends HttpServlet {
 
 
     @Override
@@ -33,7 +32,7 @@ public class DeleteUser extends HttpServlet {
 
         req.setAttribute("users", userDao.getAll());
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/deleteUser.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/userFetchForUpdate.jsp");
         dispatcher.forward(req, resp);
     }
 

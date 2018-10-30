@@ -19,21 +19,33 @@ import java.io.IOException;
  */
 
 @WebServlet(
-     urlPatterns = {"/admin/allVolunteers"}
+     urlPatterns = {"/admin/userDelete/Status"}
 )
 
-public class GetAllVolunteers extends HttpServlet {
+public class UserDBDelete extends HttpServlet {
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        GenericDao userDao = new GenericDao(User.class);
+        // set default status of update
+        String statusOfUpdate = "fail";
 
-        req.setAttribute("users", userDao.getAll());
+        //Create User Dao
+        GenericDao genericDao = new GenericDao(User.class);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/allVolunteers.jsp");
+        int userId = Integer.parseInt(req.getParameter("userId"));
+
+        genericDao.delete(genericDao.getById(userId));
+        if (genericDao.getById(userId) == null) {
+            statusOfUpdate = "success";
+        }
+
+        req.setAttribute("status", statusOfUpdate);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/dataBaseStatus.jsp");
         dispatcher.forward(req, resp);
+
     }
 
 }
