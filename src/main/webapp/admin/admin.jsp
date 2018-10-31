@@ -10,7 +10,7 @@
 
 <H3>Good morning Heather...</H3>
 
-<h4>Current Administrators</h4>
+<h4>Here's a list of current site users...</h4>
 <table border="1" cellpadding="1">
     <!-- row 1 data -->
     <tr>
@@ -21,16 +21,22 @@
         <th>Skill Level</th>
         <th>Primary Phone Number</th>
         <th>User ID</th>
+        <th>Role</th>
     </tr>
-    <c:forEach var="adminUser" items="${adminUsers}">
+    <c:forEach var="user" items="${users}">
     <tr>
-        <td>${adminUser.id}</td>
-        <td>${adminUser.emailAddress}</td>
-        <td>${adminUser.firstName}</td>
-        <td>${adminUser.lastName}</td>
-        <td>${adminUser.skillLevel}</td>
-        <td>${adminUser.primaryPhoneNumber}</td>
-        <td>${adminUser.userName}</td>
+        <td>${user.id}</td>
+        <td>${user.emailAddress}</td>
+        <td>${user.firstName}</td>
+        <td>${user.lastName}</td>
+        <td>${user.skillLevel}</td>
+        <td>${user.primaryPhoneNumber}</td>
+        <td>${user.userName}</td>
+        <td>
+            <c:forEach var="role" items="${user.roles}">
+                ${role.roleName}
+            </c:forEach>
+        </td>
     </tr>
     </c:forEach>
 </table>

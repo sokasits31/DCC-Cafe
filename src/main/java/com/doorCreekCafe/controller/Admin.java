@@ -34,7 +34,7 @@ public class Admin extends HttpServlet {
 
         GenericDao genericDao = new GenericDao(User.class);
 
-        req.setAttribute("adminUsers", genericDao.getByPropertyEqual("userName", "heatheradmin"));
+        req.setAttribute("users", genericDao.getAll());
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/admin.jsp");
         dispatcher.forward(req, resp);

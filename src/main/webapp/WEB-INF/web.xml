@@ -15,29 +15,11 @@
     </form-login-config>
   </login-config>
 
-  <!-- A servlet that redirects users to the home page. -->
-  <servlet>
-    <servlet-name>adminServlet</servlet-name>
-    <servlet-class>com.doorCreekCafe.controller.Admin</servlet-class>
-  </servlet>
-  <!-- Turn off invoker. Send requests to index.jsp. -->
-  <servlet-mapping>
-    <servlet-name>adminServlet</servlet-name>
-    <url-pattern>/admin</url-pattern>
-  </servlet-mapping>
-
-
-
-
-
-
-
-
   <!-- Protect the user search page. -->
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>admin</web-resource-name>
-      <url-pattern>/adminDashboard/*</url-pattern>
+      <url-pattern>/admin/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
