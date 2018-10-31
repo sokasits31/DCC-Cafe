@@ -8,7 +8,7 @@
 <h2>Update User Info</h2>
 
 
-<FORM ACTION="userUpdate/select" method="get">
+<FORM ACTION="user/update" method="get">
 
     <fieldset>
         <legend>Select Volunteer</legend>

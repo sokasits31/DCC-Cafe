@@ -1,6 +1,7 @@
 package com.doorCreekCafe.controller;
 
 
+import com.doorCreekCafe.entity.Role;
 import com.doorCreekCafe.entity.User;
 import com.doorCreekCafe.persistence.GenericDao;
 
@@ -16,10 +17,14 @@ import java.io.IOException;
 /**
  * A simple servlet to welcome the user.
  * @author pwaite
+ * urlPatterns = {"/admin/userUpdate/select/status"}
  */
 
+
+
 @WebServlet(
-     urlPatterns = {"/admin/userUpdate/select/status"}
+     urlPatterns = {"/admin/user/dataBaseStatus"}
+
 )
 
 public class UserDBUpdate extends HttpServlet {
@@ -33,34 +38,72 @@ public class UserDBUpdate extends HttpServlet {
 
 
 
-        int userId = Integer.parseInt(req.getParameter("userId"));
 
         if (req.getParameter("submit").equals("Delete")) {
 
+            int userId = Integer.parseInt(req.getParameter("userId"));
+
             genericDao.delete(genericDao.getById(userId));
             if (genericDao.getById(userId) == null) {
-                statusOfUpdate = "success";
+                statusOfUpdate = "Delete Successful";
             }
 
         } else {
-            //Create User Dao
+            if (req.getParameter("submit").equals("Update")) {
 
-            User user = (User) genericDao.getById(userId);
+                int userId = Integer.parseInt(req.getParameter("userId"));
 
-            user.setEmailAddress(req.getParameter("emailAddress"));
-            user.setFirstName(req.getParameter("firstName"));
-            user.setLastName(req.getParameter("lastName"));
-            user.setSkillLevel(Integer.parseInt(req.getParameter("skillLevel")));
-            if (req.getParameter("primaryPhoneNumber") == null) {
-                user.setPrimaryPhoneNumber(null);
-            } else{
-                user.setPrimaryPhoneNumber(Integer.parseInt(req.getParameter("primaryPhoneNumber")));
+                User user = (User) genericDao.getById(userId);
+
+                user.setEmailAddress(req.getParameter("emailAddress"));
+                user.setFirstName(req.getParameter("firstName"));
+                user.setLastName(req.getParameter("lastName"));
+                user.setSkillLevel(Integer.parseInt(req.getParameter("skillLevel")));
+                if (req.getParameter("primaryPhoneNumber") == null) {
+                    user.setPrimaryPhoneNumber(null);
+                } else {
+                    user.setPrimaryPhoneNumber(Integer.parseInt(req.getParameter("primaryPhoneNumber")));
+                }
+                user.setUserName(req.getParameter("userName"));
+
+                genericDao.saveOrUpdate(user);
+
+                statusOfUpdate = "Update Successful";
+
+            } else {
+
+                Integer phoneNumber;
+                if (req.getParameter("primaryPhoneNumber") == null) {
+                    phoneNumber = null;
+                } else {
+                    phoneNumber = Integer.parseInt(req.getParameter("primaryPhoneNumber"));
+                }
+
+
+
+                User newUser = new User();
+                newUser.setEmailAddress(req.getParameter("emailAddress"));
+                newUser.setFirstName(req.getParameter("firstName"));
+                newUser.setLastName(req.getParameter("lastName"));
+                newUser.setSkillLevel(Integer.parseInt(req.getParameter("skillLevel")));
+                newUser.setUserName(req.getParameter("userName"));
+                newUser.setUserPassword("college1");
+
+                //Create Role
+                Role newRole = new Role(newUser, req.getParameter("role"), req.getParameter("userName"));
+
+                // add children to parent
+                newUser.addRole(newRole);
+
+                // Insert record and get Id
+                int id = (int) genericDao.insert(newUser);
+
+                User insertedUser = (User) genericDao.getById(id);
+
+                if (insertedUser.getId() == id) {
+                    statusOfUpdate = "Insert Successful";
+                }
             }
-            user.setFirstName(req.getParameter("userName"));
-
-            genericDao.saveOrUpdate(user);
-
-            statusOfUpdate = "success";
         }
 
         req.setAttribute("status", statusOfUpdate);

@@ -39,9 +39,9 @@
 <H3>User Maintenance</H3>
 <ul>
 
-    <li><A HREF="admin/userUpdate">Update User</A></li>
-    <li><A HREF="admin/userInsert">Insert New User</A></li>
-    <li><A HREF="admin/userPasswordReset">Reset User Password</A></li>
+    <li><A HREF="admin/user">Update User</A></li>
+    <li><A HREF="admin/user/insert">Insert New User</A></li>
+    <li><A HREF="admin/user/passwordReset">Reset User Password</A></li>
 
 </ul>
 

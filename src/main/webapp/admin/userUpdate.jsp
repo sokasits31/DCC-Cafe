@@ -4,8 +4,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 
-
+<!--
 <FORM ACTION= "select/status" method="get">
+-->
+
+<FORM ACTION= "dataBaseStatus" method="get">
 <c:choose>
 
     <c:when test = "${action == 'Update'}">

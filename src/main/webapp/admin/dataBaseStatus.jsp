@@ -9,8 +9,8 @@
 
 Status of request: ${status}
 
-
-<A HREF="admin">Back to admin home page</A>
+<br>
+<A HREF="../../admin">Back to admin home page</A>
 </body>
 </html>
 

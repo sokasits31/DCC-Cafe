@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 
 @WebServlet(
-     urlPatterns = {"/admin/userUpdate"}
+     urlPatterns = {"/admin/user"}
 )
 
 public class UserFetchForUpdate extends HttpServlet {
