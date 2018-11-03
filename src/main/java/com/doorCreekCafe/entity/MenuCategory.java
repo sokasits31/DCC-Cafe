@@ -19,27 +19,30 @@ public class MenuCategory {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @Column (name="description")
-    private String catagoryDescription;
+    @Column (name="category_description")
+    private String categoryDescription;
+
+    @Column (name="cell_position")
+    private String cellPosition;
 
     @OneToMany(mappedBy = "menuCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<MenuItem> MenuItems = new HashSet<>();
+    private Set<MenuItem> menuItems = new HashSet<>();
 
     /**
-     * Instantiates a new Menu catagory.
+     * Instantiates a new Menu category.
      */
     public MenuCategory() {
     }
 
     /**
-     * Instantiates a new Menu catagory.
+     * Instantiates a new Menu category.
      *
-     * @param id           the id
-     * @param catagoryDescription the catagory name
+     * @param categoryDescription the category description
+     * @param cellPosition        the cell position
      */
-    public MenuCategory(int id, String catagoryDescription) {
-        this.id = id;
-        this.catagoryDescription = catagoryDescription;
+    public MenuCategory(String categoryDescription, String cellPosition) {
+        this.categoryDescription = categoryDescription;
+        this.cellPosition = cellPosition;
     }
 
     /**
@@ -61,28 +64,66 @@ public class MenuCategory {
     }
 
     /**
-     * Gets catagory name.
+     * Gets category description.
      *
-     * @return the catagory name
+     * @return the category description
      */
-    public String getCatagoryName() {
-        return catagoryDescription;
+    public String getCategoryDescription() {
+        return categoryDescription;
     }
 
     /**
-     * Sets catagory name.
+     * Sets category description.
      *
-     * @param catagoryDescription the catagory name
+     * @param categoryDescription the category description
      */
-    public void setCatagoryName(String catagoryDescription) {
-        this.catagoryDescription = catagoryDescription;
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
+    }
+
+    /**
+     * Gets cell position.
+     *
+     * @return the cell position
+     */
+    public String getCellPosition() {
+        return cellPosition;
+    }
+
+    /**
+     * Sets cell position.
+     *
+     * @param cellPosition the cell position
+     */
+    public void setCellPosition(String cellPosition) {
+        this.cellPosition = cellPosition;
+    }
+
+    /**
+     * Gets menu items.
+     *
+     * @return the menu items
+     */
+    public Set<MenuItem> getMenuItems() {
+        return menuItems;
+    }
+
+    /**
+     * Sets menu items.
+     *
+     * @param menuItems the menu items
+     */
+    public void setMenuItems(Set<MenuItem> menuItems) {
+        this.menuItems = menuItems;
     }
 
     @Override
     public String toString() {
         return "MenuCategory{" +
                 "id=" + id +
-                ", catagoryDescription='" + catagoryDescription + '\'' +
+                ", categoryDescription='" + categoryDescription + '\'' +
+                ", cellPosition='" + cellPosition + '\'' +
+                ", menuItems=" + menuItems +
                 '}';
     }
 }

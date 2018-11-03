@@ -45,62 +45,20 @@
 <H3>User Maintenance</H3>
 <ul>
 
-    <li><A HREF="admin/user">Update User</A></li>
-    <li><A HREF="admin/user/insert">Insert New User</A></li>
+    <li><A HREF="admin/user">Update or Delete User</A></li>
+    <li><A HREF="admin/user/insert">Add New User</A></li>
     <li><A HREF="admin/user/passwordReset">Reset User Password</A></li>
 
 </ul>
 
-<!--
-    <c:choose>
+<H3>Menu Maintenance</H3>
+<ul>
 
-            <c:when test = "${users[0].id > 0}">
-                <table border="2" cellpadding="2">
+    <li><A HREF="admin/menu">Update or Delete Menu Item</A></li>
+    <li><A HREF="admin/menu/insert">Add Nem Menu Item</A></li>
 
-                    <tr>
-                        <td>ID</td>
-                        <th>Role</th>
-                        <th>Email Address</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Skill Level</th>
-                        <th>Test Scores</th>
-                    </tr>
+</ul>
 
-
-                    <c:forEach var="user" items="${users}">
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.emailAddress}</td>
-                        <td>${user.firstName}</td>
-                        <td>${user.lastName}</td>
-                        <td>${user.skillLevel}</td>
-                        <td>${user.primaryPhoneNumber}</td>
-                        <td>${user.userName}</td>
-                        <td>
-                        <table>
-                            <c:forEach var="testScore" items="${user.testScores}">
-                                <tr>
-                                    <td>${testScore.testDate}</td>
-                                    <td>${testScore.testLevel}</td>
-                                    <td>${testScore.menuIdTested}</td>
-                                </tr>
-                            </c:forEach>
-                        </table>
-                        </td>
-                    </tr>
-                    </c:forEach>
-
-                </table>
-            </c:when>
-
-        <c:otherwise>
-            <H4>No User Data Found....   Go back and try again</H4>
-        </c:otherwise>
-
-    </c:choose>
-
--->
 
 
 </body>

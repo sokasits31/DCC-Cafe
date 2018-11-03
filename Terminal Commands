@@ -13,3 +13,25 @@ $ sudo passwd root
 
 AWS tomcate user name and password is set to iSeries
 
+
+
+<user username="ssokasi9" password="Dragon#6prod">
+
+
+cd ../../
+
+cd opt/tomee
+
+scp -i LelinStam.pem mysql-connector-java-8.0.12.jar ubuntu@ec2-18-221-158-65.us-east-2.compute.amazonaws.com
+
+
+scp -i DoorCreekCafe.pem mysql-connector-java-5.1.39.jar ubuntu@ec2-18-221-158-65.us-east-2.compute.amazonaws.com
+
+
+cp mysql-connector-java-5.1.39.jar /opt/tomee/lib
+
+how to install software:
+sudo apt-get install filezilla -y
+
+
+uBUs4XoxU9UsEw

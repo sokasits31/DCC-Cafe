@@ -26,10 +26,13 @@ public class MenuItem {
     private double price;
 
     @Column (name="frequency_level")
-    private int frequencyLevel;
+    private String frequencyLevel;
 
     @Column (name="cell_position")
     private String cellPosition;
+
+    @Column (name="short_hand")
+    private String shortHand;
 
     @ManyToOne
     private MenuCategory menuCategory;
@@ -50,7 +53,7 @@ public class MenuItem {
      * @param cellPosition   the cell position
      * @param menuCategory   the menu category
      */
-    public MenuItem(String description, String altDescripton, double price, int frequencyLevel, String cellPosition, MenuCategory menuCategory) {
+    public MenuItem(String description, String altDescripton, double price, String frequencyLevel, String cellPosition, MenuCategory menuCategory) {
         this.description = description;
         this.altDescripton = altDescripton;
         this.price = price;
@@ -136,7 +139,7 @@ public class MenuItem {
      *
      * @return the frequency level
      */
-    public int getFrequencyLevel() {
+    public String getFrequencyLevel() {
         return frequencyLevel;
     }
 
@@ -145,7 +148,7 @@ public class MenuItem {
      *
      * @param frequencyLevel the frequency level
      */
-    public void setFrequencyLevel(int frequencyLevel) {
+    public void setFrequencyLevel(String frequencyLevel) {
         this.frequencyLevel = frequencyLevel;
     }
 
@@ -167,14 +170,35 @@ public class MenuItem {
         this.cellPosition = cellPosition;
     }
 
+    /**
+     * Gets short hand.
+     *
+     * @return the short hand
+     */
+    public String getShortHand() {
+        return shortHand;
+    }
+
+    /**
+     * Sets short hand.
+     *
+     * @param shortHand the short hand
+     */
+    public void setShortHand(String shortHand) {
+        this.shortHand = shortHand;
+    }
+
     @Override
     public String toString() {
-        return "menuItem{" +
+        return "MenuItem{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", altDescripton='" + altDescripton + '\'' +
                 ", price=" + price +
-                ", frequencyLevel=" + frequencyLevel +
+                ", frequencyLevel='" + frequencyLevel + '\'' +
+                ", cellPosition='" + cellPosition + '\'' +
+                ", shortHand='" + shortHand + '\'' +
+                ", menuCategory=" + menuCategory +
                 '}';
     }
 }
