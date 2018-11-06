@@ -31,11 +31,19 @@ public class MenuItem {
     @Column (name="cell_position")
     private String cellPosition;
 
+    @Column (name="row_position")
+    private String rowPosition;
+
+    @Column (name="column_position")
+    private String columnPosition;
+
     @Column (name="short_hand")
     private String shortHand;
 
     @ManyToOne
+    @OrderBy("id")
     private MenuCategory menuCategory;
+
     /**
      * Instantiates a new Menu.
      */
@@ -51,15 +59,13 @@ public class MenuItem {
      * @param price          the price
      * @param frequencyLevel the frequency level
      * @param cellPosition   the cell position
-     * @param menuCategory   the menu category
      */
-    public MenuItem(String description, String altDescripton, double price, String frequencyLevel, String cellPosition, MenuCategory menuCategory) {
+    public MenuItem(String description, String altDescripton, double price, String frequencyLevel, String cellPosition) {
         this.description = description;
         this.altDescripton = altDescripton;
         this.price = price;
         this.frequencyLevel = frequencyLevel;
         this.cellPosition = cellPosition;
-        this.menuCategory = menuCategory;
     }
 
     /**
@@ -188,6 +194,60 @@ public class MenuItem {
         this.shortHand = shortHand;
     }
 
+    /**
+     * Gets menu category.
+     *
+     * @return the menu category
+     */
+    public MenuCategory getMenuCategory() {
+        return menuCategory;
+    }
+
+    /**
+     * Sets menu category.
+     *
+     * @param menuCategory the menu category
+     */
+    public void setMenuCategory(MenuCategory menuCategory) {
+        this.menuCategory = menuCategory;
+    }
+
+    /**
+     * Gets row position.
+     *
+     * @return the row position
+     */
+    public String getRowPosition() {
+        return rowPosition;
+    }
+
+    /**
+     * Sets row position.
+     *
+     * @param rowPosition the row position
+     */
+    public void setRowPosition(String rowPosition) {
+        this.rowPosition = rowPosition;
+    }
+
+    /**
+     * Gets column position.
+     *
+     * @return the column position
+     */
+    public String getColumnPosition() {
+        return columnPosition;
+    }
+
+    /**
+     * Sets column position.
+     *
+     * @param columnPosition the column position
+     */
+    public void setColumnPosition(String columnPosition) {
+        this.columnPosition = columnPosition;
+    }
+
     @Override
     public String toString() {
         return "MenuItem{" +
@@ -198,7 +258,6 @@ public class MenuItem {
                 ", frequencyLevel='" + frequencyLevel + '\'' +
                 ", cellPosition='" + cellPosition + '\'' +
                 ", shortHand='" + shortHand + '\'' +
-                ", menuCategory=" + menuCategory +
                 '}';
     }
 }

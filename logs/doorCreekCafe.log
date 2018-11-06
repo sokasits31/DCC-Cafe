@@ -1157,3 +1157,13 @@
 [DEBUG] 2018-10-30 21:14:32.170 [http-nio-8080-exec-1] GenericDao - Searching for user with userName = heatheradmin
 [DEBUG] 2018-10-30 21:21:20.025 [http-nio-8080-exec-3] GenericDao - Searching for user with userName = heatheradmin
 [DEBUG] 2018-10-30 21:21:54.287 [http-nio-8080-exec-10] GenericDao - Searching for user with userName = heatheradmin
+[ERROR] 2018-11-04 16:15:20.235 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+[ERROR] 2018-11-04 16:15:33.053 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+[DEBUG] 2018-11-04 16:15:33.062 [main] GenericDao - Searching for user with emailAddress = steve.sokasits@gmail.com
+[ERROR] 2018-11-04 16:15:33.345 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+[ERROR] 2018-11-04 16:15:33.744 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+[DEBUG] 2018-11-04 16:15:33.750 [main] GenericDao - Searching for user with emailAddress = gmail.com
+[ERROR] 2018-11-04 16:15:33.979 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+[ERROR] 2018-11-04 16:15:34.170 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+[ERROR] 2018-11-04 16:15:34.264 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+[ERROR] 2018-11-04 16:15:34.476 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'

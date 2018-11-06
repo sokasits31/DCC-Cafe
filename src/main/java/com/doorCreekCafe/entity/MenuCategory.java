@@ -25,6 +25,12 @@ public class MenuCategory {
     @Column (name="cell_position")
     private String cellPosition;
 
+    @Column (name="row_position")
+    private int rowPosition;
+
+    @Column (name="column_position")
+    private String columnPosition;
+
     @OneToMany(mappedBy = "menuCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<MenuItem> menuItems = new HashSet<>();
 
@@ -39,10 +45,14 @@ public class MenuCategory {
      *
      * @param categoryDescription the category description
      * @param cellPosition        the cell position
+     * @param rowPosition         the row position
+     * @param columnPosition      the column position
      */
-    public MenuCategory(String categoryDescription, String cellPosition) {
+    public MenuCategory(String categoryDescription, String cellPosition, int rowPosition, String columnPosition) {
         this.categoryDescription = categoryDescription;
         this.cellPosition = cellPosition;
+        this.rowPosition = rowPosition;
+        this.columnPosition = columnPosition;
     }
 
     /**
@@ -100,6 +110,42 @@ public class MenuCategory {
     }
 
     /**
+     * Gets row position.
+     *
+     * @return the row position
+     */
+    public int getRowPosition() {
+        return rowPosition;
+    }
+
+    /**
+     * Sets row position.
+     *
+     * @param rowPosition the row position
+     */
+    public void setRowPosition(int rowPosition) {
+        this.rowPosition = rowPosition;
+    }
+
+    /**
+     * Gets column position.
+     *
+     * @return the column position
+     */
+    public String getColumnPosition() {
+        return columnPosition;
+    }
+
+    /**
+     * Sets column position.
+     *
+     * @param columnPosition the column position
+     */
+    public void setColumnPosition(String columnPosition) {
+        this.columnPosition = columnPosition;
+    }
+
+    /**
      * Gets menu items.
      *
      * @return the menu items
@@ -123,6 +169,8 @@ public class MenuCategory {
                 "id=" + id +
                 ", categoryDescription='" + categoryDescription + '\'' +
                 ", cellPosition='" + cellPosition + '\'' +
+                ", rowPosition=" + rowPosition +
+                ", columnPosition='" + columnPosition + '\'' +
                 ", menuItems=" + menuItems +
                 '}';
     }

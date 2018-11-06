@@ -30,9 +30,9 @@ public class TestSimulator extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        GenericDao menuCategories = new GenericDao(MenuCategory.class);
+        GenericDao genericDao = new GenericDao(MenuCategory.class);
 
-        req.setAttribute("menuCategories", menuCategories.getAll());
+        req.setAttribute("menuCategories", genericDao.getAll());
         req.setAttribute("categoryId", 1);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register.jsp");
