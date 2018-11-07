@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 
 @WebServlet(
-      name = "adminServlet",
+      name = "testSimulatorServlet",
       urlPatterns = {"/testSimulator/1"}
 )
 
