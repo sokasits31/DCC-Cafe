@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.SortedSet;
 
 
 /**
@@ -35,7 +36,7 @@ public class TestSimulator extends HttpServlet {
         req.setAttribute("menuCategories", genericDao.getAll());
         req.setAttribute("categoryId", 1);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
         dispatcher.forward(req, resp);
     }
 

@@ -25,3 +25,4 @@
 |10/22/18| 8 hrs | Attepting to add security to indie project |
 |10/23/19|6 hrs | added admin security to project |
 |10/28/18|3 hrs | Worked on added security to servlet|
+|10/19/18|3 hrs | Added |

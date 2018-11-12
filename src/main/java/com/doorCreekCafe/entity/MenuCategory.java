@@ -32,6 +32,7 @@ public class MenuCategory {
     private String columnPosition;
 
     @OneToMany(mappedBy = "menuCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OrderBy("column_position")
     private Set<MenuItem> menuItems = new HashSet<>();
 
     /**

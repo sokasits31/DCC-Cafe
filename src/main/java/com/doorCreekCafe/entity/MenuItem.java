@@ -41,7 +41,6 @@ public class MenuItem {
     private String shortHand;
 
     @ManyToOne
-    @OrderBy("id")
     private MenuCategory menuCategory;
 
     /**
