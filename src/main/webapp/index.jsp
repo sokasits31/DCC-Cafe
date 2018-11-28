@@ -77,7 +77,7 @@
                 <h4>Volunteers and/or Admin....</h4>
                 <ul>
                     <li> <A HREF="admin">Access Admin Functions</A></li>
-                    <li> <A HREF="testSimulator/1">Start Test Simulator</A></li>
+                    <li> <A HREF="simulator">Start Test Simulator</A></li>
                 </ul>
             </div>
         </td>

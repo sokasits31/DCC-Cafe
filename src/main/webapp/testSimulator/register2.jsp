@@ -9,7 +9,7 @@
 
         input[type=button], input[type=submit] {
             background-color: white;
-            height: 50px;
+            height: 60px;
             width: 100px;
             color: black;
             padding: 5px 5px;
@@ -18,13 +18,15 @@
         }
 
         input[type=button], input[name=filler] {
-            background-color: white;
-            height: 50px;
+            background-color: transparent;
+            border: transparent;
+            height: 60px;
             width: 100px;
             color: black;
             padding: 5px 5px;
             margin: 4px 2px;
             white-space:normal;
+
         }
 
         #register {
@@ -61,28 +63,29 @@
     <div id="categories">
     <H3 align="center">Categories</H3>
     <table>
-        <form action="testSimulator/1" method="get">
+        <form action="simulator/test" method="get">
         <c:forEach begin="1" end="10" varStatus="loop">
         <tr>
             <c:forEach var="category" items="${menuCategories}">
                 <c:if test = "${loop.count == category.rowPosition && fn:trim(category.columnPosition) == 'A'}">
                     <c:choose>
                         <c:when test="${fn:trim(category.categoryDescription) == 'Open'}">
-                            <td><input name="filler" type="button"></td>
+                            <td><input name="filler" type="button" disabled="disabled"></td>
                         </c:when>
                         <c:otherwise>
                             <td><input name="submit" value="${category.categoryDescription}" type="submit"
-                            <c:if test = "${category.id == 1}"> style="background-color: yellow;" </c:if></td>
+                            <c:if test = "${category.rowPosition == categoryRow && category.columnPosition == categoryColumn}"> style="background-color: yellow;" </c:if></td>
                         </c:otherwise>
                     </c:choose>
                 </c:if>
                 <c:if test = "${loop.count == category.rowPosition && fn:trim(category.columnPosition) == 'B'}">
                     <c:choose>
                         <c:when test="${fn:trim(category.categoryDescription) == 'Open'}">
-                            <td><input name="filler" type="button"></td>
+                            <td><input name="filler" type="button" disabled="disabled"></td>
                         </c:when>
                         <c:otherwise>
                             <td><input name="submit" value="${category.categoryDescription}" type="submit"></td>
+                            <c:if test = "${category.rowPosition == categoryRow && category.columnPosition == categoryColumn}"> style="background-color: yellow;" </c:if></td>
                         </c:otherwise>
                     </c:choose>
                 </c:if>
@@ -99,14 +102,14 @@
         <form>
            <table>
                 <c:forEach var="category" items="${menuCategories}">
-                    <c:if test="${category.id == 2}">
+                    <c:if test="${category.id == categoryId}">
                         <c:forEach begin="1" end="10" varStatus="loop">
                             <tr>
                                 <c:forEach var="menuItem" items="${category.menuItems}">
                                     <c:if test = "${menuItem.rowPosition == loop.count && fn:trim(menuItem.columnPosition) == 'C'}">
                                         <c:choose>
                                             <c:when test="${fn:trim(menuItem.description) == 'Open'}">
-                                                <td><input name="filler" type="button"></td>
+                                                <td><input name="filler" type="button" disabled="disabled"></td>
                                             </c:when>
                                             <c:otherwise>
                                                 <td><input name="submit" value="${menuItem.description}" type="submit"></td>
@@ -116,7 +119,7 @@
                                     <c:if test = "${menuItem.rowPosition == loop.count && fn:trim(menuItem.columnPosition) == 'D'}">
                                         <c:choose>
                                             <c:when test="${fn:trim(menuItem.description) == 'Open'}">
-                                                <td><input name="filler" type="button"></td>
+                                                <td><input name="filler" type="button" disabled="disabled"></td>
                                             </c:when>
                                             <c:otherwise>
                                                 <td><input name="submit" value="${menuItem.description}" type="submit"></td>
@@ -126,7 +129,7 @@
                                     <c:if test = "${menuItem.rowPosition == loop.count && fn:trim(menuItem.columnPosition) == 'E'}">
                                         <c:choose>
                                             <c:when test="${fn:trim(menuItem.description) == 'Open'}">
-                                                <td><input name="filler" type="button"></td>
+                                                <td><input name="filler" type="button" disabled="disabled"></td>
                                             </c:when>
                                             <c:otherwise>
                                                 <td><input name="submit" value="${menuItem.description}" type="submit"></td>
@@ -136,7 +139,7 @@
                                     <c:if test = "${menuItem.rowPosition == loop.count && fn:trim(menuItem.columnPosition) == 'F'}">
                                         <c:choose>
                                             <c:when test="${fn:trim(menuItem.description) == 'Open'}">
-                                                <td><input name="filler" type="button"></td>
+                                                <td><input name="filler" type="button" disabled="disabled"></td>
                                             </c:when>
                                             <c:otherwise>
                                                 <td><input name="submit" value="${menuItem.description}" type="submit"></td>

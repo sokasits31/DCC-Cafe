@@ -25,4 +25,19 @@
 |10/22/18| 8 hrs | Attepting to add security to indie project |
 |10/23/19|6 hrs | added admin security to project |
 |10/28/18|3 hrs | Worked on added security to servlet|
-|10/19/18|3 hrs | Added |
+|10/19/18|3 hrs | Indie and excercise work |
+|10/21/18|4 hrs| Indie work...  rework table design   |
+|10/22/18|6 hrs| Indie work...  create generic DAO   |
+|10/23/18|6 hrs| Indie work...  continue work on database |
+|10/28/18|4 hrs| AWS fun  |
+|10/29/18|5 hrs| AWS fun |
+|10/30/18|6 hrs| Check point 3 work  |
+|11/01/18|3 hrs| Indie work|
+|11/02/18|3 hrs |Soap   |
+|11/3/18| 4 hrs | Restful services|
+|11/8/18|4 hrs|Group Project: Create DOA|
+|11/16/18|8 hrs|Group Project: Started user Guild...  Shared thoughts with team members on how JSON resonse should look and Databasse should look |
+|11/18/18|3 hrs |Group Project: Continued with user guide and clean up home page  |
+|11/19/18|3 hrs |Group Project: Completed index home page  |
+|11/20/18|6 hrs  |Group Project: Finalized request methods as a group...  finalized user guide  |
+|11/27/18|4 hrs| Work on indie project |
