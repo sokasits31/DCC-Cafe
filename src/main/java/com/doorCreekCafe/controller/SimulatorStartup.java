@@ -37,27 +37,31 @@ public class SimulatorStartup extends HttpServlet {
 
         logger.debug("in Simulator Startup");
 
+        // capture redirect info (if exists)
         HttpSession session = req.getSession();
-        logger.debug("submit: " + session.getAttribute("categoryId"));
+        logger.debug("categoryId: " + session.getAttribute("categoryId"));
+        logger.debug("answer status: " + session.getAttribute("answerStatus"));
 
+
+        // Local Variables to determine category
         int id;
         String column;
         int row;
 
+        // If categoryId == null test is basically beginning
         if (session.getAttribute("categoryId") == null) {
             id = 1;
             column = "A";
             row = 1;
-        } else {
+        }
+        else {
             id = (int) session.getAttribute("categoryId");
             column = (String) session.getAttribute("categoryColumn");
             row = (int) session.getAttribute("categoryRow");
         }
 
-        logger.debug("id: " + id);
-        logger.debug("column: " + column);
-        logger.debug("row: " + row);
 
+        // Get all menu items
         GenericDao genericDao = new GenericDao(MenuCategory.class);
 
         req.setAttribute("menuCategories", genericDao.getAll());
@@ -67,6 +71,10 @@ public class SimulatorStartup extends HttpServlet {
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
         dispatcher.forward(req, resp);
+    }
+
+    private void getTestMenuItems () {
+
     }
 
 

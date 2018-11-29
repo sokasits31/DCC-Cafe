@@ -99,7 +99,7 @@
 
     <div id="items">
         <H3 align="center">Menu Items</H3>
-        <form>
+        <form action="simulator/menuItem" method="get">
            <table>
                 <c:forEach var="category" items="${menuCategories}">
                     <c:if test="${category.id == categoryId}">
@@ -155,6 +155,9 @@
         </form>
     </div>
 
+</div>
+<div>
+    Status: ${answerStatus}
 </div>
 
 

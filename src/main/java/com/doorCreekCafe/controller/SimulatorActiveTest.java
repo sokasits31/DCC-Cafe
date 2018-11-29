@@ -48,6 +48,7 @@ public class SimulatorActiveTest extends HttpServlet {
         session.setAttribute("categoryId", category.getId());
         session.setAttribute("categoryColumn",category.getColumnPosition());
         session.setAttribute("categoryRow", category.getRowPosition());
+        session.setAttribute("answerStatus",null);
 
         String url = "/doorCreekCafe/simulator";
         resp.sendRedirect(url);
