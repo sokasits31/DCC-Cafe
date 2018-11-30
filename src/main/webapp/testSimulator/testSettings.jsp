@@ -58,7 +58,7 @@
 <div>
     <h3>Please choose desired setting for test...</h3>
     <br>
-    <form action="activeTest" method="get">
+    <form action="test/start" method="post">
         Number of menu items to be tested on:
         <br>
         <select name="testSize">

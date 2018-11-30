@@ -56,14 +56,17 @@
 <body>
 
 <H2>Test Simulator</H2>
+<div>
+    Order ${question} of ${testSize}:
 
+</div>
 
 <div id="register">
 
     <div id="categories">
     <H3 align="center">Categories</H3>
     <table>
-        <form action="simulator/test" method="get">
+        <form action="continue" method="post">
         <c:forEach begin="1" end="10" varStatus="loop">
         <tr>
             <c:forEach var="category" items="${menuCategories}">
@@ -99,7 +102,7 @@
 
     <div id="items">
         <H3 align="center">Menu Items</H3>
-        <form action="simulator/menuItem" method="get">
+        <form action="answer" method="get">
            <table>
                 <c:forEach var="category" items="${menuCategories}">
                     <c:if test="${category.id == categoryId}">

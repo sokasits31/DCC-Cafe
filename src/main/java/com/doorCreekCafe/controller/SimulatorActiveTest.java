@@ -25,7 +25,7 @@ import java.util.List;
 
 @WebServlet(
       name = "simulatorTestServlet",
-      urlPatterns = {"/simulator/test"}
+      urlPatterns = {"/simulator/test/continue"}
 )
 
 public class SimulatorActiveTest extends HttpServlet {
@@ -33,7 +33,7 @@ public class SimulatorActiveTest extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         GenericDao genericDao = new GenericDao(MenuCategory.class);
 
@@ -50,16 +50,17 @@ public class SimulatorActiveTest extends HttpServlet {
         session.setAttribute("categoryRow", category.getRowPosition());
         session.setAttribute("answerStatus",null);
 
-        String url = "/doorCreekCafe/simulator";
-        resp.sendRedirect(url);
+        logger.debug("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        //String url = "/doorCreekCafe/simulator/test/continue";
+        //resp.sendRedirect(url);
 
         //req.setAttribute("menuCategories", genericDao.getAll());
         //req.setAttribute("categoryId", category.getId());
         //req.setAttribute("categoryColumn", category.getColumnPosition());
         //req.setAttribute("categoryRow", category.getRowPosition());
 
-        //RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
-        //dispatcher.forward(req, resp);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
+        dispatcher.forward(req, resp);
 
     }
 

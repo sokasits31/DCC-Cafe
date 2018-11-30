@@ -24,7 +24,7 @@ import java.util.List;
 
 @WebServlet(
       name = "simulatorMenuServlet",
-      urlPatterns = {"/simulator/menuItem"}
+      urlPatterns = {"/simulator/answer"}
 )
 
 public class SimulatorSelectMenuItem extends HttpServlet {

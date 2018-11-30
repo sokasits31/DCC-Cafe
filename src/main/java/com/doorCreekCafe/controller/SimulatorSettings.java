@@ -25,7 +25,7 @@ import java.util.List;
 
 @WebServlet(
       name = "simulatorSettingsServlet",
-      urlPatterns = {"/simulator/activeTest"}
+      urlPatterns = {"/simulator/test/start"}
 )
 
 public class SimulatorSettings extends HttpServlet {
@@ -33,7 +33,7 @@ public class SimulatorSettings extends HttpServlet {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         logger.debug("in Simulator Settings");
 
@@ -83,6 +83,7 @@ public class SimulatorSettings extends HttpServlet {
         session.setAttribute("categoryColumn", "A");
         session.setAttribute("categoryRow", 1);
         session.setAttribute("menuCategories", genericDao2.getAll());
+        session.setAttribute("testSize", req.getParameter("testSize"));
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
