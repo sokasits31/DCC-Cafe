@@ -41,3 +41,5 @@
 |11/19/18|3 hrs |Group Project: Completed index home page  |
 |11/20/18|6 hrs  |Group Project: Finalized request methods as a group...  finalized user guide  |
 |11/27/18|4 hrs| Work on indie project |
+|11/29/18|5 hrs| Work on indie project |
+|11/30/18|  ?? | Work on indie project

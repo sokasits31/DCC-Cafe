@@ -58,6 +58,12 @@
 <H2>Test Simulator</H2>
 <div>
     Order ${question} of ${testSize}:
+    <c:forEach var="item" items="${testMenuItems}" varStatus="loop">
+        I want a....  ${item.description}
+        <c:if test="question == loop">
+            I want a....  ${item.description}
+        </c:if>
+    </c:forEach>
 
 </div>
 

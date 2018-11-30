@@ -9,10 +9,13 @@ package com.doorCreekCafe.persistence;
 
 
         import com.doorCreekCafe.entity.MenuItem;
+        import com.doorCreekCafe.entity.SimulatorTest;
         import org.apache.logging.log4j.LogManager;
         import org.apache.logging.log4j.Logger;
+        import org.hibernate.SQLQuery;
         import org.hibernate.Session;
         import org.hibernate.Transaction;
+        import org.hibernate.transform.Transformers;
 
 /**
  * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com
@@ -153,14 +156,25 @@ public class GenericDao<T> {
     public List<T> getQueryResults(String sql, int rowCount) {
         Session session = getSession();
 
+
+
+        //List<SimulatorTest> list = session.createNativeQuery(sql,SimulatorTest.class).getResultList();;
+
+        List<T> list = session.createNativeQuery(sql, type).getResultList().subList(0,rowCount);
+
         logger.debug("SQL: " +  sql);
 
+        //List<T> list = session.createQuery(sql).getResultList().subList(0,rowCount);
 
-        List <T> users = session.createQuery(sql).list().subList(0,rowCount);
+        //List <T> list = session.createQuery(sql).list().subList(0,rowCount);
+        session.close();
 
-        return users;
+        return list;
 
     }
+
+
+
 
     /**
      *  Returns an open session for the SessionFactory

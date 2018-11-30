@@ -26,22 +26,38 @@ public class SimulatorTest {
     @Column (name="alt_description")
     private String altDescription;
 
-    @Column (name="frequency_level")
-    private String frequencyLevel;
-
     @Column (name="frequency_order")
     private int frequencyOrder;
 
     @Column (name="random_number")
     private double randomNumber;
 
-    @Column (name="short_hand")
+    @Column (name="shortHand")
     private String shortHand;
 
     /**
      * Instantiates a new Simulator test.
      */
     public SimulatorTest() {
+    }
+
+    /**
+     * Instantiates a new Simulator test.
+     *
+     * @param menuItemId     the menu item id
+     * @param description    the description
+     * @param altDescription the alt description
+     * @param frequencyOrder the frequency order
+     * @param randomNumber   the random number
+     * @param shortHand      the short hand
+     */
+    public SimulatorTest(int menuItemId, String description, String altDescription, int frequencyOrder, double randomNumber, String shortHand) {
+        this.menuItemId = menuItemId;
+        this.description = description;
+        this.altDescription = altDescription;
+        this.frequencyOrder = frequencyOrder;
+        this.randomNumber = randomNumber;
+        this.shortHand = shortHand;
     }
 
     /**
@@ -116,23 +132,6 @@ public class SimulatorTest {
         this.altDescription = altDescription;
     }
 
-    /**
-     * Gets frequency level.
-     *
-     * @return the frequency level
-     */
-    public String getFrequencyLevel() {
-        return frequencyLevel;
-    }
-
-    /**
-     * Sets frequency level.
-     *
-     * @param frequencyLevel the frequency level
-     */
-    public void setFrequencyLevel(String frequencyLevel) {
-        this.frequencyLevel = frequencyLevel;
-    }
 
     /**
      * Gets frequency order.
@@ -195,7 +194,6 @@ public class SimulatorTest {
                 ", menuItemId=" + menuItemId +
                 ", description='" + description + '\'' +
                 ", altDescription='" + altDescription + '\'' +
-                ", frequencyLevel='" + frequencyLevel + '\'' +
                 ", frequencyOrder=" + frequencyOrder +
                 ", randomNumber=" + randomNumber +
                 ", shortHand='" + shortHand + '\'' +

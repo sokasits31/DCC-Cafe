@@ -40,37 +40,47 @@ public class SimulatorSettings extends HttpServlet {
         // Gather menu items to be tested
         GenericDao genericDao = new GenericDao(SimulatorTest.class);
 
-        String sql =
-                "SELECT m.id" +
+        String sql = "select " +
+                "    m.id as id" +
+                "   ,m.id as item_id" +
                 "   ,m.description" +
-                "   ,m.altDescripton" +
-                "   ,m.frequencyLevel" +
+                "   ,m.alt_description" +
                 "   ,case " +
-                "           when m.frequencyLevel = 'High' then 1" +
-                "           when m.frequencyLevel = 'Med'  then 2" +
-                "           when m.frequencyLevel = 'Low'  then 3" +
-                "           when m.frequencyLevel = 'None' then 9" +
-                "           when m.frequencyLevel = 'Add on' then 9" +
-                "       end as rank" +
-                "      ,m.shortHand" +
+                "           when m.frequency_level = 'High' then 1" +
+                "           when m.frequency_level = 'Med'  then 2" +
+                "           when m.frequency_level = 'Low'  then 3" +
+                "           when m.frequency_level = 'None' then 9" +
+                "           when m.frequency_level = 'Add on' then 9" +
+                "       end as frequency_order" +
                 "      ,rand() * 10000 as random_number" +
-                " FROM   MenuItem m" +
+                "      ,m.short_Hand as shortHand" +
+                " FROM   menuItem m" +
                 " where  not exists (" +
                 "        select 1" +
-                "        from   TestHistory x" +
-                "        where  x.menuId = m.id" +
+                "        from   testHistory x" +
+                "        where  x.menu_id = m.id" +
                 "        and    x.status <> 'pass' " +
                 "        )" +
+                " and    m.frequency_level in ('High', 'Med', 'Low') " +
                 " order by 5, 6";
 
         int size = Integer.parseInt(req.getParameter("testSize"));
 
+        logger.debug("sql: " + sql);
+        logger.debug("size: " + size);
+
         List<SimulatorTest> testMenuItems = genericDao.getQueryResults(sql, size);
 
+
+        for (SimulatorTest x:testMenuItems) {
+            logger.debug("test " + x.getDescription());
+            logger.debug(x.getRandomNumber());
+            logger.debug(x.getAltDescription());
+        }
         // Get all menu items
         GenericDao genericDao2 = new GenericDao(MenuCategory.class);
 
-
+        logger.debug(testMenuItems);
 
         // set session attributes
         HttpSession session = req.getSession();

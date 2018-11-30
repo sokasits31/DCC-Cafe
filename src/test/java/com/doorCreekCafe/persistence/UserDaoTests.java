@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -174,30 +175,46 @@ class UserDaoTests {
 
         GenericDao test = new GenericDao(SimulatorTest.class);
 
-        List<SimulatorTest> tests = test.getQueryResults(
-                "SELECT m.id" +
+        String sql = "select " +
+                "    m.id as id" +
+                "   ,m.id as item_id" +
                 "   ,m.description" +
-                "   ,m.altDescripton" +
-                "   ,m.frequencyLevel" +
+                "   ,m.alt_description" +
                 "   ,case " +
-                "           when m.frequencyLevel = 'High' then 1" +
-                "           when m.frequencyLevel = 'Med'  then 2" +
-                "           when m.frequencyLevel = 'Low'  then 3" +
-                "           when m.frequencyLevel = 'None' then 9" +
-                "           when m.frequencyLevel = 'Add on' then 9" +
-                "       end as rank" +
-                "      ,m.shortHand" +
+                "           when m.frequency_level = 'High' then 1" +
+                "           when m.frequency_level = 'Med'  then 2" +
+                "           when m.frequency_level = 'Low'  then 3" +
+                "           when m.frequency_level = 'None' then 9" +
+                "           when m.frequency_level = 'Add on' then 9" +
+                "       end as frequency_order" +
                 "      ,rand() * 10000 as random_number" +
-                " FROM   MenuItem m" +
+                "      ,m.short_Hand as shortHand" +
+                " FROM   menuItem m" +
                 " where  not exists (" +
                 "        select 1" +
-                "        from   TestHistory x" +
-                "        where  x.menuId = m.id" +
+                "        from   testHistory x" +
+                "        where  x.menu_id = m.id" +
                 "        and    x.status <> 'pass' " +
                 "        )" +
-                " order by 5, 6",25);
+                " and    m.frequency_level in ('High', 'Med', 'Low') " +
+                " order by 5, 6";
 
-        assertEquals(25, tests.size());
+        List<SimulatorTest> tests = test.getQueryResults(sql, 15);
+
+        System.out.println("#################" + tests.get(0).getDescription());
+
+        for (SimulatorTest x:tests) {
+            System.out.println(x.getDescription());
+            System.out.println(x.getRandomNumber());
+            System.out.println(x.getFrequencyOrder());
+        }
+
+        //System.out.println("ggggggggggggggggggg: " + (SimulatorTest) tests.get(0).getDescription());
+
+
+
+
+        assertEquals(15, tests.size());
 
 
 
