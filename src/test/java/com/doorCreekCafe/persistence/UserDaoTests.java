@@ -1,10 +1,11 @@
 package com.doorCreekCafe.persistence;
 
-import com.doorCreekCafe.entity.Role;
-import com.doorCreekCafe.entity.TestScore;
-import com.doorCreekCafe.entity.User;
+import com.doorCreekCafe.entity.*;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -165,6 +166,34 @@ class UserDaoTests {
     void getByEqualSuccess() {
         List<User> tests = genericDao.getByPropertyEqual("emailAddress","steve.sokasits@gmail.com");
         assertEquals(1, tests.size());
+
+    }
+
+    @Test
+    void getTestItems () {
+
+        GenericDao test = new GenericDao(SimulatorTest.class);
+
+        List<SimulatorTest> tests = test.getQueryResults(
+                "SELECT m.id" +
+                "   ,m.description" +
+                "   ,m.altDescripton" +
+                "   ,m.frequencyLevel" +
+                "   ,case " +
+                "           when m.frequencyLevel = 'High' then 1" +
+                "           when m.frequencyLevel = 'Med'  then 2" +
+                "           when m.frequencyLevel = 'Low'  then 3" +
+                "           when m.frequencyLevel = 'None' then 9" +
+                "           when m.frequencyLevel = 'Add on' then 9" +
+                "       end as rank" +
+                "      ,m.shortHand" +
+                "      ,rand() * 10000 as random_number" +
+                " FROM   MenuItem m");
+
+
+        assertEquals(1, tests.size());
+
+
 
     }
 }

@@ -150,6 +150,18 @@ public class GenericDao<T> {
         return list;
     }
 
+    public List<T> getQueryResults(String sql) {
+        Session session = getSession();
+
+        logger.debug("SQL: " +  sql);
+
+
+        List <T> users = session.createQuery(sql).list();
+
+        return users;
+
+    }
+
     /**
      *  Returns an open session for the SessionFactory
      *
