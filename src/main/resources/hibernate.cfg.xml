@@ -21,6 +21,8 @@
         <mapping class="com.doorCreekCafe.entity.MenuItem"/>
         <mapping class="com.doorCreekCafe.entity.MenuCategory"/>
         <mapping class="com.doorCreekCafe.entity.Role"/>
+        <mapping class="com.doorCreekCafe.entity.TestHistory"/>
+        <mapping class="com.doorCreekCafe.entity.SimulatorTest"/>
 
     </session-factory>
 

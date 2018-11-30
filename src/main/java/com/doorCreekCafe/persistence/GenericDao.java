@@ -150,13 +150,13 @@ public class GenericDao<T> {
         return list;
     }
 
-    public List<T> getQueryResults(String sql) {
+    public List<T> getQueryResults(String sql, int rowCount) {
         Session session = getSession();
 
         logger.debug("SQL: " +  sql);
 
 
-        List <T> users = session.createQuery(sql).list();
+        List <T> users = session.createQuery(sql).list().subList(0,rowCount);
 
         return users;
 

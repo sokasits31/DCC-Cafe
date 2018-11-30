@@ -12,6 +12,11 @@ import java.time.LocalDate;
 @Table (name= "simulatorTest")      // Table Name
 public class SimulatorTest {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private int id;
+
     @Column (name="item_id")
     private int menuItemId;
 
@@ -37,6 +42,24 @@ public class SimulatorTest {
      * Instantiates a new Simulator test.
      */
     public SimulatorTest() {
+    }
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -168,7 +191,8 @@ public class SimulatorTest {
     @Override
     public String toString() {
         return "SimulatorTest{" +
-                "menuItemId=" + menuItemId +
+                "id=" + id +
+                ", menuItemId=" + menuItemId +
                 ", description='" + description + '\'' +
                 ", altDescription='" + altDescription + '\'' +
                 ", frequencyLevel='" + frequencyLevel + '\'' +

@@ -188,10 +188,16 @@ class UserDaoTests {
                 "       end as rank" +
                 "      ,m.shortHand" +
                 "      ,rand() * 10000 as random_number" +
-                " FROM   MenuItem m");
+                " FROM   MenuItem m" +
+                " where  not exists (" +
+                "        select 1" +
+                "        from   TestHistory x" +
+                "        where  x.menuId = m.id" +
+                "        and    x.status <> 'pass' " +
+                "        )" +
+                " order by 5, 6",25);
 
-
-        assertEquals(1, tests.size());
+        assertEquals(25, tests.size());
 
 
 
