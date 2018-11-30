@@ -9,7 +9,7 @@
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="jquery-ui.css" rel="stylesheet">
+    
     <style>
         body{
             font-family: "Trebuchet MS", sans-serif;
@@ -55,49 +55,35 @@
     </style>
 </head>
 
+<div>
+    <h3>Please choose desired setting for test...</h3>
+    <br>
+    <form action="activeTest" method="get">
+        Number of menu items to be tested on:
+        <br>
+        <select name="testSize">
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+        </select>
+        <br>
+        Popularity of menu items to be tested:
+        <br>
+            <input type="radio" name="freq" value="1" checked>High<br>
+            <input type="radio" name="freq" value="2"> Med<br>
+            <input type="radio" name="freq" value="3"> Low
+        <br>
+        Order vocabulary verbage:
+        <br>
+            <input type="radio" name="language" value="normal" checked>Normal order descriptions<br>
+            <input type="radio" name="language" value="slang"> Slang or alternative descriptions<br>
+        <br>
+        <br>
+        <input type="submit" name="submit" value="Start test">
 
-
-<table cellpadding="15" width="800" align="center">
-    <col width="500">
-    <col width="300">
-    <tr>
-        <td colspan="2">
-            <h2>Welcome!</h2>
-        </td>
-    </tr>
-    <tr>
-        <td >
-            Thanks for showing interest in volunteering to help out in the cafe.  To help with
-            make you first day a success, please create a login id.  This logon id will allow the
-            cafe manager access to your email and phone information.  It will also allow you
-            to practice entering orders in on a register simulator.  The goal of the simulator
-            is to to allow voluenteers to establish/refresh skills on the register.
-        </td>
-        <td>
-            <div style="background-color:lightblue">
-                <h4>Volunteers and/or Admin....</h4>
-                <ul>
-                    <li> <A HREF="admin">Access Admin Functions</A></li>
-                    <li> <A HREF="simulator/settings">Start Test Simulator</A></li>
-                </ul>
-            </div>
-        </td>
-
-    </tr>
-</table>
-
-<!-- Accordion -->
-<h2 class="demoHeaders">Accordion</h2>
-<div id="accordion">
-    <h3>First</h3>
-    <div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
-    <h3>Second</h3>
-    <div>Phasellus mattis tincidunt nibh.</div>
-    <h3>Third</h3>
-    <div>Nam dui erat, auctor a, dignissim quis.</div>
+    </form>
 </div>
-
-<%@ include file="/footer.jsp"%>
 
 </body>
 </html>
