@@ -2,6 +2,7 @@ package com.doorCreekCafe.controller;
 
 
 import com.doorCreekCafe.entity.MenuCategory;
+import com.doorCreekCafe.entity.MenuItem;
 import com.doorCreekCafe.entity.SimulatorTest;
 import com.doorCreekCafe.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
@@ -77,12 +78,11 @@ public class SimulatorSettings extends HttpServlet {
             logger.debug(x.getRandomNumber());
             logger.debug(x.getAltDescription());
         }
+
         // Get all menu items
         GenericDao genericDao2 = new GenericDao(MenuCategory.class);
 
-        logger.debug(testMenuItems);
-
-        // set session attributes
+        // setup session attributes
         HttpSession session = req.getSession();
         session.setAttribute("testSize", req.getParameter("testSize"));
         session.setAttribute("freq", req.getParameter("freq"));
@@ -94,6 +94,10 @@ public class SimulatorSettings extends HttpServlet {
         session.setAttribute("categoryRow", 1);
         session.setAttribute("menuCategories", genericDao2.getAll());
         session.setAttribute("testSize", req.getParameter("testSize"));
+
+        // Determine menu item being tested
+        session.setAttribute("currentTestMenuItem", testMenuItems.get(0).getDescription());
+        session.setAttribute("currentTestQuestion", 0);
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");

@@ -35,29 +35,19 @@ public class SimulatorActiveTest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        // Update menu items based on newly selected menu category
         GenericDao genericDao = new GenericDao(MenuCategory.class);
-
         List <MenuCategory> categories = genericDao.getByPropertyEqual("categoryDescription",req.getParameter("submit"));
+        MenuCategory category = categories.get(0);   // Will always have 1 row returned
 
-        MenuCategory category = categories.get(0);
-        logger.debug("category is... " +  req.getParameter("submit"));
-        logger.debug("id is.........." + category.getId());
-
+        // Update session attributes
         HttpSession session = req.getSession();
         session.setAttribute("menuCategories", genericDao.getAll());
         session.setAttribute("categoryId", category.getId());
         session.setAttribute("categoryColumn",category.getColumnPosition());
         session.setAttribute("categoryRow", category.getRowPosition());
-        session.setAttribute("answerStatus",null);
 
-        //String url = "/doorCreekCafe/simulator/test/continue";
-        //resp.sendRedirect(url);
-
-        //req.setAttribute("menuCategories", genericDao.getAll());
-        //req.setAttribute("categoryId", category.getId());
-        //req.setAttribute("categoryColumn", category.getColumnPosition());
-        //req.setAttribute("categoryRow", category.getRowPosition());
-
+        // Refresh screen
         RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
         dispatcher.forward(req, resp);
 

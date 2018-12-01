@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import java.util.List;
 
 @WebServlet(
       name = "simulatorMenuServlet",
-      urlPatterns = {"/simulator/answer"}
+      urlPatterns = {"/simulator/test/answer"}
 )
 
 public class SimulatorSelectMenuItem extends HttpServlet {
@@ -39,6 +40,25 @@ public class SimulatorSelectMenuItem extends HttpServlet {
         logger.debug("in simulator:menuItem");
 
         String answerStatus;
+        HttpSession session = req.getSession();
+
+        logger.debug("CURRENT TEST ITEM: " + session.getAttribute("currentTestMenuItem"));
+        logger.debug("SELECTED ITEM: " + req.getParameter("submit"));
+
+        if (session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
+            logger.debug("correct");
+        } else {
+            logger.debug("incorrect");
+        }
+
+
+
+        final JFrame f= new JFrame("PopupMenu Example");
+        final JPopupMenu popupmenu = new JPopupMenu("Edit");
+
+
+
+        // Determine if selected menu item is correct
 
         GenericDao genericDao = new GenericDao(MenuItem.class);
 
@@ -53,7 +73,7 @@ public class SimulatorSelectMenuItem extends HttpServlet {
             answerStatus = "Need a hint?????" +  selectedItem.getDescription();
         }
 
-        HttpSession session = req.getSession();
+
         session.setAttribute("categoryId", selectedItem.getMenuCategory().getId());
 
 
