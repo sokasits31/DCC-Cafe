@@ -34,6 +34,9 @@ public class SimulatorTest {
 
     @Column (name="shortHand")
     private String shortHand;
+    
+    @Column (name="menu_Category")
+    private String menuCategory;
 
     /**
      * Instantiates a new Simulator test.
@@ -50,14 +53,16 @@ public class SimulatorTest {
      * @param frequencyOrder the frequency order
      * @param randomNumber   the random number
      * @param shortHand      the short hand
+     * @param menuCategory  the mentu category
      */
-    public SimulatorTest(int menuItemId, String description, String altDescription, int frequencyOrder, double randomNumber, String shortHand) {
+    public SimulatorTest(int menuItemId, String description, String altDescription, int frequencyOrder, double randomNumber, String shortHand, String menuCategory) {
         this.menuItemId = menuItemId;
         this.description = description;
         this.altDescription = altDescription;
         this.frequencyOrder = frequencyOrder;
         this.randomNumber = randomNumber;
         this.shortHand = shortHand;
+        this.menuCategory = menuCategory;
     }
 
     /**
@@ -187,6 +192,24 @@ public class SimulatorTest {
         this.shortHand = shortHand;
     }
 
+    /**
+     * Gets mentu category.
+     *
+     * @return the mentu category
+     */
+    public String getMenuCategory() {
+        return menuCategory;
+    }
+
+    /**
+     * Sets mentu category.
+     *
+     * @param menuCategory the mentu category
+     */
+    public void setMenuCategory(String menuCategory) {
+        this.menuCategory = menuCategory;
+    }
+
     @Override
     public String toString() {
         return "SimulatorTest{" +
@@ -197,6 +220,7 @@ public class SimulatorTest {
                 ", frequencyOrder=" + frequencyOrder +
                 ", randomNumber=" + randomNumber +
                 ", shortHand='" + shortHand + '\'' +
+                ", menuCategory='" + menuCategory + '\'' +
                 '}';
     }
 }

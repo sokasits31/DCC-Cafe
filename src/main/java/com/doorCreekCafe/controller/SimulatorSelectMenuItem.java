@@ -3,10 +3,12 @@ package com.doorCreekCafe.controller;
 
 import com.doorCreekCafe.entity.MenuCategory;
 import com.doorCreekCafe.entity.MenuItem;
+import com.doorCreekCafe.entity.SimulatorTest;
 import com.doorCreekCafe.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,55 +36,51 @@ public class SimulatorSelectMenuItem extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
         logger.debug("in simulator:menuItem");
 
-        String answerStatus;
+
         HttpSession session = req.getSession();
 
         logger.debug("CURRENT TEST ITEM: " + session.getAttribute("currentTestMenuItem"));
         logger.debug("SELECTED ITEM: " + req.getParameter("submit"));
 
+
+        // Determine Answer Status
+        String answerStatus;
         if (session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
-            logger.debug("correct");
+            logger.debug("CORRECT");
+            // Set Answer Status
+            session.setAttribute("answerStatus", "CORRECT");
+
+            // Setup for next Question
+            String questionNumberString = String.valueOf(session.getAttribute("currentTestArrayIndex"));
+            int index = (Integer.parseInt(questionNumberString)) + 1;
+            int question = index + 1;
+            List<SimulatorTest> testMenuItems = (List) session.getAttribute("testMenuItems");
+            int nextQuestionNumber = Integer.parseInt(questionNumberString);
+
+
+
+
+            // set session attributes for next question
+            session.setAttribute("currentTestMenuItem", testMenuItems.get(index).getDescription());
+            session.setAttribute("currentTestMenuCategory", testMenuItems.get(index).getMenuCategory());
+            session.setAttribute("currentTestArrayIndex", index);
+            session.setAttribute("question", question);
+
         } else {
             logger.debug("incorrect");
+            session.setAttribute("answerStatus", "INCORRECT");
         }
 
 
+        // Refresh screen
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
+        dispatcher.forward(req, resp);
 
-        final JFrame f= new JFrame("PopupMenu Example");
-        final JPopupMenu popupmenu = new JPopupMenu("Edit");
-
-
-
-        // Determine if selected menu item is correct
-
-        GenericDao genericDao = new GenericDao(MenuItem.class);
-
-        List <MenuItem> menuItems = genericDao.getByPropertyEqual("description",req.getParameter("submit"));
-
-        MenuItem selectedItem = menuItems.get(0);
-
-
-        if (selectedItem.getDescription().equals("happy")) {
-            answerStatus = "You are correct";
-        } else {
-            answerStatus = "Need a hint?????" +  selectedItem.getDescription();
-        }
-
-
-        session.setAttribute("categoryId", selectedItem.getMenuCategory().getId());
-
-
-        logger.debug("categoryId: " + req.getParameter("categoryId"));
-
-        session.setAttribute("answerStatus", answerStatus);
-
-        String url = "/doorCreekCafe/simulator";
-        resp.sendRedirect(url);
 
     }
 }

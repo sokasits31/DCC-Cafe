@@ -51,13 +51,19 @@
 
 
     </style>
+
+
 </head>
 
 <body>
 
+
 <H2>Test Simulator</H2>
+
+
 <div>
-    Order ${question} of ${testSize}:
+    <h3>Order # ${question}:  ${currentTestMenuItem}<H3>
+    <br>
     <c:forEach var="item" items="${testMenuItems}" varStatus="loop">
         I want a....  ${item.description}
         <c:if test="question == loop">
@@ -108,7 +114,7 @@
 
     <div id="items">
         <H3 align="center">Menu Items</H3>
-        <form action="answer" method="get">
+        <form action="answer" method="post">
            <table>
                 <c:forEach var="category" items="${menuCategories}">
                     <c:if test="${category.id == categoryId}">
@@ -118,10 +124,10 @@
                                     <c:if test = "${menuItem.rowPosition == loop.count && fn:trim(menuItem.columnPosition) == 'C'}">
                                         <c:choose>
                                             <c:when test="${fn:trim(menuItem.description) == 'Open'}">
-                                                <td><input name="filler" type="button" disabled="disabled"></td>
+                                                <td><input name="filler" type="button" disabled="disabled" ></td>
                                             </c:when>
                                             <c:otherwise>
-                                                <td><input name="submit" value="${menuItem.description}" type="submit"></td>
+                                                <td><input name="submit" value="${menuItem.description}" type="submit" ></td>
                                             </c:otherwise>
                                         </c:choose>
                                     </c:if>
@@ -131,7 +137,7 @@
                                                 <td><input name="filler" type="button" disabled="disabled"></td>
                                             </c:when>
                                             <c:otherwise>
-                                                <td><input name="submit" value="${menuItem.description}" type="submit"></td>
+                                                <td><input name="submit" value="${menuItem.description}" type="submit" ></td>
                                             </c:otherwise>
                                         </c:choose>
                                     </c:if>
@@ -141,7 +147,7 @@
                                                 <td><input name="filler" type="button" disabled="disabled"></td>
                                             </c:when>
                                             <c:otherwise>
-                                                <td><input name="submit" value="${menuItem.description}" type="submit"></td>
+                                                <td><input name="submit" value="${menuItem.description}" type="submit" ></td>
                                             </c:otherwise>
                                         </c:choose>
                                     </c:if>
@@ -151,7 +157,7 @@
                                                 <td><input name="filler" type="button" disabled="disabled"></td>
                                             </c:when>
                                             <c:otherwise>
-                                                <td><input name="submit" value="${menuItem.description}" type="submit"></td>
+                                                <td><input name="submit" value="${menuItem.description}" type="submit" ></td>
                                             </c:otherwise>
                                         </c:choose>
                                     </c:if>
@@ -165,9 +171,23 @@
     </div>
 
 </div>
-<div>
-    Status: ${answerStatus}
-</div>
+
+
+<c:choose>
+    <c:when test="${fn:trim(answerStatus) == 'CORRECT'}">
+        <script>
+            window.alert("Correct!!!")
+        </script>
+    </c:when>
+    <c:when test="${fn:trim(answerStatus) == 'INCORRECT'}">
+        <script>
+            window.alert("Sorry Incorrect...Hint: Found on ${currentTestMenuCategory} Menu");
+        </script>
+    </c:when>
+</c:choose>
+
+
+
 
 
 

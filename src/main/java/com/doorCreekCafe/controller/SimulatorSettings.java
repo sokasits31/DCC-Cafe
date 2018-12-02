@@ -55,7 +55,11 @@ public class SimulatorSettings extends HttpServlet {
                 "       end as frequency_order" +
                 "      ,rand() * 10000 as random_number" +
                 "      ,m.short_Hand as shortHand" +
+                "      ,c.category_description as menu_category" +
                 " FROM   menuItem m" +
+                "        inner join" +
+                "        menuCategory c" +
+                "            on m.menuCategory_id = c.id" +
                 " where  not exists (" +
                 "        select 1" +
                 "        from   testHistory x" +
@@ -97,7 +101,10 @@ public class SimulatorSettings extends HttpServlet {
 
         // Determine menu item being tested
         session.setAttribute("currentTestMenuItem", testMenuItems.get(0).getDescription());
-        session.setAttribute("currentTestQuestion", 0);
+        session.setAttribute("currentTestArrayIndex", 0);
+        session.setAttribute("currentTestMenuCategory", testMenuItems.get(0).getMenuCategory());
+
+        logger.debug("TEST MENU CAT: " + testMenuItems.get(0).getMenuCategory());
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");

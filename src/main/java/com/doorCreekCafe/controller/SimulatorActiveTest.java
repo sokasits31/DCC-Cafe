@@ -47,6 +47,9 @@ public class SimulatorActiveTest extends HttpServlet {
         session.setAttribute("categoryColumn",category.getColumnPosition());
         session.setAttribute("categoryRow", category.getRowPosition());
 
+        // Reset test answerStatus
+        session.setAttribute("answerStatus", null);
+
         // Refresh screen
         RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
         dispatcher.forward(req, resp);

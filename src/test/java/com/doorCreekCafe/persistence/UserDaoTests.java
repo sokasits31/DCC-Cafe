@@ -189,7 +189,11 @@ class UserDaoTests {
                 "       end as frequency_order" +
                 "      ,rand() * 10000 as random_number" +
                 "      ,m.short_Hand as shortHand" +
+                "      ,c.category_description as menu_category" +
                 " FROM   menuItem m" +
+                "        inner join" +
+                "        menuCategory c" +
+                "            on m.menuCategory_id = c.id" +
                 " where  not exists (" +
                 "        select 1" +
                 "        from   testHistory x" +
