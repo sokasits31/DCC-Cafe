@@ -56,33 +56,9 @@
 </head>
 
 <div>
-    <h3>Please choose desired setting for test...</h3>
+    <h3>Test Over....</h3>
     <br>
-    <form action="test/start" method="post">
-        Number of menu items to be tested on:
-        <br>
-        <select name="testSize">
-            <option value="2">2</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-        </select>
-        <br>
-        Popularity of menu items to be tested:
-        <br>
-            <input type="radio" name="freq" value="1" checked>High<br>
-            <input type="radio" name="freq" value="2"> Med<br>
-            <input type="radio" name="freq" value="3"> Low
-        <br>
-        Order vocabulary verbage:
-        <br>
-            <input type="radio" name="language" value="normal" checked>Normal order descriptions<br>
-            <input type="radio" name="language" value="slang"> Slang or alternative descriptions<br>
-        <br>
-        <br>
-        <input type="submit" name="submit" value="Start test">
 
-    </form>
 </div>
 
 </body>

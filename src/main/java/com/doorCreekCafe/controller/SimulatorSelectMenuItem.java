@@ -48,40 +48,52 @@ public class SimulatorSelectMenuItem extends HttpServlet {
         logger.debug("SELECTED ITEM: " + req.getParameter("submit"));
 
 
-        // Determine Answer Status
-        String answerStatus;
-        if (session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
-            logger.debug("CORRECT");
-            // Set Answer Status
-            session.setAttribute("answerStatus", "CORRECT");
 
-            // Setup for next Question
-            String questionNumberString = String.valueOf(session.getAttribute("currentTestArrayIndex"));
-            int index = (Integer.parseInt(questionNumberString)) + 1;
-            int question = index + 1;
-            List<SimulatorTest> testMenuItems = (List) session.getAttribute("testMenuItems");
-            int nextQuestionNumber = Integer.parseInt(questionNumberString);
+        // Determine of test is over
+        String questionNumberString = String.valueOf(session.getAttribute("currentTestArrayIndex"));
+        int index = (Integer.parseInt(questionNumberString)) + 1;
+
+        String numberOfQuestions = String.valueOf(session.getAttribute("testSize"));
+        int maxIndex = (Integer.parseInt(numberOfQuestions));
 
 
 
 
-            // set session attributes for next question
-            session.setAttribute("currentTestMenuItem", testMenuItems.get(index).getDescription());
-            session.setAttribute("currentTestMenuCategory", testMenuItems.get(index).getMenuCategory());
-            session.setAttribute("currentTestArrayIndex", index);
-            session.setAttribute("question", question);
+        if (index == maxIndex && session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
+
+            logger.debug("test over");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/testResults.jsp");
+            dispatcher.forward(req, resp);
 
         } else {
-            logger.debug("incorrect");
-            session.setAttribute("answerStatus", "INCORRECT");
+
+            String answerStatus;
+
+            if (session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
+                logger.debug("CORRECT");
+                // Set Answer Status
+                session.setAttribute("answerStatus", "CORRECT");
+
+                // Increment question number
+                int question = index + 1;
+
+                // Get question list
+                List<SimulatorTest> testMenuItems = (List) session.getAttribute("testMenuItems");
+
+                // set session attributes for next question
+                session.setAttribute("currentTestMenuItem", testMenuItems.get(index).getDescription());
+                session.setAttribute("currentTestMenuCategory", testMenuItems.get(index).getMenuCategory());
+                session.setAttribute("currentTestArrayIndex", index);
+                session.setAttribute("question", question);
+            } else {
+                logger.debug("incorrect");
+                session.setAttribute("answerStatus", "INCORRECT");
+            }
+
+            // Refresh screen
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
+            dispatcher.forward(req, resp);
         }
-
-
-        // Refresh screen
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
-        dispatcher.forward(req, resp);
-
-
     }
 }
 
