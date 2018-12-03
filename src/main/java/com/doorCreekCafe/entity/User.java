@@ -43,7 +43,7 @@ public class User {
     private String userPassword;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<TestScore> testScores = new HashSet<>();
+    private Set<TestHistory> testItems = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
@@ -214,37 +214,37 @@ public class User {
      *
      * @return the test scores
      */
-    public Set<TestScore> getTestScores() {
-        return testScores;
+    public Set<TestHistory> getTestItems() {
+        return testItems;
     }
 
     /**
      * Sets test scores.
      *
-     * @param testScores the test scores
+     * @param testItems the test scores
      */
-    public void setTestScores(Set<TestScore> testScores) {
-        this.testScores = testScores;
+    public void setTestItems(Set<TestHistory> testItems) {
+        this.testItems = testItems;
     }
 
     /**
      * Add Test Score.
      *
-     * @param testScore the test score
+     * @param testHistory the test score
      */
-    public void addTestScore(TestScore testScore) {
-        testScores.add(testScore);
-        testScore.setUser(this);
+    public void addTestHistory(TestHistory testHistory) {
+        testItems.add(testHistory);
+        testHistory.setUser(this);
     }
 
     /**
      * Remove Test Score.
      *
-     * @param testScore the test score
+     * @param testHistory the test score
      */
-    public void removeTestScore(TestScore testScore) {
-        testScores.remove(testScore);
-        testScore.setUser(null);
+    public void removeTestHistory(TestHistory testHistory) {
+        testItems.remove(testHistory);
+        testHistory.setUser(null);
     }
 
     /**
@@ -327,7 +327,7 @@ public class User {
                 ", primaryPhoneNumber=" + primaryPhoneNumber +
                 ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
-                ", testScores=" + testScores +
+                ", testItems=" + testItems +
                 ", roles=" + roles +
                 '}';
     }

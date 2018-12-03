@@ -3,7 +3,6 @@ package com.doorCreekCafe.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 /**
  * The type User test history.
@@ -17,25 +16,68 @@ public class TestHistory {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @Column (name="user_id")
-    private int userId;
+    @Column (name="item_id")
+    private int menuItemId;
 
-    @Column (name="menu_id")
-    private int menuId;
+    @Column (name="description")
+    private String description;
 
-    @Column (name="response_time_seconds")
-    private int responseTimeSeconds;
+    @Column (name="alt_description")
+    private String altDescription;
 
-    @Column (name="status")
-    private String status;
+    @Column (name="frequency_order")
+    private int frequencyOrder;
 
-    @Column (name="menu_item_description")
-    private String menuItemDescription;
+    @Column (name="random_number")
+    private double randomNumber;
+
+    @Column (name="short_hand")
+    private String shortHand;
+
+    @Column (name="menu_Category")
+    private String menuCategory;
+
+    @Column (name="response_time_in_sec")
+    private int responseTimeInSec;
+
+    @Column (name="response_status")
+    private String responseStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",
+            foreignKey = @ForeignKey(name = "testHistory_user_id_fk")
+    )
+    private User user;
 
     /**
      * Instantiates a new Test history.
      */
     public TestHistory() {
+    }
+
+    /**
+     * Instantiates a new Test history.
+     *
+     * @param menuItemId        the menu item id
+     * @param description       the description
+     * @param altDescription    the alt description
+     * @param frequencyOrder    the frequency order
+     * @param randomNumber      the random number
+     * @param shortHand         the short hand
+     * @param menuCategory      the menu category
+     * @param responseTimeInSec the response time in sec
+     * @param responseStatus    the response status
+     */
+    public TestHistory(int menuItemId, String description, String altDescription, int frequencyOrder, double randomNumber, String shortHand, String menuCategory, int responseTimeInSec, String responseStatus) {
+        this.menuItemId = menuItemId;
+        this.description = description;
+        this.altDescription = altDescription;
+        this.frequencyOrder = frequencyOrder;
+        this.randomNumber = randomNumber;
+        this.shortHand = shortHand;
+        this.menuCategory = menuCategory;
+        this.responseTimeInSec = responseTimeInSec;
+        this.responseStatus = responseStatus;
     }
 
     /**
@@ -57,104 +99,198 @@ public class TestHistory {
     }
 
     /**
-     * Gets user id.
+     * Gets menu item id.
      *
-     * @return the user id
+     * @return the menu item id
      */
-    public int getUserId() {
-        return userId;
+    public int getMenuItemId() {
+        return menuItemId;
     }
 
     /**
-     * Sets user id.
+     * Sets menu item id.
      *
-     * @param userId the user id
+     * @param menuItemId the menu item id
      */
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setMenuItemId(int menuItemId) {
+        this.menuItemId = menuItemId;
     }
 
     /**
-     * Gets menu id.
+     * Gets description.
      *
-     * @return the menu id
+     * @return the description
      */
-    public int getMenuId() {
-        return menuId;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * Sets menu id.
+     * Sets description.
      *
-     * @param menuId the menu id
+     * @param description the description
      */
-    public void setMenuId(int menuId) {
-        this.menuId = menuId;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
-     * Gets response time seconds.
+     * Gets alt description.
      *
-     * @return the response time seconds
+     * @return the alt description
      */
-    public int getResponseTimeSeconds() {
-        return responseTimeSeconds;
+    public String getAltDescription() {
+        return altDescription;
     }
 
     /**
-     * Sets response time seconds.
+     * Sets alt description.
      *
-     * @param responseTimeSeconds the response time seconds
+     * @param altDescription the alt description
      */
-    public void setResponseTimeSeconds(int responseTimeSeconds) {
-        this.responseTimeSeconds = responseTimeSeconds;
+    public void setAltDescription(String altDescription) {
+        this.altDescription = altDescription;
     }
 
     /**
-     * Gets status.
+     * Gets frequency order.
      *
-     * @return the status
+     * @return the frequency order
      */
-    public String getStatus() {
-        return status;
+    public int getFrequencyOrder() {
+        return frequencyOrder;
     }
 
     /**
-     * Sets status.
+     * Sets frequency order.
      *
-     * @param status the status
+     * @param frequencyOrder the frequency order
      */
-    public void setStatus(String status) {
-        this.status = status;
+    public void setFrequencyOrder(int frequencyOrder) {
+        this.frequencyOrder = frequencyOrder;
     }
 
     /**
-     * Gets menu item description.
+     * Gets random number.
      *
-     * @return the menu item description
+     * @return the random number
      */
-    public String getMenuItemDescription() {
-        return menuItemDescription;
+    public double getRandomNumber() {
+        return randomNumber;
     }
 
     /**
-     * Sets menu item description.
+     * Sets random number.
      *
-     * @param menuItemDescription the menu item description
+     * @param randomNumber the random number
      */
-    public void setMenuItemDescription(String menuItemDescription) {
-        this.menuItemDescription = menuItemDescription;
+    public void setRandomNumber(double randomNumber) {
+        this.randomNumber = randomNumber;
+    }
+
+    /**
+     * Gets short hand.
+     *
+     * @return the short hand
+     */
+    public String getShortHand() {
+        return shortHand;
+    }
+
+    /**
+     * Sets short hand.
+     *
+     * @param shortHand the short hand
+     */
+    public void setShortHand(String shortHand) {
+        this.shortHand = shortHand;
+    }
+
+    /**
+     * Gets menu category.
+     *
+     * @return the menu category
+     */
+    public String getMenuCategory() {
+        return menuCategory;
+    }
+
+    /**
+     * Sets menu category.
+     *
+     * @param menuCategory the menu category
+     */
+    public void setMenuCategory(String menuCategory) {
+        this.menuCategory = menuCategory;
+    }
+
+    /**
+     * Gets response time in sec.
+     *
+     * @return the response time in sec
+     */
+    public int getResponseTimeInSec() {
+        return responseTimeInSec;
+    }
+
+    /**
+     * Sets response time in sec.
+     *
+     * @param responseTimeInSec the response time in sec
+     */
+    public void setResponseTimeInSec(int responseTimeInSec) {
+        this.responseTimeInSec = responseTimeInSec;
+    }
+
+    /**
+     * Gets response status.
+     *
+     * @return the response status
+     */
+    public String getResponseStatus() {
+        return responseStatus;
+    }
+
+    /**
+     * Sets response status.
+     *
+     * @param responseStatus the response status
+     */
+    public void setResponseStatus(String responseStatus) {
+        this.responseStatus = responseStatus;
+    }
+
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
         return "TestHistory{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", menuId=" + menuId +
-                ", responseTimeSeconds=" + responseTimeSeconds +
-                ", status='" + status + '\'' +
-                ", menuItemDescription='" + menuItemDescription + '\'' +
+                ", menuItemId=" + menuItemId +
+                ", description='" + description + '\'' +
+                ", altDescription='" + altDescription + '\'' +
+                ", frequencyOrder=" + frequencyOrder +
+                ", randomNumber=" + randomNumber +
+                ", shortHand='" + shortHand + '\'' +
+                ", menuCategory='" + menuCategory + '\'' +
+                ", responseTimeInSec=" + responseTimeInSec +
+                ", responseStatus='" + responseStatus + '\'' +
                 '}';
     }
 }

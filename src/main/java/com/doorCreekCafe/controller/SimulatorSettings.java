@@ -3,7 +3,7 @@ package com.doorCreekCafe.controller;
 
 import com.doorCreekCafe.entity.MenuCategory;
 import com.doorCreekCafe.entity.MenuItem;
-import com.doorCreekCafe.entity.SimulatorTest;
+import com.doorCreekCafe.entity.TestHistory;
 import com.doorCreekCafe.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,7 +39,7 @@ public class SimulatorSettings extends HttpServlet {
         logger.debug("in Simulator Settings");
 
         // Gather menu items to be tested
-        GenericDao genericDao = new GenericDao(SimulatorTest.class);
+        GenericDao genericDao = new GenericDao(TestHistory.class);
 
         String sql = "select " +
                 "    m.id as id" +
@@ -54,8 +54,11 @@ public class SimulatorSettings extends HttpServlet {
                 "           when m.frequency_level = 'Add on' then 9" +
                 "       end as frequency_order" +
                 "      ,rand() * 10000 as random_number" +
-                "      ,m.short_Hand as shortHand" +
+                "      ,m.short_Hand as short_hand" +
                 "      ,c.category_description as menu_category" +
+                "      ,0 as response_time_in_sec" +
+                "      ,'fail' as response_status" +
+                "      ,null as user_id" +
                 " FROM   menuItem m" +
                 "        inner join" +
                 "        menuCategory c" +
@@ -63,8 +66,8 @@ public class SimulatorSettings extends HttpServlet {
                 " where  not exists (" +
                 "        select 1" +
                 "        from   testHistory x" +
-                "        where  x.menu_id = m.id" +
-                "        and    x.status <> 'pass' " +
+                "        where  x.item_id = m.id" +
+                "        and    x.response_status = 'pass' " +
                 "        )" +
                 " and    m.frequency_level in ('High', 'Med', 'Low') " +
                 " order by 5, 6";
@@ -74,10 +77,10 @@ public class SimulatorSettings extends HttpServlet {
         logger.debug("sql: " + sql);
         logger.debug("size: " + size);
 
-        List<SimulatorTest> testMenuItems = genericDao.getQueryResults(sql, size);
+        List<TestHistory> testMenuItems = genericDao.getQueryResults(sql, size);
 
 
-        for (SimulatorTest x:testMenuItems) {
+        for (TestHistory x:testMenuItems) {
             logger.debug("test " + x.getDescription());
             logger.debug(x.getRandomNumber());
             logger.debug(x.getAltDescription());

@@ -17,12 +17,10 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
 
         <mapping class="com.doorCreekCafe.entity.User"/>
-        <mapping class="com.doorCreekCafe.entity.TestScore"/>
         <mapping class="com.doorCreekCafe.entity.MenuItem"/>
         <mapping class="com.doorCreekCafe.entity.MenuCategory"/>
         <mapping class="com.doorCreekCafe.entity.Role"/>
         <mapping class="com.doorCreekCafe.entity.TestHistory"/>
-        <mapping class="com.doorCreekCafe.entity.SimulatorTest"/>
 
     </session-factory>
 

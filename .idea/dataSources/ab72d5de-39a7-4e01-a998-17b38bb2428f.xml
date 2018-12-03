@@ -229,124 +229,154 @@
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="65" parent="19" name="user_id">
+    <column id="65" parent="19" name="item_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="66" parent="19" name="menu_id">
+    <column id="66" parent="19" name="description">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="67" parent="19" name="response_time_seconds">
-      <Position>4</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="68" parent="19" name="status">
-      <Position>5</Position>
-      <DataType>varchar(15)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="69" parent="19" name="menu_item_description">
-      <Position>6</Position>
       <DataType>varchar(120)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="70" parent="19" name="testHistory_id_uindex">
+    <column id="67" parent="19" name="alt_description">
+      <Position>4</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="68" parent="19" name="frequency_order">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="19" name="random_number">
+      <Position>6</Position>
+      <DataType>decimal(10,5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="70" parent="19" name="short_hand">
+      <Position>7</Position>
+      <DataType>varchar(12)|0</DataType>
+    </column>
+    <column id="71" parent="19" name="menu_category">
+      <Position>8</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="19" name="response_time_in_sec">
+      <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="73" parent="19" name="response_status">
+      <Position>10</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="74" parent="19" name="user_id">
+      <Position>11</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="75" parent="19" name="testHistory_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="71" parent="19" name="PRIMARY">
+    <index id="76" parent="19" name="testHistory_user_id_fk">
+      <ColNames>user_id</ColNames>
+    </index>
+    <key id="77" parent="19" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="72" parent="19" name="testHistory_id_uindex">
+    <key id="78" parent="19" name="testHistory_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>testHistory_id_uindex</UnderlyingIndexName>
     </key>
-    <column id="73" parent="20" name="id">
+    <foreign-key id="79" parent="19" name="testHistory_user_id_fk">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>test_doorCreekCafe</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="80" parent="20" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="74" parent="20" name="description">
+    <column id="81" parent="20" name="description">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="75" parent="20" name="frequency_levels_less_than">
+    <column id="82" parent="20" name="frequency_levels_less_than">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="76" parent="20" name="order_entry_time_limit">
+    <column id="83" parent="20" name="order_entry_time_limit">
       <Position>4</Position>
       <DataType>time|0</DataType>
     </column>
-    <index id="77" parent="20" name="test_parm_id_uindex">
+    <index id="84" parent="20" name="test_parm_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="78" parent="20" name="PRIMARY">
+    <key id="85" parent="20" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="79" parent="20" name="test_parm_id_uindex">
+    <key id="86" parent="20" name="test_parm_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>test_parm_id_uindex</UnderlyingIndexName>
     </key>
-    <column id="80" parent="21" name="id">
+    <column id="87" parent="21" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="81" parent="21" name="email_address">
+    <column id="88" parent="21" name="email_address">
       <Position>2</Position>
       <DataType>varchar(120)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="82" parent="21" name="first_name">
+    <column id="89" parent="21" name="first_name">
       <Position>3</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="83" parent="21" name="last_name">
+    <column id="90" parent="21" name="last_name">
       <Position>4</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="84" parent="21" name="skill_level">
+    <column id="91" parent="21" name="skill_level">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="85" parent="21" name="primary_phone_number">
+    <column id="92" parent="21" name="primary_phone_number">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="86" parent="21" name="user_name">
+    <column id="93" parent="21" name="user_name">
       <Position>7</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="87" parent="21" name="user_password">
+    <column id="94" parent="21" name="user_password">
       <Position>8</Position>
       <DataType>varchar(200)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="88" parent="21" name="user_id_uindex">
+    <index id="95" parent="21" name="user_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="89" parent="21" name="PRIMARY">
+    <key id="96" parent="21" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="90" parent="21" name="user_id_uindex">
+    <key id="97" parent="21" name="user_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>user_id_uindex</UnderlyingIndexName>
     </key>

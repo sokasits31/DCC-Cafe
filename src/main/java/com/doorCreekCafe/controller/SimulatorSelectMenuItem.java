@@ -3,7 +3,7 @@ package com.doorCreekCafe.controller;
 
 import com.doorCreekCafe.entity.MenuCategory;
 import com.doorCreekCafe.entity.MenuItem;
-import com.doorCreekCafe.entity.SimulatorTest;
+import com.doorCreekCafe.entity.TestHistory;
 import com.doorCreekCafe.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,7 +78,7 @@ public class SimulatorSelectMenuItem extends HttpServlet {
                 int question = index + 1;
 
                 // Get question list
-                List<SimulatorTest> testMenuItems = (List) session.getAttribute("testMenuItems");
+                List<TestHistory> testMenuItems = (List) session.getAttribute("testMenuItems");
 
                 // set session attributes for next question
                 session.setAttribute("currentTestMenuItem", testMenuItems.get(index).getDescription());

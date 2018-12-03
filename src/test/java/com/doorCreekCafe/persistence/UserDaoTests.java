@@ -91,12 +91,11 @@ class UserDaoTests {
         User newUser = new User("new@gmail.com", "joe", "blow", 2, 2240024, userName, "college1");
 
         //Create children
-        LocalDate testDate = LocalDate.parse("2018-01-01");
-        TestScore testScore = new TestScore(testDate, 1, 12, 89,newUser);
+        TestHistory testHistory = new TestHistory(3, "test item", "alt test item", 1, 433.44, "g", "cat", 34, "pass");
         Role role = new Role(newUser,"vol", userName);
 
         // add children to parent
-        newUser.addTestScore(testScore);
+        newUser.addTestHistory(testHistory);
         newUser.addRole(role);
 
         // Insert record and get Id
@@ -105,9 +104,9 @@ class UserDaoTests {
 
         User insertedUser = (User) genericDao.getById(id);
         assertEquals( "new@gmail.com", insertedUser.getEmailAddress());
-        assertEquals(1,newUser.getTestScores().size());
+        assertEquals(1,newUser.getTestItems().size());
 
-        //TestScore testscore = (TestScore) genericDao.getById()
+
         // Could continue comparing all values, but
         // it may make sense to use .equals()
         // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
@@ -126,9 +125,9 @@ class UserDaoTests {
         assertNull(genericDao.getById(2));
 
         //Check child
-        GenericDao score = new GenericDao(TestScore.class);
-        List<TestScore> scores = score.getAll();
-        assertEquals(9,scores.size());
+        GenericDao score = new GenericDao(TestHistory.class);
+        List<TestHistory> scores = score.getAll();
+        assertEquals(1,scores.size());
 
     }
 
@@ -173,7 +172,7 @@ class UserDaoTests {
     @Test
     void getTestItems () {
 
-        GenericDao test = new GenericDao(SimulatorTest.class);
+        GenericDao test = new GenericDao(TestHistory.class);
 
         String sql = "select " +
                 "    m.id as id" +
@@ -188,8 +187,11 @@ class UserDaoTests {
                 "           when m.frequency_level = 'Add on' then 9" +
                 "       end as frequency_order" +
                 "      ,rand() * 10000 as random_number" +
-                "      ,m.short_Hand as shortHand" +
+                "      ,m.short_Hand as short_hand" +
                 "      ,c.category_description as menu_category" +
+                "      ,0 as response_time_in_sec" +
+                "      ,'fail' as response_status" +
+                "      ,null as user_id" +
                 " FROM   menuItem m" +
                 "        inner join" +
                 "        menuCategory c" +
@@ -197,23 +199,23 @@ class UserDaoTests {
                 " where  not exists (" +
                 "        select 1" +
                 "        from   testHistory x" +
-                "        where  x.menu_id = m.id" +
-                "        and    x.status <> 'pass' " +
+                "        where  x.item_id = m.id" +
+                "        and    x.response_status = 'pass' " +
                 "        )" +
                 " and    m.frequency_level in ('High', 'Med', 'Low') " +
                 " order by 5, 6";
 
-        List<SimulatorTest> tests = test.getQueryResults(sql, 15);
+        List<TestHistory> tests = test.getQueryResults(sql, 15);
 
         System.out.println("#################" + tests.get(0).getDescription());
 
-        for (SimulatorTest x:tests) {
+        for (TestHistory x:tests) {
             System.out.println(x.getDescription());
             System.out.println(x.getRandomNumber());
             System.out.println(x.getFrequencyOrder());
         }
 
-        //System.out.println("ggggggggggggggggggg: " + (SimulatorTest) tests.get(0).getDescription());
+
 
 
 
