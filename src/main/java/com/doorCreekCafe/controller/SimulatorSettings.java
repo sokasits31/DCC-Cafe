@@ -103,6 +103,7 @@ public class SimulatorSettings extends HttpServlet {
         session.setAttribute("testSize", req.getParameter("testSize"));
 
         // Determine menu item being tested
+        session.setAttribute("currentTestHistory", testMenuItems.get(0));
         session.setAttribute("currentTestMenuItem", testMenuItems.get(0).getDescription());
         session.setAttribute("currentTestArrayIndex", 0);
         session.setAttribute("currentTestMenuCategory", testMenuItems.get(0).getMenuCategory());

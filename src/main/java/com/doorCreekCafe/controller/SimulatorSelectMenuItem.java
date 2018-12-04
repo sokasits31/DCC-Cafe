@@ -4,6 +4,7 @@ package com.doorCreekCafe.controller;
 import com.doorCreekCafe.entity.MenuCategory;
 import com.doorCreekCafe.entity.MenuItem;
 import com.doorCreekCafe.entity.TestHistory;
+import com.doorCreekCafe.entity.User;
 import com.doorCreekCafe.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -62,6 +63,7 @@ public class SimulatorSelectMenuItem extends HttpServlet {
         if (index == maxIndex && session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
 
             logger.debug("test over");
+
             RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/testResults.jsp");
             dispatcher.forward(req, resp);
 
@@ -71,6 +73,7 @@ public class SimulatorSelectMenuItem extends HttpServlet {
 
             if (session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
                 logger.debug("CORRECT");
+
                 // Set Answer Status
                 session.setAttribute("answerStatus", "CORRECT");
 
@@ -81,6 +84,7 @@ public class SimulatorSelectMenuItem extends HttpServlet {
                 List<TestHistory> testMenuItems = (List) session.getAttribute("testMenuItems");
 
                 // set session attributes for next question
+                session.setAttribute("currentTestHistory", testMenuItems.get(index));
                 session.setAttribute("currentTestMenuItem", testMenuItems.get(index).getDescription());
                 session.setAttribute("currentTestMenuCategory", testMenuItems.get(index).getMenuCategory());
                 session.setAttribute("currentTestArrayIndex", index);
