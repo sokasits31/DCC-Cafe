@@ -4,7 +4,7 @@
 <%@ include file="/head-tag.jsp"%>
 <body>
 <div id="container">
-    <%@ include file="/header.jsp"%>
+    <%@ include file="/jsp/header.jsp"%>
 
     <form action="/doorCreekCafe/grantAccess" method="get">
 

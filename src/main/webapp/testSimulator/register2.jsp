@@ -5,6 +5,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
+    <%@ include file="/jsp/head-tag.jsp"%>
+
     <style>
 
         input[type=button], input[type=submit] {
@@ -56,6 +58,10 @@
 </head>
 
 <body>
+
+<header>
+    <%@ include file="/jsp/header.jsp"%>
+</header>
 
 
 <H2>Test Simulator</H2>
@@ -187,13 +193,10 @@
 </c:choose>
 
 
-
-
-
-
-
-<A HREF="../">Back to Home</A>
-
+<footer>
+    <%@ include file="/jsp/footer.jsp"%>
+</footer>
+<%@ include file="/jsp/bootstrampJavaScript.jsp"%>
 </body>
 </html>
 

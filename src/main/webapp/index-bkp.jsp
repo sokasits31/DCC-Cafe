@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%@ include file="/head-tag.jsp"%>
 
-<%@ include file="/header.jsp"%>
+<%@ include file="/jsp/header.jsp"%>
 <body>
 
 

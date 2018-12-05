@@ -1,21 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: student
-  Date: 10/22/18
-  Time: 2:34 PM
-  To change this template use File | Settings | File Templates.
+<html>
+<head>
+    <%@ include file="/jsp/head-tag.jsp"%>
+</head>
 
-
---%>
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<%@ include file="/head-tag.jsp"%>
-
-<%@ include file="/header.jsp"%>
 <body>
+
+<header>
+    <%@ include file="/jsp/header.jsp"%>
+</header>
 
 <FORM ACTION="j_security_check" METHOD="POST">
     <TABLE>
@@ -24,9 +16,11 @@
         <TR><TH><INPUT TYPE="SUBMIT" VALUE="Log In">
     </TABLE>
 </FORM>
+
+<footer>
+    <%@ include file="/jsp/footer.jsp"%>
+</footer>
+<%@ include file="/jsp/bootstrampJavaScript.jsp"%>
 </body>
 
-
-<%@ include file="/footer.jsp"%>
-</body>
 </html>

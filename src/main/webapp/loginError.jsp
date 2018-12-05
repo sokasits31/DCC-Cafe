@@ -1,17 +1,20 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: student
-  Date: 10/22/18
-  Time: 2:35 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%@ include file="/jsp/head-tag.jsp"%>
     <title>login Error</title>
 </head>
+
 <body>
+
+<header>
+    <%@ include file="/jsp/header.jsp"%>
+</header>
+
 Login Failded.....  Please try again
 
+<footer>
+    <%@ include file="/jsp/footer.jsp"%>
+</footer>
+<%@ include file="/jsp/bootstrampJavaScript.jsp"%>
 </body>
 </html>
