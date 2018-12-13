@@ -486,3 +486,207 @@
 [DEBUG] 2018-12-04 22:44:33.871 [http-nio-8080-exec-4] SimulatorSelectMenuItem - test over
 [DEBUG] 2018-12-04 22:51:08.584 [http-nio-8080-exec-2] SimulatorStart - in Simulator Start
 [DEBUG] 2018-12-04 22:58:41.968 [http-nio-8080-exec-3] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-05 00:17:51.875 [http-nio-8080-exec-2] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-05 07:22:49.866 [http-nio-8080-exec-4] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-05 07:23:06.023 [http-nio-8080-exec-8] SimulatorSettings - in Simulator Settings
+[DEBUG] 2018-12-05 07:23:06.033 [http-nio-8080-exec-8] SimulatorSettings - sql: select     m.id as id   ,m.id as item_id   ,m.description   ,m.alt_description   ,case            when m.frequency_level = 'High' then 1           when m.frequency_level = 'Med'  then 2           when m.frequency_level = 'Low'  then 3           when m.frequency_level = 'None' then 9           when m.frequency_level = 'Add on' then 9       end as frequency_order      ,rand() * 10000 as random_number      ,m.short_Hand as short_hand      ,c.category_description as menu_category      ,0 as response_time_in_sec      ,'fail' as response_status      ,null as user_id FROM   menuItem m        inner join        menuCategory c            on m.menuCategory_id = c.id where  not exists (        select 1        from   testHistory x        where  x.item_id = m.id        and    x.response_status = 'pass'         ) and    m.frequency_level in ('High', 'Med', 'Low')  order by 5, 6
+[DEBUG] 2018-12-05 07:23:06.036 [http-nio-8080-exec-8] SimulatorSettings - size: 5
+[DEBUG] 2018-12-05 07:23:19.747 [http-nio-8080-exec-8] GenericDao - SQL: select     m.id as id   ,m.id as item_id   ,m.description   ,m.alt_description   ,case            when m.frequency_level = 'High' then 1           when m.frequency_level = 'Med'  then 2           when m.frequency_level = 'Low'  then 3           when m.frequency_level = 'None' then 9           when m.frequency_level = 'Add on' then 9       end as frequency_order      ,rand() * 10000 as random_number      ,m.short_Hand as short_hand      ,c.category_description as menu_category      ,0 as response_time_in_sec      ,'fail' as response_status      ,null as user_id FROM   menuItem m        inner join        menuCategory c            on m.menuCategory_id = c.id where  not exists (        select 1        from   testHistory x        where  x.item_id = m.id        and    x.response_status = 'pass'         ) and    m.frequency_level in ('High', 'Med', 'Low')  order by 5, 6
+[DEBUG] 2018-12-05 07:23:19.783 [http-nio-8080-exec-8] SimulatorSettings - test Coke Bottle
+[DEBUG] 2018-12-05 07:23:19.784 [http-nio-8080-exec-8] SimulatorSettings - 134.93624528398388
+[DEBUG] 2018-12-05 07:23:19.784 [http-nio-8080-exec-8] SimulatorSettings - None
+[DEBUG] 2018-12-05 07:23:19.784 [http-nio-8080-exec-8] SimulatorSettings - test In-house Cookies $1.50
+[DEBUG] 2018-12-05 07:23:19.784 [http-nio-8080-exec-8] SimulatorSettings - 347.70490634041363
+[DEBUG] 2018-12-05 07:23:19.784 [http-nio-8080-exec-8] SimulatorSettings - None
+[DEBUG] 2018-12-05 07:23:19.791 [http-nio-8080-exec-8] SimulatorSettings - test Small Snack $0.50
+[DEBUG] 2018-12-05 07:23:19.791 [http-nio-8080-exec-8] SimulatorSettings - 610.8234455909799
+[DEBUG] 2018-12-05 07:23:19.791 [http-nio-8080-exec-8] SimulatorSettings - None
+[DEBUG] 2018-12-05 07:23:19.791 [http-nio-8080-exec-8] SimulatorSettings - test Kids HC 8oz
+[DEBUG] 2018-12-05 07:23:19.791 [http-nio-8080-exec-8] SimulatorSettings - 762.1735900288202
+[DEBUG] 2018-12-05 07:23:19.797 [http-nio-8080-exec-8] SimulatorSettings - None
+[DEBUG] 2018-12-05 07:23:19.797 [http-nio-8080-exec-8] SimulatorSettings - test Add Almond Milk
+[DEBUG] 2018-12-05 07:23:19.797 [http-nio-8080-exec-8] SimulatorSettings - 841.686419063887
+[DEBUG] 2018-12-05 07:23:19.797 [http-nio-8080-exec-8] SimulatorSettings - None
+[DEBUG] 2018-12-05 07:23:22.498 [http-nio-8080-exec-8] SimulatorSettings - TEST MENU CAT: Cold Bottled
+[DEBUG] 2018-12-05 07:23:31.770 [http-nio-8080-exec-10] GenericDao - Searching for user with categoryDescription = Cold Bottled
+[DEBUG] 2018-12-05 07:23:46.176 [http-nio-8080-exec-2] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 07:23:46.177 [http-nio-8080-exec-2] SimulatorSelectMenuItem - CURRENT TEST ITEM: Coke Bottle
+[DEBUG] 2018-12-05 07:23:46.177 [http-nio-8080-exec-2] SimulatorSelectMenuItem - SELECTED ITEM: Coke Bottle
+[DEBUG] 2018-12-05 07:23:46.177 [http-nio-8080-exec-2] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-05 07:24:04.981 [http-nio-8080-exec-5] GenericDao - Searching for user with categoryDescription = Bakery Items
+[DEBUG] 2018-12-05 07:24:10.864 [http-nio-8080-exec-6] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 07:24:10.864 [http-nio-8080-exec-6] SimulatorSelectMenuItem - CURRENT TEST ITEM: In-house Cookies $1.50
+[DEBUG] 2018-12-05 07:24:10.864 [http-nio-8080-exec-6] SimulatorSelectMenuItem - SELECTED ITEM: In-house Cookies $1.50
+[DEBUG] 2018-12-05 07:24:10.864 [http-nio-8080-exec-6] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-05 07:24:17.709 [http-nio-8080-exec-8] GenericDao - Searching for user with categoryDescription = Food Items
+[DEBUG] 2018-12-05 07:24:19.693 [http-nio-8080-exec-10] GenericDao - Searching for user with categoryDescription = Food Items
+[DEBUG] 2018-12-05 07:24:22.328 [http-nio-8080-exec-2] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 07:24:22.328 [http-nio-8080-exec-2] SimulatorSelectMenuItem - CURRENT TEST ITEM: Small Snack $0.50
+[DEBUG] 2018-12-05 07:24:22.328 [http-nio-8080-exec-2] SimulatorSelectMenuItem - SELECTED ITEM: Small Snack $0.50
+[DEBUG] 2018-12-05 07:24:22.328 [http-nio-8080-exec-2] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-05 07:24:28.804 [http-nio-8080-exec-5] GenericDao - Searching for user with categoryDescription = Espresso Drinks
+[DEBUG] 2018-12-05 07:24:33.300 [http-nio-8080-exec-6] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 07:24:33.300 [http-nio-8080-exec-6] SimulatorSelectMenuItem - CURRENT TEST ITEM: Kids HC 8oz
+[DEBUG] 2018-12-05 07:24:33.300 [http-nio-8080-exec-6] SimulatorSelectMenuItem - SELECTED ITEM: Kids HC 8oz
+[DEBUG] 2018-12-05 07:24:33.300 [http-nio-8080-exec-6] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-05 07:24:42.840 [http-nio-8080-exec-8] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 07:24:42.841 [http-nio-8080-exec-8] SimulatorSelectMenuItem - CURRENT TEST ITEM: Add Almond Milk
+[DEBUG] 2018-12-05 07:24:42.841 [http-nio-8080-exec-8] SimulatorSelectMenuItem - SELECTED ITEM: Add Almond Milk
+[DEBUG] 2018-12-05 07:24:42.841 [http-nio-8080-exec-8] SimulatorSelectMenuItem - test over
+[ERROR] 2018-12-05 08:17:40.661 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`test_doorCreekCafe`.`testHistory`, CONSTRAINT `testHistory_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`))
+[ERROR] 2018-12-05 08:27:01.682 [main] Database - com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`test_doorCreekCafe`.`testHistory`, CONSTRAINT `testHistory_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`))
+[DEBUG] 2018-12-05 08:37:09.142 [http-nio-8080-exec-3] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-05 08:43:01.424 [http-nio-8080-exec-8] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-05 08:43:05.534 [http-nio-8080-exec-4] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-05 08:43:08.903 [http-nio-8080-exec-10] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-05 08:46:05.649 [http-nio-8080-exec-1] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-05 08:57:08.283 [http-nio-8080-exec-4] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-05 08:57:29.711 [http-nio-8080-exec-9] SimulatorSettings - in Simulator Settings
+[DEBUG] 2018-12-05 08:57:29.733 [http-nio-8080-exec-9] SimulatorSettings - sql: select     m.id as id   ,m.id as item_id   ,m.description   ,m.alt_description   ,case            when m.frequency_level = 'High' then 1           when m.frequency_level = 'Med'  then 2           when m.frequency_level = 'Low'  then 3           when m.frequency_level = 'None' then 9           when m.frequency_level = 'Add on' then 9       end as frequency_order      ,rand() * 10000 as random_number      ,m.short_Hand as short_hand      ,c.category_description as menu_category      ,0 as response_time_in_sec      ,'fail' as response_status      ,null as user_id FROM   menuItem m        inner join        menuCategory c            on m.menuCategory_id = c.id where  not exists (        select 1        from   testHistory x        where  x.item_id = m.id        and    x.response_status = 'pass'         ) and    m.frequency_level in ('High', 'Med', 'Low')  order by 5, 6
+[DEBUG] 2018-12-05 08:57:29.737 [http-nio-8080-exec-9] SimulatorSettings - size: 5
+[DEBUG] 2018-12-05 08:57:41.825 [http-nio-8080-exec-9] GenericDao - SQL: select     m.id as id   ,m.id as item_id   ,m.description   ,m.alt_description   ,case            when m.frequency_level = 'High' then 1           when m.frequency_level = 'Med'  then 2           when m.frequency_level = 'Low'  then 3           when m.frequency_level = 'None' then 9           when m.frequency_level = 'Add on' then 9       end as frequency_order      ,rand() * 10000 as random_number      ,m.short_Hand as short_hand      ,c.category_description as menu_category      ,0 as response_time_in_sec      ,'fail' as response_status      ,null as user_id FROM   menuItem m        inner join        menuCategory c            on m.menuCategory_id = c.id where  not exists (        select 1        from   testHistory x        where  x.item_id = m.id        and    x.response_status = 'pass'         ) and    m.frequency_level in ('High', 'Med', 'Low')  order by 5, 6
+[DEBUG] 2018-12-05 08:57:41.845 [http-nio-8080-exec-9] SimulatorSettings - test Kids Milk
+[DEBUG] 2018-12-05 08:57:41.845 [http-nio-8080-exec-9] SimulatorSettings - 252.72519351237005
+[DEBUG] 2018-12-05 08:57:41.846 [http-nio-8080-exec-9] SimulatorSettings - None
+[DEBUG] 2018-12-05 08:57:41.846 [http-nio-8080-exec-9] SimulatorSettings - test Chocolate Frappe 16oz
+[DEBUG] 2018-12-05 08:57:41.846 [http-nio-8080-exec-9] SimulatorSettings - 801.9361279922873
+[DEBUG] 2018-12-05 08:57:41.853 [http-nio-8080-exec-9] SimulatorSettings - None
+[DEBUG] 2018-12-05 08:57:41.853 [http-nio-8080-exec-9] SimulatorSettings - test Small Snack $0.50
+[DEBUG] 2018-12-05 08:57:41.854 [http-nio-8080-exec-9] SimulatorSettings - 860.0594577007549
+[DEBUG] 2018-12-05 08:57:41.854 [http-nio-8080-exec-9] SimulatorSettings - None
+[DEBUG] 2018-12-05 08:57:41.854 [http-nio-8080-exec-9] SimulatorSettings - test Smoothie 12oz
+[DEBUG] 2018-12-05 08:57:41.854 [http-nio-8080-exec-9] SimulatorSettings - 892.3811660077248
+[DEBUG] 2018-12-05 08:57:41.854 [http-nio-8080-exec-9] SimulatorSettings - None
+[DEBUG] 2018-12-05 08:57:41.854 [http-nio-8080-exec-9] SimulatorSettings - test Candy Bar $1.00
+[DEBUG] 2018-12-05 08:57:41.856 [http-nio-8080-exec-9] SimulatorSettings - 1429.7688672596298
+[DEBUG] 2018-12-05 08:57:41.856 [http-nio-8080-exec-9] SimulatorSettings - None
+[DEBUG] 2018-12-05 08:57:44.013 [http-nio-8080-exec-9] SimulatorSettings - TEST MENU CAT: Cold Bottled
+[DEBUG] 2018-12-05 08:58:01.350 [http-nio-8080-exec-1] GenericDao - Searching for user with categoryDescription = Bakery Items
+[DEBUG] 2018-12-05 08:58:04.101 [http-nio-8080-exec-3] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 08:58:04.106 [http-nio-8080-exec-3] SimulatorSelectMenuItem - CURRENT TEST ITEM: Kids Milk
+[DEBUG] 2018-12-05 08:58:04.106 [http-nio-8080-exec-3] SimulatorSelectMenuItem - SELECTED ITEM: Elegant Muffin $2.25
+[DEBUG] 2018-12-05 08:58:04.106 [http-nio-8080-exec-3] SimulatorSelectMenuItem - incorrect
+[DEBUG] 2018-12-05 08:58:08.501 [http-nio-8080-exec-5] GenericDao - Searching for user with categoryDescription = Cold Bottled
+[DEBUG] 2018-12-05 08:58:11.068 [http-nio-8080-exec-8] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 08:58:11.069 [http-nio-8080-exec-8] SimulatorSelectMenuItem - CURRENT TEST ITEM: Kids Milk
+[DEBUG] 2018-12-05 08:58:11.069 [http-nio-8080-exec-8] SimulatorSelectMenuItem - SELECTED ITEM: Kids Milk
+[DEBUG] 2018-12-05 08:58:11.070 [http-nio-8080-exec-8] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-05 08:58:15.267 [http-nio-8080-exec-9] GenericDao - Searching for user with categoryDescription = Frozen Blended
+[DEBUG] 2018-12-05 08:58:17.815 [http-nio-8080-exec-1] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 08:58:17.816 [http-nio-8080-exec-1] SimulatorSelectMenuItem - CURRENT TEST ITEM: Chocolate Frappe 16oz
+[DEBUG] 2018-12-05 08:58:17.817 [http-nio-8080-exec-1] SimulatorSelectMenuItem - SELECTED ITEM: Chocolate Frappe 12oz
+[DEBUG] 2018-12-05 08:58:17.817 [http-nio-8080-exec-1] SimulatorSelectMenuItem - incorrect
+[DEBUG] 2018-12-05 08:58:21.180 [http-nio-8080-exec-3] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 08:58:21.182 [http-nio-8080-exec-3] SimulatorSelectMenuItem - CURRENT TEST ITEM: Chocolate Frappe 16oz
+[DEBUG] 2018-12-05 08:58:21.183 [http-nio-8080-exec-3] SimulatorSelectMenuItem - SELECTED ITEM: Chocolate Frappe 16oz
+[DEBUG] 2018-12-05 08:58:21.183 [http-nio-8080-exec-3] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-05 08:58:25.719 [http-nio-8080-exec-5] GenericDao - Searching for user with categoryDescription = Food Items
+[DEBUG] 2018-12-05 08:58:28.391 [http-nio-8080-exec-8] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 08:58:28.392 [http-nio-8080-exec-8] SimulatorSelectMenuItem - CURRENT TEST ITEM: Small Snack $0.50
+[DEBUG] 2018-12-05 08:58:28.393 [http-nio-8080-exec-8] SimulatorSelectMenuItem - SELECTED ITEM: Small Snack $0.50
+[DEBUG] 2018-12-05 08:58:28.393 [http-nio-8080-exec-8] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-05 08:58:32.704 [http-nio-8080-exec-9] GenericDao - Searching for user with categoryDescription = Frozen Blended
+[DEBUG] 2018-12-05 08:58:34.996 [http-nio-8080-exec-1] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 08:58:34.996 [http-nio-8080-exec-1] SimulatorSelectMenuItem - CURRENT TEST ITEM: Smoothie 12oz
+[DEBUG] 2018-12-05 08:58:34.997 [http-nio-8080-exec-1] SimulatorSelectMenuItem - SELECTED ITEM: Smoothie 12oz
+[DEBUG] 2018-12-05 08:58:34.997 [http-nio-8080-exec-1] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-05 08:58:38.150 [http-nio-8080-exec-3] GenericDao - Searching for user with categoryDescription = Food Items
+[DEBUG] 2018-12-05 08:58:41.776 [http-nio-8080-exec-5] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-05 08:58:41.776 [http-nio-8080-exec-5] SimulatorSelectMenuItem - CURRENT TEST ITEM: Candy Bar $1.00
+[DEBUG] 2018-12-05 08:58:41.776 [http-nio-8080-exec-5] SimulatorSelectMenuItem - SELECTED ITEM: Candy Bar $1.00
+[DEBUG] 2018-12-05 08:58:41.777 [http-nio-8080-exec-5] SimulatorSelectMenuItem - test over
+[DEBUG] 2018-12-09 21:52:37.791 [http-nio-8080-exec-5] Vol - userName= bradtheman
+[DEBUG] 2018-12-09 21:55:58.852 [http-nio-8080-exec-5] Vol - userName= bradtheman
+[DEBUG] 2018-12-09 21:56:09.587 [http-nio-8080-exec-5] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-09 22:09:15.295 [http-nio-8080-exec-4] Vol - userName= bradtheman
+[DEBUG] 2018-12-09 22:09:27.902 [http-nio-8080-exec-4] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 21:21:07.756 [http-nio-8080-exec-8] Vol - userName= bradtheman
+[DEBUG] 2018-12-12 21:21:24.585 [http-nio-8080-exec-8] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 21:31:33.295 [http-nio-8080-exec-4] Vol - userName= bradtheman
+[DEBUG] 2018-12-12 21:31:48.633 [http-nio-8080-exec-4] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 21:36:35.228 [http-nio-8080-exec-4] Vol - userName= bradtheman
+[DEBUG] 2018-12-12 21:36:49.416 [http-nio-8080-exec-4] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 21:41:36.580 [http-nio-8080-exec-4] Vol - userName= bradtheman
+[DEBUG] 2018-12-12 21:41:51.296 [http-nio-8080-exec-4] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 21:50:00.120 [http-nio-8080-exec-2] Vol - userName= bradtheman
+[DEBUG] 2018-12-12 21:50:14.587 [http-nio-8080-exec-2] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 21:53:09.193 [http-nio-8080-exec-4] Vol - userName= bradtheman
+[DEBUG] 2018-12-12 21:53:22.344 [http-nio-8080-exec-4] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 21:53:42.308 [http-nio-8080-exec-6] Vol - userName= bradtheman
+[DEBUG] 2018-12-12 21:53:42.323 [http-nio-8080-exec-6] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 21:54:05.289 [http-nio-8080-exec-10] Vol - userName= bradtheman
+[DEBUG] 2018-12-12 21:54:05.291 [http-nio-8080-exec-10] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 22:00:07.943 [http-nio-8080-exec-3] Vol - userName= bradtheman
+[DEBUG] 2018-12-12 22:00:19.301 [http-nio-8080-exec-3] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-12 22:00:30.955 [http-nio-8080-exec-5] SimulatorStart - in Simulator Start
+[DEBUG] 2018-12-12 22:00:47.763 [http-nio-8080-exec-7] SimulatorSettings - in Simulator Settings
+[DEBUG] 2018-12-12 22:00:47.769 [http-nio-8080-exec-7] SimulatorSettings - sql: select     m.id as id   ,m.id as item_id   ,m.description   ,m.alt_description   ,case            when m.frequency_level = 'High' then 1           when m.frequency_level = 'Med'  then 2           when m.frequency_level = 'Low'  then 3           when m.frequency_level = 'None' then 9           when m.frequency_level = 'Add on' then 9       end as frequency_order      ,rand() * 10000 as random_number      ,m.short_Hand as short_hand      ,c.category_description as menu_category      ,0 as response_time_in_sec      ,'fail' as response_status      ,null as user_id FROM   menuItem m        inner join        menuCategory c            on m.menuCategory_id = c.id where  not exists (        select 1        from   testHistory x        where  x.item_id = m.id        and    x.response_status = 'pass'         ) and    m.frequency_level in ('High', 'Med', 'Low')  order by 5, 6
+[DEBUG] 2018-12-12 22:00:47.772 [http-nio-8080-exec-7] SimulatorSettings - size: 10
+[DEBUG] 2018-12-12 22:00:48.709 [http-nio-8080-exec-7] GenericDao - SQL: select     m.id as id   ,m.id as item_id   ,m.description   ,m.alt_description   ,case            when m.frequency_level = 'High' then 1           when m.frequency_level = 'Med'  then 2           when m.frequency_level = 'Low'  then 3           when m.frequency_level = 'None' then 9           when m.frequency_level = 'Add on' then 9       end as frequency_order      ,rand() * 10000 as random_number      ,m.short_Hand as short_hand      ,c.category_description as menu_category      ,0 as response_time_in_sec      ,'fail' as response_status      ,null as user_id FROM   menuItem m        inner join        menuCategory c            on m.menuCategory_id = c.id where  not exists (        select 1        from   testHistory x        where  x.item_id = m.id        and    x.response_status = 'pass'         ) and    m.frequency_level in ('High', 'Med', 'Low')  order by 5, 6
+[DEBUG] 2018-12-12 22:00:48.713 [http-nio-8080-exec-7] SimulatorSettings - test Mocha 12oz
+[DEBUG] 2018-12-12 22:00:48.713 [http-nio-8080-exec-7] SimulatorSettings - 281.3107243565011
+[DEBUG] 2018-12-12 22:00:48.713 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:48.713 [http-nio-8080-exec-7] SimulatorSettings - test In-house Cookies $1.50
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - 553.6479787469357
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - test Mocha 16oz
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - 994.4576593064309
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - test Frappe Special 12oz
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - 1090.2166842391869
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - test Diet Coke
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - 1138.202744664813
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - test 12oz. Free Drink D.C.
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - 1473.4752955599458
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - test Chocolate Frappe 16oz
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - 1552.678636789954
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - test Bottled Iced Tea $2
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - 1751.4588234494058
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - test Americano 16oz
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - 1913.7508533091757
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - test Egg Wrp Bacon $3
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - 1919.8113045839698
+[DEBUG] 2018-12-12 22:00:48.714 [http-nio-8080-exec-7] SimulatorSettings - None
+[DEBUG] 2018-12-12 22:00:50.531 [http-nio-8080-exec-7] SimulatorSettings - TEST MENU CAT: Espresso Drinks
+[DEBUG] 2018-12-12 22:00:57.343 [http-nio-8080-exec-8] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-12 22:00:57.345 [http-nio-8080-exec-8] SimulatorSelectMenuItem - CURRENT TEST ITEM: Mocha 12oz
+[DEBUG] 2018-12-12 22:00:57.345 [http-nio-8080-exec-8] SimulatorSelectMenuItem - SELECTED ITEM: Mocha 12oz
+[DEBUG] 2018-12-12 22:00:57.345 [http-nio-8080-exec-8] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-12 22:01:09.415 [http-nio-8080-exec-9] GenericDao - Searching for user with categoryDescription = Bakery Items
+[DEBUG] 2018-12-12 22:01:13.149 [http-nio-8080-exec-10] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-12 22:01:13.150 [http-nio-8080-exec-10] SimulatorSelectMenuItem - CURRENT TEST ITEM: In-house Cookies $1.50
+[DEBUG] 2018-12-12 22:01:13.150 [http-nio-8080-exec-10] SimulatorSelectMenuItem - SELECTED ITEM: In-house Cookies $1.50
+[DEBUG] 2018-12-12 22:01:13.150 [http-nio-8080-exec-10] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-12 22:01:25.246 [http-nio-8080-exec-1] GenericDao - Searching for user with categoryDescription = Espresso Drinks
+[DEBUG] 2018-12-12 22:01:28.651 [http-nio-8080-exec-2] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-12 22:01:28.651 [http-nio-8080-exec-2] SimulatorSelectMenuItem - CURRENT TEST ITEM: Mocha 16oz
+[DEBUG] 2018-12-12 22:01:28.651 [http-nio-8080-exec-2] SimulatorSelectMenuItem - SELECTED ITEM: Mocha 16oz
+[DEBUG] 2018-12-12 22:01:28.651 [http-nio-8080-exec-2] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-12 22:01:32.625 [http-nio-8080-exec-3] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-12 22:01:32.625 [http-nio-8080-exec-3] SimulatorSelectMenuItem - CURRENT TEST ITEM: Frappe Special 12oz
+[DEBUG] 2018-12-12 22:01:32.625 [http-nio-8080-exec-3] SimulatorSelectMenuItem - SELECTED ITEM: Hot Choc. 16oz
+[DEBUG] 2018-12-12 22:01:32.625 [http-nio-8080-exec-3] SimulatorSelectMenuItem - incorrect
+[DEBUG] 2018-12-12 22:01:36.616 [http-nio-8080-exec-5] GenericDao - Searching for user with categoryDescription = Frozen Blended
+[DEBUG] 2018-12-12 22:01:50.978 [http-nio-8080-exec-6] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-12 22:01:50.980 [http-nio-8080-exec-6] SimulatorSelectMenuItem - CURRENT TEST ITEM: Frappe Special 12oz
+[DEBUG] 2018-12-12 22:01:50.981 [http-nio-8080-exec-6] SimulatorSelectMenuItem - SELECTED ITEM: Frappe Special 12oz
+[DEBUG] 2018-12-12 22:01:50.981 [http-nio-8080-exec-6] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-12 22:01:58.289 [http-nio-8080-exec-7] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-12 22:01:58.292 [http-nio-8080-exec-7] SimulatorSelectMenuItem - CURRENT TEST ITEM: Diet Coke
+[DEBUG] 2018-12-12 22:01:58.293 [http-nio-8080-exec-7] SimulatorSelectMenuItem - SELECTED ITEM: Chocolate Frappe 16oz
+[DEBUG] 2018-12-12 22:01:58.293 [http-nio-8080-exec-7] SimulatorSelectMenuItem - incorrect
+[DEBUG] 2018-12-12 22:02:02.276 [http-nio-8080-exec-8] GenericDao - Searching for user with categoryDescription = Cold Bottled
+[DEBUG] 2018-12-12 22:02:05.153 [http-nio-8080-exec-9] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-12 22:02:05.153 [http-nio-8080-exec-9] SimulatorSelectMenuItem - CURRENT TEST ITEM: Diet Coke
+[DEBUG] 2018-12-12 22:02:05.153 [http-nio-8080-exec-9] SimulatorSelectMenuItem - SELECTED ITEM: Coke Bottle
+[DEBUG] 2018-12-12 22:02:05.153 [http-nio-8080-exec-9] SimulatorSelectMenuItem - incorrect
+[DEBUG] 2018-12-12 22:02:10.588 [http-nio-8080-exec-10] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-12 22:02:10.589 [http-nio-8080-exec-10] SimulatorSelectMenuItem - CURRENT TEST ITEM: Diet Coke
+[DEBUG] 2018-12-12 22:02:10.589 [http-nio-8080-exec-10] SimulatorSelectMenuItem - SELECTED ITEM: Diet Coke
+[DEBUG] 2018-12-12 22:02:10.589 [http-nio-8080-exec-10] SimulatorSelectMenuItem - CORRECT

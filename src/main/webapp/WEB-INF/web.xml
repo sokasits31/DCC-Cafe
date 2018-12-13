@@ -31,4 +31,19 @@
   </security-role>
 
 
+  <!-- Protect the user search page. -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>vol</web-resource-name>
+      <url-pattern>/vol/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>vol</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <security-role>
+    <role-name>vol</role-name>
+  </security-role>
+
 </web-app>

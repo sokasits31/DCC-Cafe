@@ -1,4 +1,5 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <%@ include file="/jsp/head-tag.jsp"%>
     <title>login Error</title>
