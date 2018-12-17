@@ -3,6 +3,7 @@ package com.doorCreekCafe.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * The type User test history.
@@ -42,6 +43,12 @@ public class TestHistory {
 
     @Column (name="response_status")
     private String responseStatus;
+
+    @Column (name="question_start_time")
+    private LocalDateTime questionStartTime;
+
+    @Column (name="question_end_time")
+    private LocalDateTime questionEndTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id",
@@ -278,6 +285,42 @@ public class TestHistory {
         this.user = user;
     }
 
+    /**
+     * Gets question start time.
+     *
+     * @return the question start time
+     */
+    public LocalDateTime getQuestionStartTime() {
+        return questionStartTime;
+    }
+
+    /**
+     * Sets question start time.
+     *
+     * @param questionStartTime the question start time
+     */
+    public void setQuestionStartTime(LocalDateTime questionStartTime) {
+        this.questionStartTime = questionStartTime;
+    }
+
+    /**
+     * Gets question end time.
+     *
+     * @return the question end time
+     */
+    public LocalDateTime getQuestionEndTime() {
+        return questionEndTime;
+    }
+
+    /**
+     * Sets question end time.
+     *
+     * @param questionEndTime the question end time
+     */
+    public void setQuestionEndTime(LocalDateTime questionEndTime) {
+        this.questionEndTime = questionEndTime;
+    }
+
     @Override
     public String toString() {
         return "TestHistory{" +
@@ -291,6 +334,9 @@ public class TestHistory {
                 ", menuCategory='" + menuCategory + '\'' +
                 ", responseTimeInSec=" + responseTimeInSec +
                 ", responseStatus='" + responseStatus + '\'' +
+                ", questionStartTime=" + questionStartTime +
+                ", questionEndTime=" + questionEndTime +
+                ", user=" + user +
                 '}';
     }
 }

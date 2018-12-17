@@ -8,6 +8,7 @@ import com.doorCreekCafe.entity.User;
 import com.doorCreekCafe.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.plugins.util.ResolverUtil;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,7 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+
+import static java.time.LocalDateTime.now;
 
 
 /**
@@ -42,27 +49,40 @@ public class SimulatorSelectMenuItem extends HttpServlet {
 
         logger.debug("in simulator:menuItem");
 
-
         HttpSession session = req.getSession();
 
-        logger.debug("CURRENT TEST ITEM: " + session.getAttribute("currentTestMenuItem"));
-        logger.debug("SELECTED ITEM: " + req.getParameter("submit"));
-
+        // Get question list
+        List<TestHistory> testMenuItems = (List<TestHistory>) session.getAttribute("testMenuItems");
 
 
         // Determine of test is over
         String questionNumberString = String.valueOf(session.getAttribute("currentTestArrayIndex"));
+        int currentIndex = Integer.parseInt(questionNumberString);
         int index = (Integer.parseInt(questionNumberString)) + 1;
 
         String numberOfQuestions = String.valueOf(session.getAttribute("testSize"));
         int maxIndex = (Integer.parseInt(numberOfQuestions));
 
 
-
-
         if (index == maxIndex && session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
 
+            logger.debug(session.getAttribute("userId") + "user id");
             logger.debug("test over");
+
+            //
+            String questionNumberString = String.valueOf(session.getAttribute("currentTestArrayIndex"));
+            int currentIndex = Integer.parseInt(questionNumberString);
+            testMenuItems.get(currentIndex).setQuestionEndTime(LocalDateTime.now());
+
+
+            // get
+            List<TestHistory> testMenuItems = (List<TestHistory>) session.getAttribute("testMenuItems");
+            for (TestHistory item: testMenuItems) {
+                logger.debug(item.getDescription());
+                logger.debug(item.getQuestionStartTime());
+                logger.debug(item.getQuestionEndTime());
+            }
+
 
             RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/testResults.jsp");
             dispatcher.forward(req, resp);
@@ -74,14 +94,20 @@ public class SimulatorSelectMenuItem extends HttpServlet {
             if (session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
                 logger.debug("CORRECT");
 
+
+                // Set Question approx quetion answer time
+                testMenuItems.get(currentIndex).setQuestionEndTime(LocalDateTime.now());
+
                 // Set Answer Status
                 session.setAttribute("answerStatus", "CORRECT");
 
                 // Increment question number
                 int question = index + 1;
 
-                // Get question list
-                List<TestHistory> testMenuItems = (List) session.getAttribute("testMenuItems");
+                // Set next question approx start time
+                testMenuItems.get(index).setQuestionStartTime(LocalDateTime.now());
+                logger.debug(testMenuItems.get(index).getQuestionStartTime());
+
 
                 // set session attributes for next question
                 session.setAttribute("currentTestHistory", testMenuItems.get(index));
@@ -89,6 +115,7 @@ public class SimulatorSelectMenuItem extends HttpServlet {
                 session.setAttribute("currentTestMenuCategory", testMenuItems.get(index).getMenuCategory());
                 session.setAttribute("currentTestArrayIndex", index);
                 session.setAttribute("question", question);
+
             } else {
                 logger.debug("incorrect");
                 session.setAttribute("answerStatus", "INCORRECT");

@@ -30,24 +30,16 @@
 
         }
 
-        #register {
-            width: 710px;
-        }
 
         #categories {
-            display: inline;
-            border: 1px solid black;
-            width: 250px;
-            float: left;
-        }
+           border: 1px solid black;
 
+        }
 
 
         #items {
-            width: 450px;
-            display: inline;
             border: 1px solid black;
-            float: right;
+
         }
 
 
@@ -64,24 +56,22 @@
 
 
 <H2>Test Simulator</H2>
-
-
+User Name = ${users[0].firstName}
+<P>
+Directions:  Based on order please select correct Menu Item.  If you need a hint, select/click any Menu Item.
+</P>
 <div>
-    <h3>Order # ${question}:  ${currentTestMenuItem}<H3>
-    <br>
-    <c:forEach var="item" items="${testMenuItems}" varStatus="loop">
-        I want a....  ${item.description}
-        <c:if test="question == loop">
-            I want a....  ${item.description}
-        </c:if>
-    </c:forEach>
-
+    <h3>Order # ${question}:  ${currentTestMenuItem}</H3>
 </div>
 
-<div id="register">
 
-    <div id="categories">
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-1"></div>
+    <div id="categories" class="col-3">
+    <br>
     <H3 align="center">Categories</H3>
+    <br>
     <table>
         <form action="continue" method="post">
         <c:forEach begin="1" end="10" varStatus="loop">
@@ -115,12 +105,12 @@
     </form>
     </table>
     </div>
-
-
-    <div id="items">
+    <div id="items" class="col-6">
+        <Br>
         <H3 align="center">Menu Items</H3>
-        <form action="answer" method="post">
-           <table>
+        <Br>
+        <table>
+            <form action="answer" method="post">
                 <c:forEach var="category" items="${menuCategories}">
                     <c:if test="${category.id == categoryId}">
                         <c:forEach begin="1" end="10" varStatus="loop">
@@ -174,7 +164,8 @@
             </table>
         </form>
     </div>
-
+    <div class="col-1"></div>
+    </div>
 </div>
 
 
@@ -195,7 +186,9 @@
 <footer>
     <%@ include file="/jsp/footer.jsp"%>
 </footer>
+
 <%@ include file="/jsp/bootstrampJavaScript.jsp"%>
+
 </body>
 </html>
 

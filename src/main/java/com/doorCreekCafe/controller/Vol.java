@@ -12,7 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -38,10 +40,11 @@ public class Vol extends HttpServlet {
 
         GenericDao genericDao = new GenericDao(User.class);
 
-        req.setAttribute("users", genericDao.getByPropertyEqual("userName",username));
 
+        List<User> users = genericDao.getByPropertyEqual("userName", username);
 
-
+        HttpSession session = req.getSession();
+        session.setAttribute("userId",  users.get(0).getId());
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/vol/vol.jsp");
         dispatcher.forward(req, resp);

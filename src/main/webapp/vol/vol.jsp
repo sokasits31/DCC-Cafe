@@ -57,6 +57,7 @@
                 </fieldset>
 
                 <input type="submit" name="submit" value="Update">
+            </FORM>
         </div>
 
 <br>

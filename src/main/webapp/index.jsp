@@ -50,8 +50,6 @@
     <!-- Page Content goes here -->
 </div>
 
-<script type="text/javascript" src="js/materialize.min.js"></script>
-
 <footer>
     <%@ include file="/jsp/footer.jsp"%>
 </footer>

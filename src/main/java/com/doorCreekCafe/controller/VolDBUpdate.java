@@ -58,6 +58,7 @@ public class VolDBUpdate extends HttpServlet {
 
         req.setAttribute("status", statusOfUpdate);
 
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("/vol/dataBaseStatus.jsp");
         dispatcher.forward(req, resp);
 
