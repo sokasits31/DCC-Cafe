@@ -1,5 +1,7 @@
 package com.doorCreekCafe.entity;
 
+import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

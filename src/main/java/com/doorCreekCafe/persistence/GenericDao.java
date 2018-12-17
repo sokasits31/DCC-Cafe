@@ -164,8 +164,6 @@ public class GenericDao<T> {
     }
 
 
-
-
     /**
      *  Returns an open session for the SessionFactory
      *

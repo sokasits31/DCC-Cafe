@@ -256,23 +256,23 @@
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="71" parent="19" name="id">
+    <trigger id="71" parent="18" name="testHistory_AFTER_INSERT">
+      <Turn>after-row</Turn>
+      <Events>I</Events>
+    </trigger>
+    <column id="72" parent="19" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="72" parent="19" name="description">
+    <column id="73" parent="19" name="description">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="73" parent="19" name="frequency_levels_less_than">
+    <column id="74" parent="19" name="response_time">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
-    </column>
-    <column id="74" parent="19" name="order_entry_time_limit">
-      <Position>4</Position>
-      <DataType>time|0</DataType>
     </column>
     <index id="75" parent="19" name="test_parm_id_uindex">
       <ColNames>id</ColNames>

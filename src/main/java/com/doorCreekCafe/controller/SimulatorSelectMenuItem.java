@@ -69,18 +69,30 @@ public class SimulatorSelectMenuItem extends HttpServlet {
             logger.debug(session.getAttribute("userId") + "user id");
             logger.debug("test over");
 
-            //
-            String questionNumberString = String.valueOf(session.getAttribute("currentTestArrayIndex"));
-            int currentIndex = Integer.parseInt(questionNumberString);
+
+            GenericDao genericDao = new GenericDao(TestHistory.class);
+
+            // set approx time question was test item was answered correctly
             testMenuItems.get(currentIndex).setQuestionEndTime(LocalDateTime.now());
 
-
             // get
-            List<TestHistory> testMenuItems = (List<TestHistory>) session.getAttribute("testMenuItems");
+            //List<TestHistory> testMenuItems = (List<TestHistory>) session.getAttribute("testMenuItems");
+
+
+            int insertId;
+
             for (TestHistory item: testMenuItems) {
-                logger.debug(item.getDescription());
-                logger.debug(item.getQuestionStartTime());
-                logger.debug(item.getQuestionEndTime());
+                if (item.getUser() != null) {
+                    insertId = genericDao.insert(item);
+
+
+                    logger.debug(item.getDescription());
+                    logger.debug(item.getQuestionStartTime());
+                    logger.debug(item.getQuestionEndTime());
+                } else {
+                    logger.debug("finally here!!!");
+                }
+
             }
 
 
@@ -125,6 +137,23 @@ public class SimulatorSelectMenuItem extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/register2.jsp");
             dispatcher.forward(req, resp);
         }
+    }
+
+    private String generateSQL(int testHistoryId) {
+        String sql =
+               " SELECT CASE" +
+               "           WHEN TIMESTAMPDIFF(SECOND, t.question_start_time, t.question_end_time) < p.response_time then 'pass'" +
+               "           WHEN TIMESTAMPDIFF(SECOND, t.question_start_time, t.question_end_time) >= p.response_time then 'fail'" +
+               "       end as result" +
+               " FROM  testHistory t" +
+               "       inner join" +
+               "       user u" +
+               "           on t.user_id = u.id" +
+               "       inner join" +
+               "       test_parm p" +
+               "           on u.skill_level = p.id" +
+               " where t.id < 4";
+        return sql;
     }
 }
 

@@ -21,7 +21,7 @@ import java.util.List;
 
 
 /**
- * A simple servlet to welcome the user.
+ * A servlet that gathers test menu items based on user preferences and start the test.
  * @author pwaite
  */
 
@@ -41,31 +41,24 @@ public class SimulatorSettings extends HttpServlet {
 
         HttpSession session = req.getSession();
 
-        int userId = 999;
+        // set user Id.... this is needed if no login has been chosen
+        String userId = null;
 
-        logger.debug(session.getAttribute("userId"));
-
+        // If user has logged in userID will be used to select menu item to be tested.
         if (session.getAttribute("userId") != null) {
-            String userIdString = String.valueOf(session.getAttribute("userId"));
-            userId = (Integer.parseInt(userIdString));
+            userId = String.valueOf(session.getAttribute("userId"));
+            //String userIdString = String.valueOf(session.getAttribute("userId"));
+            //userId = (Integer.parseInt(userIdString));
         }
-
-        logger.debug("UserId ===================" + userId);
 
         // Gather menu items to be tested
         GenericDao genericDao = new GenericDao(TestHistory.class);
 
+        // set number of question in test session
         int size = Integer.parseInt(req.getParameter("testSize"));
 
-        logger.debug("size: " + size);
-
+        // Gather test questions
         List<TestHistory> testMenuItems = genericDao.getQueryResults(generateSQL(userId), size);
-
-        for (TestHistory x:testMenuItems) {
-            logger.debug("test " + x.getDescription());
-            logger.debug(x.getRandomNumber());
-            logger.debug(x.getAltDescription());
-        }
 
         // Get all menu items
         GenericDao genericDao2 = new GenericDao(MenuCategory.class);
@@ -80,9 +73,9 @@ public class SimulatorSettings extends HttpServlet {
         session.setAttribute("categoryColumn", "A");
         session.setAttribute("categoryRow", 1);
         session.setAttribute("menuCategories", genericDao2.getAll());
-        session.setAttribute("testSize", req.getParameter("testSize"));
 
-        // Determine menu item being tested
+
+        // Save menu Item being tested
         session.setAttribute("currentTestHistory", testMenuItems.get(0));
         session.setAttribute("currentTestMenuItem", testMenuItems.get(0).getDescription());
         session.setAttribute("currentTestArrayIndex", 0);
@@ -96,7 +89,7 @@ public class SimulatorSettings extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    private String generateSQL (int userId) {
+    private String generateSQL (String userId) {
 
         String sql;
 
@@ -117,7 +110,7 @@ public class SimulatorSettings extends HttpServlet {
               "      ,c.category_description as menu_category" +
               "      ,0 as response_time_in_sec" +
               "      ,'fail' as response_status" +
-              "      ,null as user_id" +
+              "      ," + userId + " as user_id" +
               "      ,now() as question_start_time" +
               "      ,now() as question_end_time" +
               " FROM   menuItem m" +
@@ -131,7 +124,7 @@ public class SimulatorSettings extends HttpServlet {
               "        select 1" +
               "        from   testHistory x" +
               "        where  x.item_id = m.id" +
-              "        and    x.response_status = 'pass' " +
+              "        and    TIMESTAMPDIFF(SECOND, x.question_start_time, x.question_end_time) < 15" +
               "        and    x.user_id = h.user_id" +
               "        )" +
               " and    m.frequency_level in ('High', 'Med', 'Low') " +

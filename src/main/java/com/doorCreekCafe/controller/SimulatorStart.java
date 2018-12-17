@@ -15,8 +15,8 @@ import java.io.IOException;
 
 
 /**
- * A simple servlet to welcome the user.
- * @author pwaite
+ * A servlet that start the test simulator....  (settings screen).
+ * @author ssokasits
  */
 
 @WebServlet(
@@ -30,8 +30,6 @@ public class SimulatorStart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        logger.debug("User Id: " + req.getParameter("userName"));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/testSettings.jsp");
         dispatcher.forward(req, resp);

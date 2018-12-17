@@ -42,7 +42,7 @@ public class SimulatorActiveTest extends HttpServlet {
 
         // Update session attributes
         HttpSession session = req.getSession();
-        session.setAttribute("menuCategories", genericDao.getAll());
+        //session.setAttribute("menuCategories", genericDao.getAll());
         session.setAttribute("categoryId", category.getId());
         session.setAttribute("categoryColumn",category.getColumnPosition());
         session.setAttribute("categoryRow", category.getRowPosition());
