@@ -256,86 +256,82 @@
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <trigger id="71" parent="18" name="testHistory_AFTER_INSERT">
-      <Turn>after-row</Turn>
-      <Events>I</Events>
-    </trigger>
-    <column id="72" parent="19" name="id">
+    <column id="71" parent="19" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="73" parent="19" name="description">
+    <column id="72" parent="19" name="description">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="74" parent="19" name="response_time">
+    <column id="73" parent="19" name="response_time">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="75" parent="19" name="test_parm_id_uindex">
+    <index id="74" parent="19" name="test_parm_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="76" parent="19" name="PRIMARY">
+    <key id="75" parent="19" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="77" parent="19" name="test_parm_id_uindex">
+    <key id="76" parent="19" name="test_parm_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>test_parm_id_uindex</UnderlyingIndexName>
     </key>
-    <column id="78" parent="20" name="id">
+    <column id="77" parent="20" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="79" parent="20" name="email_address">
+    <column id="78" parent="20" name="email_address">
       <Position>2</Position>
       <DataType>varchar(120)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="80" parent="20" name="first_name">
+    <column id="79" parent="20" name="first_name">
       <Position>3</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="81" parent="20" name="last_name">
+    <column id="80" parent="20" name="last_name">
       <Position>4</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="82" parent="20" name="skill_level">
+    <column id="81" parent="20" name="skill_level">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="83" parent="20" name="primary_phone_number">
+    <column id="82" parent="20" name="primary_phone_number">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="84" parent="20" name="user_name">
+    <column id="83" parent="20" name="user_name">
       <Position>7</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="85" parent="20" name="user_password">
+    <column id="84" parent="20" name="user_password">
       <Position>8</Position>
       <DataType>varchar(200)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="86" parent="20" name="user_id_uindex">
+    <index id="85" parent="20" name="user_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="87" parent="20" name="PRIMARY">
+    <key id="86" parent="20" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="88" parent="20" name="user_id_uindex">
+    <key id="87" parent="20" name="user_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>user_id_uindex</UnderlyingIndexName>
     </key>

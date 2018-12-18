@@ -47,8 +47,6 @@ public class SimulatorSettings extends HttpServlet {
         // If user has logged in userID will be used to select menu item to be tested.
         if (session.getAttribute("userId") != null) {
             userId = String.valueOf(session.getAttribute("userId"));
-            //String userIdString = String.valueOf(session.getAttribute("userId"));
-            //userId = (Integer.parseInt(userIdString));
         }
 
         // Gather menu items to be tested

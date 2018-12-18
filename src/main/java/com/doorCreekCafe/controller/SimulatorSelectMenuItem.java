@@ -1,10 +1,7 @@
 package com.doorCreekCafe.controller;
 
 
-import com.doorCreekCafe.entity.MenuCategory;
-import com.doorCreekCafe.entity.MenuItem;
-import com.doorCreekCafe.entity.TestHistory;
-import com.doorCreekCafe.entity.User;
+import com.doorCreekCafe.entity.*;
 import com.doorCreekCafe.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,51 +51,42 @@ public class SimulatorSelectMenuItem extends HttpServlet {
         // Get question list
         List<TestHistory> testMenuItems = (List<TestHistory>) session.getAttribute("testMenuItems");
 
-
-        // Determine of test is over
+        // Determine index for current and next question
         String questionNumberString = String.valueOf(session.getAttribute("currentTestArrayIndex"));
         int currentIndex = Integer.parseInt(questionNumberString);
         int index = (Integer.parseInt(questionNumberString)) + 1;
 
-        String numberOfQuestions = String.valueOf(session.getAttribute("testSize"));
-        int maxIndex = (Integer.parseInt(numberOfQuestions));
+        //String numberOfQuestions = String.valueOf(session.getAttribute("testSize"));
+        //int maxIndex = (Integer.parseInt(numberOfQuestions));
+
+        //logger.debug("maxIndex:" + maxIndex);
+        //logger.debug("size:" + testMenuItems.size());
 
 
-        if (index == maxIndex && session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
+        // test is over
+        if (index == testMenuItems.size() && session.getAttribute("currentTestMenuItem").equals(req.getParameter("submit"))) {
 
-            logger.debug(session.getAttribute("userId") + "user id");
-            logger.debug("test over");
-
-
+            // Create genericDao object
             GenericDao genericDao = new GenericDao(TestHistory.class);
 
             // set approx time question was test item was answered correctly
             testMenuItems.get(currentIndex).setQuestionEndTime(LocalDateTime.now());
 
-            // get
-            //List<TestHistory> testMenuItems = (List<TestHistory>) session.getAttribute("testMenuItems");
-
-
             int insertId;
 
             for (TestHistory item: testMenuItems) {
                 if (item.getUser() != null) {
+                    updateResponseStatus(item);
                     insertId = genericDao.insert(item);
-
-
-                    logger.debug(item.getDescription());
-                    logger.debug(item.getQuestionStartTime());
-                    logger.debug(item.getQuestionEndTime());
                 } else {
                     logger.debug("finally here!!!");
                 }
-
             }
-
 
             RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/testResults.jsp");
             dispatcher.forward(req, resp);
 
+        // test continues
         } else {
 
             String answerStatus;
@@ -139,21 +127,27 @@ public class SimulatorSelectMenuItem extends HttpServlet {
         }
     }
 
-    private String generateSQL(int testHistoryId) {
-        String sql =
-               " SELECT CASE" +
-               "           WHEN TIMESTAMPDIFF(SECOND, t.question_start_time, t.question_end_time) < p.response_time then 'pass'" +
-               "           WHEN TIMESTAMPDIFF(SECOND, t.question_start_time, t.question_end_time) >= p.response_time then 'fail'" +
-               "       end as result" +
-               " FROM  testHistory t" +
-               "       inner join" +
-               "       user u" +
-               "           on t.user_id = u.id" +
-               "       inner join" +
-               "       test_parm p" +
-               "           on u.skill_level = p.id" +
-               " where t.id < 4";
-        return sql;
+
+    /*
+     * Method will set response status and response time in seconds
+     */
+    private void updateResponseStatus (TestHistory item) {
+
+        String status;
+
+        Long diffInSeconds = java.time.Duration.between(item.getQuestionStartTime(),
+                item.getQuestionEndTime()).getSeconds();
+
+        logger.debug("diff in seconds" + diffInSeconds);
+
+        if (diffInSeconds >= 10.0) {
+            item.setResponseStatus("FAIL");
+        } else {
+            item.setResponseStatus("PASS");
+        }
+
+        item.setResponseTimeInSec(diffInSeconds.intValue());
+
     }
 }
 
