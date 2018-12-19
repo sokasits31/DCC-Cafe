@@ -26,7 +26,7 @@
                 <br>
                 <br>
                 <ul>
-                    <li><A HREF="vol/simulatorScores">View Simulator Response Times</A></li>
+                    <li><A HREF="./vol/responseTimes">View Menu Item Response Times</A></li>
                     <br>
                     <li><A HREF="simulator/settings">Start a New Simulator test</A></li>
                     <br>

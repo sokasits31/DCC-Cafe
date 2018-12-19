@@ -46,8 +46,7 @@
 
                 <input type="submit" name="submit" value="Update">
             </FORM>
-            <br><br>
-            ${status}
+
             <Br><br>
             <a href="/doorCreekCafe/vol">Back to Volunteer Dashboard</a>
         </div>

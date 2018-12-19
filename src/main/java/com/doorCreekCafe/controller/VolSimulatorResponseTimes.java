@@ -1,6 +1,8 @@
 package com.doorCreekCafe.controller;
 
 
+import com.doorCreekCafe.entity.User;
+import com.doorCreekCafe.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -21,7 +24,7 @@ import java.io.IOException;
 
 @WebServlet(
 
-        urlPatterns = {"/vol/simulator/responseTimes"}
+        urlPatterns = {"/vol/responseTimes"}
 )
 
 public class VolSimulatorResponseTimes extends HttpServlet {
@@ -34,9 +37,16 @@ public class VolSimulatorResponseTimes extends HttpServlet {
 
         HttpSession session = req.getSession();
 
-        logger.debug("User Id: " + session.getAttribute("userId"));
+        GenericDao genericDao = new GenericDao(User.class);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/testSimulator/testSettings.jsp");
+
+        List<User> users = genericDao.getByPropertyEqual("id", String.valueOf(session.getAttribute("userId")));
+
+
+        req.setAttribute("Users", users);
+
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/vol/volResponseTimes.jsp");
         dispatcher.forward(req, resp);
     }
 
