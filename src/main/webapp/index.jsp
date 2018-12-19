@@ -2,9 +2,6 @@
 <html lang="en">
 <head>
     <%@ include file="/jsp/head-tag.jsp"%>
-
-
-
 </head>
 
 <body>
@@ -22,7 +19,7 @@
             Guest Links (no login required)
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="simulator/settings">Start Test Simulator</A>
+                    <a class="nav-link active" href="/doorCreekCafe/simulator/settings">Start Test Simulator</A>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="registerScreens">View Current Register Screens</A>

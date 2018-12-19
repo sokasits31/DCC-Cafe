@@ -28,15 +28,14 @@
                 <ul>
                     <li><A HREF="vol/simulatorScores">View Simulator Response Times</A></li>
                     <br>
-                    <li><A HREF="simulator/settings">Start a New Simulator test</A></li>
+                    <li><A HREF="vol/simulator/settings">Start a New Simulator test</A></li>
                     <br>
                     <li><A HREF="vol/update">Update Info</A></li>
                 </ul>
             </div>
             <div class="col-8">
-                <%@ include file="/vol/content/home.jsp"%>
+                <%@ include file="/commonContent/testSettings.jsp"%>
             </div>
-            <a class="nav-link active" href="/doorCreekCafe/vol">vol home page</A>
         </div>
     </div>
 </div>
@@ -44,11 +43,10 @@
 <br>
 
 <footer>
-<%@ include file="/jsp/footer.jsp"%>
+    <%@ include file="/jsp/footer.jsp"%>
 </footer>
 <%@ include file="/jsp/bootstrampJavaScript.jsp"%>
 
 
 </body>
 </html>
-

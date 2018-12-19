@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 
 @WebServlet(
-        name = "volsimulatorStartServlet",
+
         urlPatterns = {"/vol/simulator/responseTimes"}
 )
 

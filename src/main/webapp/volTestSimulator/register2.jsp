@@ -5,8 +5,7 @@
 <html lang="en">
 <head>
     <%@ include file="/jsp/head-tag.jsp"%>
-    <%@ include file="/register/registerCSS.jsp"%>
-
+    <%@ include file="/commonContent/registerCSS.jsp"%>
 </head>
 
 <body>
@@ -14,8 +13,7 @@
 <header>
     <%@ include file="/jsp/header.jsp"%>
 </header>
-
-<%@ include file="/register/register.jsp"%>
+<%@ include file="/commonContent/register.jsp"%>
 
 <footer>
     <%@ include file="/jsp/footer.jsp"%>

@@ -1,6 +1,7 @@
 package com.doorCreekCafe.controller;
 
 
+import com.doorCreekCafe.entity.Role;
 import com.doorCreekCafe.entity.User;
 import com.doorCreekCafe.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
@@ -23,32 +24,33 @@ import java.util.List;
  */
 
 @WebServlet(
-      name = "volServlet",
-      urlPatterns = {"/vol"}
+     urlPatterns = {"/requestId"}
 )
 
-public class Vol extends HttpServlet {
+public class RequestUserId extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String username = req.getUserPrincipal().getName();
+        GenericDao genericDao = new GenericDao(Role.class);
 
-        logger.debug("userName= " + username );
+        List<Role> roles = genericDao.getByPropertyEqual("roleName", "admin");
 
-        GenericDao genericDao = new GenericDao(User.class);
+        // Just user first admin found on system
+        String userId = String.valueOf(roles.get(0).getId());
+
+        GenericDao genericDao2 = new GenericDao(User.class);
+        List<User> users = genericDao2.getByPropertyEqual("id", userId );
 
 
-        List<User> users = genericDao.getByPropertyEqual("userName", username);
+        req.setAttribute("email", users.get(0).getEmailAddress());
+        req.setAttribute("firstName", users.get(0).getFirstName());
+        req.setAttribute("lastName", users.get(0).getLastName());
+        req.setAttribute("phoneNumber", users.get(0).getPrimaryPhoneNumber());
 
-        HttpSession session = req.getSession();
-        session.setAttribute("userId",  users.get(0).getId());
-        session.setAttribute("userName",  users.get(0).getFirstName());
-        session.setAttribute("users", users);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/vol/vol.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/requestUserId.jsp");
         dispatcher.forward(req, resp);
     }
 

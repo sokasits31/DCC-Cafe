@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 @WebServlet(
-      name = "simulatorSettingsServlet",
+
       urlPatterns = {"/simulator/test/start"}
 )
 
@@ -56,7 +56,7 @@ public class SimulatorSettings extends HttpServlet {
         int size = Integer.parseInt(req.getParameter("testSize"));
 
         // Gather test questions
-        List<TestHistory> testMenuItems = genericDao.getQueryResults(generateSQL(userId), size);
+        List<TestHistory> testMenuItems = genericDao.getQueryResults(generateSQL(userId, req.getParameter("freq")), size);
 
         // Get all menu items
         GenericDao genericDao2 = new GenericDao(MenuCategory.class);
@@ -87,7 +87,7 @@ public class SimulatorSettings extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    private String generateSQL (String userId) {
+    private String generateSQL (String userId, String freq) {
 
         String sql;
 
@@ -107,7 +107,12 @@ public class SimulatorSettings extends HttpServlet {
               "      ,m.short_Hand as short_hand" +
               "      ,c.category_description as menu_category" +
               "      ,0 as response_time_in_sec" +
-              "      ,'fail' as response_status" +
+              "      ,Case " +
+              "           when h.user_Id is null then 'NEW'"+
+              "           when h.user_id is not null and h.response_status = 'PASS' then 'PASS'"+
+              "           when h.user_id is not null and h.response_status = 'FAIL' then 'FAIL'"+
+              "           ELSE 'NEW'"+
+              "       END AS response_status"+
               "      ," + userId + " as user_id" +
               "      ,now() as question_start_time" +
               "      ,now() as question_end_time" +
@@ -115,18 +120,12 @@ public class SimulatorSettings extends HttpServlet {
               "        inner join" +
               "        menuCategory c" +
               "            on m.menuCategory_id = c.id" +
+              "            and m.frequency_level =  '" + freq + "'" +
               "        left outer join" +
               "        testHistory h" +
-              "           on h.user_id = " + userId +
-              " where  not exists (" +
-              "        select 1" +
-              "        from   testHistory x" +
-              "        where  x.item_id = m.id" +
-              "        and    TIMESTAMPDIFF(SECOND, x.question_start_time, x.question_end_time) < 15" +
-              "        and    x.user_id = h.user_id" +
-              "        )" +
-              " and    m.frequency_level in ('High', 'Med', 'Low') " +
-              " order by 5, 6";
+              "           on  h.user_id = " + userId +
+              "           and h.item_id = m.id " +
+              " order by 10, 6";
 
         return sql;
 
