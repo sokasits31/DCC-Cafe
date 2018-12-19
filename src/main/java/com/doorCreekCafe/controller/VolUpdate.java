@@ -23,34 +23,22 @@ import java.util.List;
  */
 
 @WebServlet(
-      name = "volServlet",
-      urlPatterns = {"/vol"}
+
+      urlPatterns = {"/vol/update"}
 )
 
-public class Vol extends HttpServlet {
+public class VolUpdate extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String username = req.getUserPrincipal().getName();
-
-        logger.debug("userName= " + username );
-
-        GenericDao genericDao = new GenericDao(User.class);
-
-
-        List<User> users = genericDao.getByPropertyEqual("userName", username);
-
         HttpSession session = req.getSession();
-        session.setAttribute("userId",  users.get(0).getId());
-        session.setAttribute("userName",  users.get(0).getFirstName());
-        session.setAttribute("users", users);
 
-        req.setAttribute("users", users);
+        req.setAttribute("users", session.getAttribute("users"));
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/vol/vol.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/vol/update.jsp");
         dispatcher.forward(req, resp);
     }
 

@@ -4,6 +4,8 @@ package com.doorCreekCafe.controller;
 import com.doorCreekCafe.entity.Role;
 import com.doorCreekCafe.entity.User;
 import com.doorCreekCafe.persistence.GenericDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,11 +25,14 @@ import java.io.IOException;
 
 
 @WebServlet(
-     urlPatterns = {"/vol/dataBaseStatus"}
+       urlPatterns = {"/vol/update/status"}
 
 )
 
 public class VolDBUpdate extends HttpServlet {
+
+
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
 
     @Override
@@ -36,6 +41,7 @@ public class VolDBUpdate extends HttpServlet {
         String statusOfUpdate = "fail";
         GenericDao genericDao = new GenericDao(User.class);
 
+        logger.debug("in vol db update");
 
         int userId = Integer.parseInt(req.getParameter("userId"));
 
@@ -56,8 +62,8 @@ public class VolDBUpdate extends HttpServlet {
 
         statusOfUpdate = "Update Successful";
 
-        req.setAttribute("status", statusOfUpdate);
 
+        req.setAttribute("status" , statusOfUpdate);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/vol/dataBaseStatus.jsp");
         dispatcher.forward(req, resp);

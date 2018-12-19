@@ -17,6 +17,8 @@
 <h1>Database Status</h1>
 
 Status of request: ${status}
+<br><br>
+<a href="/doorCreekCafe/vol">Back to Volunteer Dashboard</a>
 
 
 <footer>

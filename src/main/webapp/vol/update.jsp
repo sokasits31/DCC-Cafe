@@ -13,24 +13,12 @@
     <%@ include file="/jsp/header.jsp"%>
 </header>
 
-<h1>Volunteer Dashboard</h1>
-
 <div class="container-fluid">
     <!-- Page Content goes here -->
     <div class="row">
 
-        <div class="col-2">
-            Links:
-            <br>
-            <ul>
-            <li><A HREF="vol/simulatorScores">My Simulator Scores</A></li>
-            <li><A HREF="simulator/settings">Start New Simulator</A></li>
-            </ul>
-        </div>
-        <div class="col-10">
-            <h4>Current user profile:</h4>
-
-            <FORM ACTION= "vol/dataBaseStatus" method="post">
+        <div>
+             <FORM ACTION= "update/status" method="post">
 
                 <br>
                 <fieldset>
@@ -38,19 +26,19 @@
 
                     Id:<br>
                     <input type="text" name="userId" value="${users[0].id}" readonly > <br>
-
+                    <br>
                     Email Address:<br>
                     <input type="text" name="emailAddress" value="${users[0].emailAddress}"><br>
-
+                    <br>
                     First Name:<br>
                     <input type="text" name="firstName" value="${users[0].firstName}"><br>
-
+                    <br>
                     Last Name:<br>
                     <input type="text" name="lastName" value="${users[0].lastName}"><br>
-
+                    <br>
                     Skill Level:<br>
                     <input type="text" name="skillLevel" value="${users[0].skillLevel}" readonly><br>
-
+                    <br>
                     User Name:<br>
                     <input type="text" name="userName" value="${users[0].userName}"><br>
 
@@ -58,9 +46,14 @@
 
                 <input type="submit" name="submit" value="Update">
             </FORM>
+            <br><br>
+            ${status}
+            <Br><br>
+            <a href="/doorCreekCafe/vol">Back to Volunteer Dashboard</a>
         </div>
 
-<br>
+    </div>
+</div>
 
 
 <footer>

@@ -1299,3 +1299,66 @@
 [DEBUG] 2018-12-18 20:09:40.709 [http-nio-8080-exec-10] GenericDao - Searching for user with id = 1
 [DEBUG] 2018-12-18 20:11:40.941 [http-nio-8080-exec-10] GenericDao - Searching for user with roleName = admin
 [DEBUG] 2018-12-18 20:11:41.828 [http-nio-8080-exec-10] GenericDao - Searching for user with id = 1
+[DEBUG] 2018-12-18 20:12:08.043 [http-nio-8080-exec-6] GenericDao - Searching for user with roleName = admin
+[DEBUG] 2018-12-18 20:12:08.076 [http-nio-8080-exec-6] GenericDao - Searching for user with id = 1
+[DEBUG] 2018-12-18 20:12:14.020 [http-nio-8080-exec-9] GenericDao - Searching for user with roleName = admin
+[DEBUG] 2018-12-18 20:12:14.079 [http-nio-8080-exec-9] GenericDao - Searching for user with id = 1
+[DEBUG] 2018-12-18 20:12:20.254 [http-nio-8080-exec-10] GenericDao - Searching for user with roleName = admin
+[DEBUG] 2018-12-18 20:12:20.278 [http-nio-8080-exec-10] GenericDao - Searching for user with id = 1
+[DEBUG] 2018-12-18 20:12:33.152 [http-nio-8080-exec-7] SimulatorSettings - in Simulator Settings
+[DEBUG] 2018-12-18 20:12:33.631 [http-nio-8080-exec-7] GenericDao - SQL: select     m.id as id   ,m.id as item_id   ,m.description   ,m.alt_description   ,case            when m.frequency_level = 'High' then 1           when m.frequency_level = 'Med'  then 2           when m.frequency_level = 'Low'  then 3           when m.frequency_level = 'None' then 9           when m.frequency_level = 'Add on' then 9       end as frequency_order      ,rand() * 10000 as random_number      ,m.short_Hand as short_hand      ,c.category_description as menu_category      ,0 as response_time_in_sec      ,Case            when h.user_Id is null then 'NEW'           when h.user_id is not null and h.response_status = 'PASS' then 'PASS'           when h.user_id is not null and h.response_status = 'FAIL' then 'FAIL'           ELSE 'NEW'       END AS response_status      ,null as user_id      ,now() as question_start_time      ,now() as question_end_time FROM   menuItem m        inner join        menuCategory c            on m.menuCategory_id = c.id            and m.frequency_level =  'Med'        left outer join        testHistory h           on  h.user_id = null           and h.item_id = m.id  order by 10, 6
+[DEBUG] 2018-12-18 20:12:34.562 [http-nio-8080-exec-7] SimulatorSettings - TEST MENU CAT: Cold Bottled
+[DEBUG] 2018-12-18 20:12:48.236 [http-nio-8080-exec-8] GenericDao - Searching for user with categoryDescription = Frozen Blended
+[DEBUG] 2018-12-18 20:12:52.132 [http-nio-8080-exec-9] GenericDao - Searching for user with categoryDescription = Brewed Coffee
+[DEBUG] 2018-12-18 20:12:53.555 [http-nio-8080-exec-1] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-18 20:12:53.557 [http-nio-8080-exec-1] SimulatorSelectMenuItem - incorrect
+[DEBUG] 2018-12-18 20:12:56.475 [http-nio-8080-exec-2] GenericDao - Searching for user with categoryDescription = Cold Bottled
+[DEBUG] 2018-12-18 20:12:59.654 [http-nio-8080-exec-10] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-18 20:12:59.655 [http-nio-8080-exec-10] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-18 20:12:59.658 [http-nio-8080-exec-10] SimulatorSelectMenuItem - 2018-12-18T20:12:59.658
+[DEBUG] 2018-12-18 20:13:03.134 [http-nio-8080-exec-3] GenericDao - Searching for user with categoryDescription = Tea Drinks
+[DEBUG] 2018-12-18 20:13:07.207 [http-nio-8080-exec-4] GenericDao - Searching for user with categoryDescription = Frozen Blended
+[DEBUG] 2018-12-18 20:13:10.364 [http-nio-8080-exec-5] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-18 20:13:10.364 [http-nio-8080-exec-5] SimulatorSelectMenuItem - incorrect
+[DEBUG] 2018-12-18 20:13:19.305 [http-nio-8080-exec-6] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-18 20:13:19.305 [http-nio-8080-exec-6] SimulatorSelectMenuItem - CORRECT
+[DEBUG] 2018-12-18 20:13:19.305 [http-nio-8080-exec-6] SimulatorSelectMenuItem - 2018-12-18T20:13:19.305
+[DEBUG] 2018-12-18 20:13:27.327 [http-nio-8080-exec-7] GenericDao - Searching for user with categoryDescription = Tea Drinks
+[DEBUG] 2018-12-18 20:13:28.397 [http-nio-8080-exec-8] GenericDao - Searching for user with categoryDescription = Cold Bottled
+[DEBUG] 2018-12-18 20:13:31.485 [http-nio-8080-exec-9] SimulatorSelectMenuItem - in simulator:menuItem
+[DEBUG] 2018-12-18 20:13:31.486 [http-nio-8080-exec-9] SimulatorSelectMenuItem - finally here!!!
+[DEBUG] 2018-12-18 20:13:31.486 [http-nio-8080-exec-9] SimulatorSelectMenuItem - finally here!!!
+[DEBUG] 2018-12-18 20:13:31.486 [http-nio-8080-exec-9] SimulatorSelectMenuItem - finally here!!!
+[DEBUG] 2018-12-18 20:19:45.668 [http-nio-8080-exec-5] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:19:45.680 [http-nio-8080-exec-5] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:20:15.127 [http-nio-8080-exec-7] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:20:15.128 [http-nio-8080-exec-7] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:21:32.884 [http-nio-8080-exec-4] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:21:32.886 [http-nio-8080-exec-4] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:21:47.986 [http-nio-8080-exec-6] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:21:47.988 [http-nio-8080-exec-6] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:31:34.472 [http-nio-8080-exec-2] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:31:47.504 [http-nio-8080-exec-2] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:42:16.535 [http-nio-8080-exec-2] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:42:29.569 [http-nio-8080-exec-2] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:44:10.912 [http-nio-8080-exec-2] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:44:22.498 [http-nio-8080-exec-2] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:49:27.376 [http-nio-8080-exec-3] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:49:40.523 [http-nio-8080-exec-3] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:51:52.815 [http-nio-8080-exec-5] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:52:04.408 [http-nio-8080-exec-5] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:58:03.459 [http-nio-8080-exec-3] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:58:15.420 [http-nio-8080-exec-3] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 20:58:30.748 [http-nio-8080-exec-7] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 20:58:30.751 [http-nio-8080-exec-7] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 21:04:07.916 [http-nio-8080-exec-2] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 21:04:19.433 [http-nio-8080-exec-2] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 21:06:11.023 [http-nio-8080-exec-2] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 21:06:22.289 [http-nio-8080-exec-2] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 21:07:48.063 [http-nio-8080-exec-3] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 21:07:59.022 [http-nio-8080-exec-3] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 21:10:06.090 [http-nio-8080-exec-3] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 21:10:19.520 [http-nio-8080-exec-3] GenericDao - Searching for user with userName = bradtheman
+[DEBUG] 2018-12-18 21:10:31.284 [http-nio-8080-exec-7] VolDBUpdate - in vol db update
+[DEBUG] 2018-12-18 21:10:36.060 [http-nio-8080-exec-8] Vol - userName= bradtheman
+[DEBUG] 2018-12-18 21:10:36.062 [http-nio-8080-exec-8] GenericDao - Searching for user with userName = bradtheman
